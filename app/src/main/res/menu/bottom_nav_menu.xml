@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/store"
+        android:icon="@drawable/pic_store"
+        android:title="Store"/>
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/pic_search"
+        android:title="Search"/>
+    <item
+        android:id="@+id/wishlist"
+        android:icon="@drawable/pic_wishlist"
+        android:title="Wishlist"/>
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/pic_settings"
+        android:title="Settings"/>
+
+</menu>
