@@ -38,7 +38,8 @@ class Splash : Fragment() {
 
     private fun initView() {
 
-        findNavController().navigate(R.id.action_splash_to_mainActivity)
+        navController=NavController(requireContext())
+        findNavController().navigate(R.id.action_splash_to_store)
         navController.popBackStack()
 
     }

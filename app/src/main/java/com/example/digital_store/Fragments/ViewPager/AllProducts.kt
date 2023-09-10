@@ -39,6 +39,7 @@ class AllProducts : Fragment() {
         binding.rvAllProductsItemall.adapter = allProductsAdapter
         allProductsAdapter.submitList(allProductsList)
 
+
     }
 
     private fun loadProducts() {
@@ -50,7 +51,79 @@ class AllProducts : Fragment() {
                 "lenovo thinkpad e15 g2 black",
                 "1000",
                 5.0,
-                500, "Laptops"
+                500, "Electronics"
+            ))
+        allProductsList.add(
+            AllProductsModel(
+                R.drawable.pic_laptop,
+                "lenovo thinkpad e15 g2 black",
+                "1000",
+                5.0,
+                500, "Electronics"
+            ))
+        allProductsList.add(
+            AllProductsModel(
+                R.drawable.pic_laptop,
+                "lenovo thinkpad e15 g2 black",
+                "1000",
+                5.0,
+                500, "Electronics"
+            ))
+        allProductsList.add(
+            AllProductsModel(
+                R.drawable.pic_laptop,
+                "lenovo thinkpad e15 g2 black",
+                "1000",
+                5.0,
+                500, "Electronics"
+            ))
+        allProductsList.add(
+            AllProductsModel(
+                R.drawable.pic_laptop,
+                "lenovo thinkpad e15 g2 black",
+                "1000",
+                5.0,
+                500, "Electronics"
+            ))
+        allProductsList.add(
+            AllProductsModel(
+                R.drawable.pic_laptop,
+                "lenovo thinkpad e15 g2 black",
+                "1000",
+                5.0,
+                500, "Electronics"
+            ))
+        allProductsList.add(
+            AllProductsModel(
+                R.drawable.pic_laptop,
+                "lenovo thinkpad e15 g2 black",
+                "1000",
+                5.0,
+                500, "Electronics"
+            ))
+        allProductsList.add(
+            AllProductsModel(
+                R.drawable.pic_laptop,
+                "lenovo thinkpad e15 g2 black",
+                "1000",
+                5.0,
+                500, "Electronics"
+            ))
+        allProductsList.add(
+            AllProductsModel(
+                R.drawable.pic_laptop,
+                "lenovo thinkpad e15 g2 black",
+                "1000",
+                5.0,
+                500, "Electronics"
+            ))
+        allProductsList.add(
+            AllProductsModel(
+                R.drawable.pic_laptop,
+                "lenovo thinkpad e15 g2 black",
+                "1000",
+                5.0,
+                500, "Electronics"
             ))
 
     }

@@ -14,10 +14,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [Laptops.newInstance] factory method to
+ * Use the [MensClothing.newInstance] factory method to
  * create an instance of this fragment.
  */
-class Laptops : Fragment() {
+class MensClothing : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -35,7 +35,7 @@ class Laptops : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_laptops, container, false)
+        return inflater.inflate(R.layout.fragment_phones, container, false)
     }
 
     companion object {
@@ -45,12 +45,12 @@ class Laptops : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment Laptops.
+         * @return A new instance of fragment MensClothing.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            Laptops().apply {
+            MensClothing().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

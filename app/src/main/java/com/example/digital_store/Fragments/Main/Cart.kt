@@ -1,4 +1,4 @@
-package com.example.digital_store.Fragments.ViewPager
+package com.example.digital_store.Fragments.Main
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,10 +14,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [Phones.newInstance] factory method to
+ * Use the [Cart.newInstance] factory method to
  * create an instance of this fragment.
  */
-class Phones : Fragment() {
+class Cart : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -35,7 +35,7 @@ class Phones : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_phones, container, false)
+        return inflater.inflate(R.layout.fragment_cart, container, false)
     }
 
     companion object {
@@ -45,12 +45,12 @@ class Phones : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment Phones.
+         * @return A new instance of fragment Cart.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            Phones().apply {
+            Cart().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

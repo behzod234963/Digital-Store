@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Fragments.BottomNavigation.Store">
+    tools:context=".Fragments.Main.Store">
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -17,6 +17,7 @@
             android:background="@color/white">
 
             <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivProfile_store"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:adjustViewBounds="true"
@@ -43,19 +44,23 @@
                 android:textStyle="bold" />
 
             <ImageView
+                android:id="@+id/ivCart_store"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_gravity="end"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="15dp"
-                android:src="@drawable/pic_store" />
+                android:src="@drawable/pic_store"
+                android:background="@drawable/bg_whitebg_button"/>
 
             <ImageView
+                android:id="@+id/ivSearch_store"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_gravity="end"
                 android:layout_marginRight="10dp"
-                android:src="@drawable/pic_search" />
+                android:src="@drawable/pic_search"
+                android:background="@drawable/bg_whitebg_button"/>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 

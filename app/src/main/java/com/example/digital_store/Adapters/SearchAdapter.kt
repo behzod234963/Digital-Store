@@ -11,7 +11,7 @@ import android.widget.SearchView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.digital_store.Models.AllProductsModel
-import com.example.digitalstore.R
+import com.example.digital_store.R
 
 class SearchAdapter:RecyclerView.Adapter<SearchAdapter.SearchViewHolder>(),Filterable {
 

@@ -3,6 +3,7 @@ package com.example.digital_store.Activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
+import androidx.navigation.NavHost
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.digital_store.R
@@ -27,10 +28,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun initView() {
 
-        val bottomNavHost=supportFragmentManager.findFragmentById(R.id.frNavBottom) as NavHostFragment
-        navController=bottomNavHost.navController
-        val bnBottomNav: BottomNavigationView =findViewById(R.id.bnBottomNavigation)
-        bnBottomNav.setupWithNavController(navController)
+        val ncNavHost=supportFragmentManager.findFragmentById(R.id.ncNavHost) as NavHost
+
+        navController=ncNavHost.navController
+        navController
 
     }
 }

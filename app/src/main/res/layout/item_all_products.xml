@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:id="@+id/llProduct">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -17,7 +18,6 @@
         app:cardCornerRadius="10dp"
         app:cardElevation="10dp">
         <LinearLayout
-            android:id="@+id/llProduct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -37,7 +37,7 @@
                 android:id="@+id/tvProductTitle_allproduct"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/laptop_lenovo_thinkpad_e15_g2_black"
+                android:text="lenovo thinkpad e15 g2 black"
                 android:inputType="textMultiLine"
                 android:textSize="20sp"
                 android:textColor="@color/black"

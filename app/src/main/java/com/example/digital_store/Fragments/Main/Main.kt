@@ -30,10 +30,7 @@ class Main : Fragment() {
 
     private fun initView(view:View) {
 
-        val ncNavHost=childFragmentManager.findFragmentById(R.id.ncNavHost) as NavHost
 
-        navController=ncNavHost.navController
-        navController
 
     }
 }

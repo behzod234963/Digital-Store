@@ -5,11 +5,5 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.Main.Main">
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/ncNavHost"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/nav_graph"
-        android:name="androidx.navigation.fragment.NavHostFragment"/>
+
 </LinearLayout>
