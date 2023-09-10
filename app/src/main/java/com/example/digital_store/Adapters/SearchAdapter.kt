@@ -11,11 +11,22 @@ import android.widget.SearchView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.digital_store.Models.AllProductsModel
-import com.example.digital_store.R
+import com.example.digitalstore.R
 
-class SearchAdapter(val list:ArrayList<AllProductsModel>):RecyclerView.Adapter<SearchAdapter.SearchViewHolder>(),Filterable {
+class SearchAdapter:RecyclerView.Adapter<SearchAdapter.SearchViewHolder>(),Filterable {
 
-    var filteredList=list
+    val list:ArrayList<AllProductsModel> = ArrayList()
+    var oldList:ArrayList<AllProductsModel> = ArrayList()
+
+    fun submitList(list:ArrayList<AllProductsModel>){
+
+        this.list.clear()
+        this.list.addAll(list)
+        this.oldList=list
+        notifyDataSetChanged()
+
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
 
         return SearchViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_search,parent,false))
@@ -23,7 +34,7 @@ class SearchAdapter(val list:ArrayList<AllProductsModel>):RecyclerView.Adapter<S
     }
 
     override fun getItemCount(): Int {
-        return filteredList.size
+        return list.size
     }
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
@@ -58,7 +69,44 @@ class SearchAdapter(val list:ArrayList<AllProductsModel>):RecyclerView.Adapter<S
     }
 
     override fun getFilter(): Filter {
-        TODO("Not yet implemented")
+        return customFilter
+    }
+
+    var customFilter=object :Filter(){
+        override fun performFiltering(p0: CharSequence?): FilterResults {
+
+            var newList:ArrayList<AllProductsModel> =ArrayList()
+            if (p0.isNullOrEmpty()){
+
+                newList.addAll(list)
+
+            }else{
+
+                for (i in list){
+
+                    if (i.title.lowercase().contains(p0.toString().lowercase())){
+
+                        newList.add(i)
+
+                    }
+
+                }
+
+            }
+
+            val result=FilterResults()
+            result.values=newList
+            return result
+
+        }
+
+        override fun publishResults(p0: CharSequence?, p1: FilterResults?) {
+
+            list.clear()
+            list.addAll(p1?.values as ArrayList<AllProductsModel>)
+            notifyDataSetChanged()
+
+        }
     }
 
 }

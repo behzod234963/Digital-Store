@@ -5,9 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.digital_store.Models.AllProductsModel
-import com.example.digital_store.R
-import com.example.digital_store.databinding.FragmentSearchBinding
+import com.example.digitalstore.R
+import com.example.digitalstore.databinding.FragmentSearchBinding
 import uz.datatalim.digitalstore.adapters.SearchAdapter
 
 
@@ -36,8 +38,16 @@ class Search : Fragment() {
     private fun initView() {
 
         loadList()
-        searchAdapter= SearchAdapter(list)
+        searchAdapter= SearchAdapter()
         binding.rvSearchSearch.adapter=searchAdapter
+        binding.rvSearchSearch.layoutManager=LinearLayoutManager(requireContext())
+        searchAdapter.submitList(list)
+
+        binding.etSearchSearch.addTextChangedListener {
+
+            searchAdapter.filter.filter(it)
+
+        }
 
 
     }
