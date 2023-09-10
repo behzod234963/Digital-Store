@@ -1,4 +1,4 @@
-package uz.datatalim.digitalstore.Adapters
+package com.example.digital_store.Adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

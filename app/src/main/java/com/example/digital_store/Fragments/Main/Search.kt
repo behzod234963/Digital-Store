@@ -7,15 +7,15 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.digital_store.Models.AllProductsModel
+import com.example.digital_store.Adapter.SearchAdapter
+import com.example.digital_store.Models.ProductsItem
 import com.example.digital_store.R
 import com.example.digital_store.databinding.FragmentSearchBinding
-import uz.datatalim.digitalstore.adapters.SearchAdapter
 
 class Search : Fragment() {
 
     lateinit var binding: FragmentSearchBinding
-    lateinit var list:ArrayList<AllProductsModel>
+    lateinit var list:ArrayList<ProductsItem>
     lateinit var searchAdapter: SearchAdapter
 
     override fun onCreateView(
@@ -53,116 +53,7 @@ class Search : Fragment() {
 
     private fun loadList() {
 
-        list=ArrayList()
-        list.add(
-            AllProductsModel(
-                R.drawable.pic_laptop,
-                "lenovo thinkpad e15",
-                "Cost: 1000 USD",
-                5.0,
-                500,
-                "Electronics"
-            )
-        )
-        list=ArrayList()
-        list.add(
-            AllProductsModel(
-                R.drawable.pic_laptop,
-                "lenovo thinkpad e15",
-                "Cost: 1000 USD",
-                5.0,
-                500,
-                "Electronics"
-            )
-        )
-        list=ArrayList()
-        list.add(
-            AllProductsModel(
-                R.drawable.pic_laptop,
-                "lenovo thinkpad e15",
-                "Cost: 1000 USD",
-                5.0,
-                500,
-                "Electronics"
-            )
-        )
-        list=ArrayList()
-        list.add(
-            AllProductsModel(
-                R.drawable.pic_laptop,
-                "lenovo thinkpad e15",
-                "Cost: 1000 USD",
-                5.0,
-                500,
-                "Electronics"
-            )
-        )
-        list=ArrayList()
-        list.add(
-            AllProductsModel(
-                R.drawable.pic_laptop,
-                "lenovo thinkpad e15",
-                "Cost: 1000 USD",
-                5.0,
-                500,
-                "Electronics"
-            )
-        )
-        list=ArrayList()
-        list.add(
-            AllProductsModel(
-                R.drawable.pic_laptop,
-                "lenovo thinkpad e15",
-                "Cost: 1000 USD",
-                5.0,
-                500,
-                "Electronics"
-            )
-        )
-        list=ArrayList()
-        list.add(
-            AllProductsModel(
-                R.drawable.pic_laptop,
-                "lenovo thinkpad e15",
-                "Cost: 1000 USD",
-                5.0,
-                500,
-                "Electronics"
-            )
-        )
-        list=ArrayList()
-        list.add(
-            AllProductsModel(
-                R.drawable.pic_laptop,
-                "lenovo thinkpad e15",
-                "Cost: 1000 USD",
-                5.0,
-                500,
-                "Electronics"
-            )
-        )
-        list=ArrayList()
-        list.add(
-            AllProductsModel(
-                R.drawable.pic_laptop,
-                "lenovo thinkpad e15",
-                "Cost: 1000 USD",
-                5.0,
-                500,
-                "Electronics"
-            )
-        )
-        list=ArrayList()
-        list.add(
-            AllProductsModel(
-                R.drawable.pic_laptop,
-                "lenovo thinkpad e15",
-                "Cost: 1000 USD",
-                5.0,
-                500,
-                "Electronics"
-            )
-        )
+
 
     }
 

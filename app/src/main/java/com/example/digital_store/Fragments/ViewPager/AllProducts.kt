@@ -5,16 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.digital_store.Models.AllProductsModel
-import com.example.digital_store.R
+import com.example.digital_store.DataBase.Remote.ApiClient
+import com.example.digital_store.Models.ProductsItem
 import com.example.digital_store.databinding.FragmentAllProductsBinding
-import uz.datatalim.digitalstore.Adapters.AllProductsAdapter
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import com.example.digital_store.Adapter.AllProductsAdapter
 
 
 class AllProducts : Fragment() {
 
     lateinit var binding: FragmentAllProductsBinding
-    lateinit var allProductsList: ArrayList<AllProductsModel>
+    lateinit var allProductsList: ArrayList<ProductsItem>
     lateinit var allProductsAdapter: AllProductsAdapter
 
     override fun onCreateView(
@@ -34,97 +37,38 @@ class AllProducts : Fragment() {
 
     private fun initView() {
 
+        allProductsList= ArrayList()
         loadProducts()
         allProductsAdapter = AllProductsAdapter()
         binding.rvAllProductsItemall.adapter = allProductsAdapter
         allProductsAdapter.submitList(allProductsList)
 
-
     }
 
     private fun loadProducts() {
 
-        allProductsList = ArrayList()
-        allProductsList.add(
-            AllProductsModel(
-                R.drawable.pic_laptop,
-                "lenovo thinkpad e15 g2 black",
-                "1000",
-                5.0,
-                500, "Electronics"
-            ))
-        allProductsList.add(
-            AllProductsModel(
-                R.drawable.pic_laptop,
-                "lenovo thinkpad e15 g2 black",
-                "1000",
-                5.0,
-                500, "Electronics"
-            ))
-        allProductsList.add(
-            AllProductsModel(
-                R.drawable.pic_laptop,
-                "lenovo thinkpad e15 g2 black",
-                "1000",
-                5.0,
-                500, "Electronics"
-            ))
-        allProductsList.add(
-            AllProductsModel(
-                R.drawable.pic_laptop,
-                "lenovo thinkpad e15 g2 black",
-                "1000",
-                5.0,
-                500, "Electronics"
-            ))
-        allProductsList.add(
-            AllProductsModel(
-                R.drawable.pic_laptop,
-                "lenovo thinkpad e15 g2 black",
-                "1000",
-                5.0,
-                500, "Electronics"
-            ))
-        allProductsList.add(
-            AllProductsModel(
-                R.drawable.pic_laptop,
-                "lenovo thinkpad e15 g2 black",
-                "1000",
-                5.0,
-                500, "Electronics"
-            ))
-        allProductsList.add(
-            AllProductsModel(
-                R.drawable.pic_laptop,
-                "lenovo thinkpad e15 g2 black",
-                "1000",
-                5.0,
-                500, "Electronics"
-            ))
-        allProductsList.add(
-            AllProductsModel(
-                R.drawable.pic_laptop,
-                "lenovo thinkpad e15 g2 black",
-                "1000",
-                5.0,
-                500, "Electronics"
-            ))
-        allProductsList.add(
-            AllProductsModel(
-                R.drawable.pic_laptop,
-                "lenovo thinkpad e15 g2 black",
-                "1000",
-                5.0,
-                500, "Electronics"
-            ))
-        allProductsList.add(
-            AllProductsModel(
-                R.drawable.pic_laptop,
-                "lenovo thinkpad e15 g2 black",
-                "1000",
-                5.0,
-                500, "Electronics"
-            ))
+        ApiClient.api_servis.getAllProducts().enqueue(object :Callback<ArrayList<ProductsItem>>{
+            override fun onResponse(
+                call: Call<ArrayList<ProductsItem>>,
+                response: Response<ArrayList<ProductsItem>>
+            ) {
+
+                if (response.isSuccessful){
+
+                    allProductsList.clear()
+                    allProductsList.addAll(response.body()!!)
+                    allProductsAdapter.submitList(allProductsList)
+
+                }
+
+            }
+
+            override fun onFailure(call: Call<ArrayList<ProductsItem>>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+
+        })
 
     }
 }

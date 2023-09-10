@@ -1,4 +1,4 @@
-package uz.datatalim.digitalstore.Adapters
+package com.example.digital_store.Adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,14 +7,17 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.digital_store.Models.AllProductsModel
+import com.bumptech.glide.Glide
+import com.example.digital_store.Models.ProductsItem
 import com.example.digital_store.R
 
 class AllProductsAdapter :RecyclerView.Adapter<AllProductsAdapter.AllProductsViewHolder>(){
 
-    val allProductsList:ArrayList<AllProductsModel> = ArrayList()
+    var onClick:((Int)->Unit)?=null
 
-    fun submitList(list:ArrayList<AllProductsModel>){
+    val allProductsList:ArrayList<ProductsItem> = ArrayList()
+
+    fun submitList(list:ArrayList<ProductsItem>){
 
         this.allProductsList.clear()
         this.allProductsList.addAll(list)
@@ -36,15 +39,15 @@ class AllProductsAdapter :RecyclerView.Adapter<AllProductsAdapter.AllProductsVie
 
     override fun onBindViewHolder(holder: AllProductsViewHolder, position: Int) {
 
-        val l=allProductsList[position]
+        val products=allProductsList[position]
 
         holder.apply {
 
-            ivProductImage.setImageResource(l.image)
-            tvProductTitle.text=l.title
-            tvProductCost.text=l.cost
-            tvProductRating.text=l.rating.toString()
-            tvProductReviews.text=l.reviews.toString()
+            tvProductTitle.text=products.title
+            Glide.with(ivProductImage).load(products.image).into(ivProductImage)
+            tvProductCost.text=products.price.toString()
+            tvProductRating.text=products.rating.toString()
+            tvType.text=products.category
 
         }
 
@@ -57,7 +60,6 @@ class AllProductsAdapter :RecyclerView.Adapter<AllProductsAdapter.AllProductsVie
         val tvProductTitle:TextView=view.findViewById(R.id.tvProductTitle_allproduct)
         val tvProductCost:TextView=view.findViewById(R.id.tvProductCost_allproduct)
         val tvProductRating:TextView=view.findViewById(R.id.tvProductRating_allproduct)
-        val tvProductReviews:TextView=view.findViewById(R.id.tvProductreviews_allproduct)
         val tvType:TextView=view.findViewById(R.id.tvType_allproducts)
 
     }

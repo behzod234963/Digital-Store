@@ -14,7 +14,7 @@ import com.example.digital_store.Fragments.ViewPager.Jewelery
 import com.example.digital_store.Fragments.ViewPager.MensClothing
 import com.example.digital_store.R
 import com.example.digital_store.databinding.FragmentStoreBinding
-import uz.datatalim.digitalstore.Adapters.ViewPagerAdapter
+import com.example.digital_store.Adapter.ViewPagerAdapter
 
 class Store : Fragment() {
 
