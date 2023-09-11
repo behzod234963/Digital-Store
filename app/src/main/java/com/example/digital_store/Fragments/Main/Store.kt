@@ -64,7 +64,7 @@ class Store : Fragment() {
 
         allProducts.allProductsAdapter.onClick={position->
 
-            findNavController().navigate(R.id.action_allProducts_to_details, bundleOf("id" to products[position].id))
+            findNavController().navigate(R.id.action_store_to_details, bundleOf("id" to products[position].id))
 
         }
 
