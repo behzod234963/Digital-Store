@@ -41,7 +41,8 @@ class Jewelery : Fragment() {
     private fun initView() {
 
         products= ArrayList()
-        loadProducts()
+        val category="jewelery"
+        loadProducts(category)
         jeweleryAdapter= AllProductsAdapter()
         binding.rvJewelery.adapter=AllProductsAdapter()
 
@@ -53,9 +54,9 @@ class Jewelery : Fragment() {
 
     }
 
-    private fun loadProducts() {
+    private fun loadProducts(category:String) {
 
-        ApiClient.api_servis.getCategoryByName("jewelery").enqueue(object :Callback<ArrayList<ProductsItem>>{
+        ApiClient.api_servis.getCategoryByName(category).enqueue(object :Callback<ArrayList<ProductsItem>>{
             override fun onResponse(
                 call: Call<ArrayList<ProductsItem>>,
                 response: Response<ArrayList<ProductsItem>>

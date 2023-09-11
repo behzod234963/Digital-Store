@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.ViewPager
+import com.example.digital_store.Adapter.AllProductsAdapter
 import com.example.digital_store.Fragments.ViewPager.AllProducts
 import com.example.digital_store.Fragments.ViewPager.WomensClothing
 import com.example.digital_store.Fragments.ViewPager.Electronics
@@ -16,6 +18,7 @@ import com.example.digital_store.Fragments.ViewPager.MensClothing
 import com.example.digital_store.R
 import com.example.digital_store.databinding.FragmentStoreBinding
 import com.example.digital_store.Adapter.ViewPagerAdapter
+import com.example.digital_store.Models.ProductsItem
 
 class Store : Fragment() {
 
@@ -24,6 +27,8 @@ class Store : Fragment() {
     lateinit var vpFragment:ArrayList<Fragment>
     lateinit var vpAdapter: ViewPagerAdapter
     lateinit var navController: NavController
+    lateinit var productsAdapter:AllProductsAdapter
+    lateinit var products:ArrayList<ProductsItem>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,12 +50,23 @@ class Store : Fragment() {
 
         vpTitle= ArrayList()
         vpFragment=ArrayList()
+        products=ArrayList()
         loadItems()
         navController=NavController(requireContext())
         vpAdapter= ViewPagerAdapter(vpFragment, vpTitle, childFragmentManager)
         val vpViewPager: ViewPager =view.findViewById(R.id.vpViewPager_store)
         binding.tlTabLayoutStore.setupWithViewPager(vpViewPager)
         vpViewPager.adapter=vpAdapter
+        productsAdapter= AllProductsAdapter()
+
+        var allProducts=AllProducts()
+
+
+        allProducts.allProductsAdapter.onClick={position->
+
+            findNavController().navigate(R.id.action_allProducts_to_details, bundleOf("id" to products[position].id))
+
+        }
 
         binding.ivSearchStore.setOnClickListener {
 

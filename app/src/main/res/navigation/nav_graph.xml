@@ -28,6 +28,12 @@
         <action
             android:id="@+id/action_store_to_cart"
             app:destination="@id/cart" />
+        <action
+            android:id="@+id/action_store_to_allProducts"
+            app:destination="@id/allProducts" />
+        <action
+            android:id="@+id/action_store_to_details"
+            app:destination="@id/details" />
     </fragment>
     <fragment
         android:id="@+id/settings"
@@ -44,4 +50,30 @@
         android:name="com.example.digital_store.Fragments.Main.Cart"
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart" />
+    <fragment
+        android:id="@+id/allProducts"
+        android:name="com.example.digital_store.Fragments.ViewPager.AllProducts"
+        android:label="fragment_all_products"
+        tools:layout="@layout/fragment_all_products" >
+        <action
+            android:id="@+id/action_allProducts_to_details"
+            app:destination="@id/details" />
+        <argument
+            android:name="AllProductsid"
+            app:argType="integer"
+            android:defaultValue="1" />
+    </fragment>
+    <fragment
+        android:id="@+id/details"
+        android:name="com.example.digital_store.Fragments.Main.Details"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details" >
+        <action
+            android:id="@+id/action_details_to_cart"
+            app:destination="@id/cart" />
+        <argument
+            android:name="DetailsId"
+            app:argType="integer"
+            android:defaultValue="1" />
+    </fragment>
 </navigation>

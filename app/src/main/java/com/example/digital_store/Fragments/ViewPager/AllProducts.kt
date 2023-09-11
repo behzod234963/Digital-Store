@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.navigation.fragment.findNavController
 import com.example.digital_store.DataBase.Remote.ApiClient
 import com.example.digital_store.Models.ProductsItem
 import com.example.digital_store.databinding.FragmentAllProductsBinding
@@ -12,13 +14,14 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import com.example.digital_store.Adapter.AllProductsAdapter
+import com.example.digital_store.R
 
 
 class AllProducts : Fragment() {
 
     lateinit var binding: FragmentAllProductsBinding
     lateinit var allProductsList: ArrayList<ProductsItem>
-    lateinit var allProductsAdapter: AllProductsAdapter
+    var allProductsAdapter: AllProductsAdapter=AllProductsAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,11 +40,13 @@ class AllProducts : Fragment() {
 
     private fun initView() {
 
+        allProductsAdapter=AllProductsAdapter()
         allProductsList= ArrayList()
         loadProducts()
         allProductsAdapter = AllProductsAdapter()
         binding.rvAllProductsItemall.adapter = allProductsAdapter
         allProductsAdapter.submitList(allProductsList)
+
 
     }
 

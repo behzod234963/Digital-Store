@@ -8,9 +8,13 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.digital_store.Adapter.SearchAdapter
+import com.example.digital_store.DataBase.Remote.ApiClient
 import com.example.digital_store.Models.ProductsItem
 import com.example.digital_store.R
 import com.example.digital_store.databinding.FragmentSearchBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class Search : Fragment() {
 
@@ -36,6 +40,7 @@ class Search : Fragment() {
 
     private fun initView() {
 
+        list= ArrayList()
         loadList()
         searchAdapter= SearchAdapter()
         binding.rvSearchSearch.adapter=searchAdapter
@@ -45,6 +50,7 @@ class Search : Fragment() {
         binding.etSearchSearch.addTextChangedListener {
 
             searchAdapter.filter.filter(it)
+            searchAdapter.submitList(list)
 
         }
 
@@ -53,7 +59,27 @@ class Search : Fragment() {
 
     private fun loadList() {
 
+        ApiClient.api_servis.getAllProducts().enqueue(object :Callback<ArrayList<ProductsItem>>{
+            override fun onResponse(
+                call: Call<ArrayList<ProductsItem>>,
+                response: Response<ArrayList<ProductsItem>>
+            ) {
 
+                if (response.isSuccessful){
+
+                    list.clear()
+                    list.addAll(response.body()!!)
+                    searchAdapter.submitList(list)
+
+                }
+
+            }
+
+            override fun onFailure(call: Call<ArrayList<ProductsItem>>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
 
     }
 

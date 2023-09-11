@@ -5,56 +5,73 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavArgs
+import androidx.navigation.fragment.navArgs
+import com.example.digital_store.Adapter.DetailsAdapter
+import com.example.digital_store.DataBase.Remote.ApiClient
+import com.example.digital_store.Models.ProductsItem
 import com.example.digital_store.R
+import com.example.digital_store.databinding.FragmentDetailsBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [Details.newInstance] factory method to
- * create an instance of this fragment.
- */
 class Details : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    lateinit var binding: FragmentDetailsBinding
+    lateinit var products:ArrayList<ProductsItem>
+    lateinit var detailsAdapter:DetailsAdapter
+    val args:DetailsArgs by navArgs()
+    var productId=1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_details, container, false)
+        binding= FragmentDetailsBinding.inflate(layoutInflater,container,false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Details.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Details().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        initView()
+
     }
+
+    private fun initView() {
+
+        productId=args.DetailsId
+        loadDetail(productId)
+        products=ArrayList()
+        detailsAdapter=DetailsAdapter()
+
+    }
+
+    private fun loadDetail(id:Int) {
+
+        ApiClient.api_servis.getProductById(id).enqueue(object :Callback<ArrayList<ProductsItem>>{
+            override fun onResponse(
+                call: Call<ArrayList<ProductsItem>>,
+                response: Response<ArrayList<ProductsItem>>
+            ) {
+
+                if (response.isSuccessful){
+
+                    products.clear()
+                    products.addAll(response.body()!!)
+                    detailsAdapter.submitList(products)
+
+                }
+
+            }
+
+            override fun onFailure(call: Call<ArrayList<ProductsItem>>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+        })
+
+    }
+
 }
