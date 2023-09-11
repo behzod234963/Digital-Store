@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.digital_store.DataBase.Remote.ApiClient
 import com.example.digital_store.Models.ProductsItem
@@ -14,6 +15,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import com.example.digital_store.Adapter.AllProductsAdapter
+import com.example.digital_store.Fragments.Main.Store
 import com.example.digital_store.R
 
 
@@ -21,7 +23,7 @@ class AllProducts : Fragment() {
 
     lateinit var binding: FragmentAllProductsBinding
     lateinit var allProductsList: ArrayList<ProductsItem>
-    var allProductsAdapter: AllProductsAdapter=AllProductsAdapter()
+    lateinit var productsAdapter: AllProductsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,13 +42,18 @@ class AllProducts : Fragment() {
 
     private fun initView() {
 
-        allProductsAdapter=AllProductsAdapter()
+        productsAdapter=AllProductsAdapter()
         allProductsList= ArrayList()
+        binding.rvAllProductsItemall.adapter = productsAdapter
         loadProducts()
-        allProductsAdapter = AllProductsAdapter()
-        binding.rvAllProductsItemall.adapter = allProductsAdapter
-        allProductsAdapter.submitList(allProductsList)
+        productsAdapter.submitList(allProductsList)
 
+        productsAdapter.onClick={position->
+
+            val navController=Navigation.findNavController(requireView())
+            navController?.navigate(R.id.action_allProducts_to_details, bundleOf("id" to allProductsList[position].id))
+
+        }
 
     }
 
@@ -62,7 +69,7 @@ class AllProducts : Fragment() {
 
                     allProductsList.clear()
                     allProductsList.addAll(response.body()!!)
-                    allProductsAdapter.submitList(allProductsList)
+                    productsAdapter.submitList(allProductsList)
 
                 }
 

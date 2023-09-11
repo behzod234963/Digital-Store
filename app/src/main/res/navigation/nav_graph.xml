@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_store_to_details"
             app:destination="@id/details" />
+        <action
+            android:id="@+id/action_store_to_details2"
+            app:destination="@id/details" />
     </fragment>
     <fragment
         android:id="@+id/settings"
@@ -59,7 +62,7 @@
             android:id="@+id/action_allProducts_to_details"
             app:destination="@id/details" />
         <argument
-            android:name="AllProductsid"
+            android:name="all_products_id"
             app:argType="integer"
             android:defaultValue="1" />
     </fragment>

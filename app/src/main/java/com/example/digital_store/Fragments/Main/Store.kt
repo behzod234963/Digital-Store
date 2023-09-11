@@ -8,6 +8,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager
 import com.example.digital_store.Adapter.AllProductsAdapter
 import com.example.digital_store.Fragments.ViewPager.AllProducts
@@ -27,7 +28,7 @@ class Store : Fragment() {
     lateinit var vpFragment:ArrayList<Fragment>
     lateinit var vpAdapter: ViewPagerAdapter
     lateinit var navController: NavController
-    lateinit var productsAdapter:AllProductsAdapter
+    lateinit var productsAdapter: AllProductsAdapter
     lateinit var products:ArrayList<ProductsItem>
 
     override fun onCreateView(
@@ -48,6 +49,7 @@ class Store : Fragment() {
 
     private fun initView(view: View) {
 
+        productsAdapter= AllProductsAdapter()
         vpTitle= ArrayList()
         vpFragment=ArrayList()
         products=ArrayList()
@@ -57,16 +59,8 @@ class Store : Fragment() {
         val vpViewPager: ViewPager =view.findViewById(R.id.vpViewPager_store)
         binding.tlTabLayoutStore.setupWithViewPager(vpViewPager)
         vpViewPager.adapter=vpAdapter
-        productsAdapter= AllProductsAdapter()
-
-        var allProducts=AllProducts()
-
-
-        allProducts.allProductsAdapter.onClick={position->
-
-            findNavController().navigate(R.id.action_store_to_details, bundleOf("id" to products[position].id))
-
-        }
+        val allProducts=AllProducts()
+        val store=Store()
 
         binding.ivSearchStore.setOnClickListener {
 
