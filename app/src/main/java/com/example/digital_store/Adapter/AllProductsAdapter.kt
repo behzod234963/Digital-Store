@@ -45,9 +45,15 @@ class AllProductsAdapter :RecyclerView.Adapter<AllProductsAdapter.AllProductsVie
 
             tvProductTitle.text=products.title
             Glide.with(ivProductImage).load(products.image).into(ivProductImage)
-            tvProductCost.text=products.price.toString()
+            tvProductCost.text="${products.price.toString()} USD"
             tvProductRating.text=products.rating.toString()
             tvType.text=products.category
+
+            llProduct.setOnClickListener {
+
+                onClick?.invoke(position)
+
+            }
 
         }
 

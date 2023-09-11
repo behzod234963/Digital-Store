@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llProduct"
     android:layout_width="match_parent"
     android:layout_height="400dp"
-    android:background="@color/white"
-    android:orientation="horizontal"
-    android:id="@+id/llProduct">
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -29,7 +27,7 @@
                 android:gravity="center"
                 android:layout_weight="1">
                 <ImageView
-                    android:id="@+id/ivProductImage_allproducts"
+                    android:id="@+id/ivJeweleryImage_jewelery"
                     android:padding="30dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -46,7 +44,7 @@
                 android:gravity="bottom"
                 android:orientation="vertical">
                 <TextView
-                    android:id="@+id/tvProductTitle_allproduct"
+                    android:id="@+id/tvJeweleryTitle_jewelery"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="lenovo thinkpad e15 g2 black"
@@ -56,15 +54,15 @@
                     android:layout_margin="10dp"
                     tools:ignore="TextViewEdits" />
                 <TextView
-                    android:id="@+id/tvType_allproducts"
+                    android:id="@+id/tvCategory_jewelery"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Laptops"
+                    android:text="Jewelery"
                     android:textSize="17sp"
                     android:layout_margin="10dp"
                     android:textColor="@color/black"/>
                 <TextView
-                    android:id="@+id/tvProductCost_allproduct"
+                    android:id="@+id/tvJeweleryPrice_jewelery"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Cost: 1000 USD"
@@ -85,7 +83,7 @@
                     android:src="@drawable/pic_rating_star"
                     android:layout_margin="10dp"/>
                 <TextView
-                    android:id="@+id/tvProductRating_allproduct"
+                    android:id="@+id/tvJeweleryRating_jewelery"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="5.0"

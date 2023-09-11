@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.ViewPager
 import com.example.digital_store.Fragments.ViewPager.AllProducts
@@ -22,6 +23,7 @@ class Store : Fragment() {
     lateinit var vpTitle:ArrayList<String>
     lateinit var vpFragment:ArrayList<Fragment>
     lateinit var vpAdapter: ViewPagerAdapter
+    lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,6 +46,7 @@ class Store : Fragment() {
         vpTitle= ArrayList()
         vpFragment=ArrayList()
         loadItems()
+        navController=NavController(requireContext())
         vpAdapter= ViewPagerAdapter(vpFragment, vpTitle, childFragmentManager)
         val vpViewPager: ViewPager =view.findViewById(R.id.vpViewPager_store)
         binding.tlTabLayoutStore.setupWithViewPager(vpViewPager)
@@ -52,6 +55,21 @@ class Store : Fragment() {
         binding.ivSearchStore.setOnClickListener {
 
             findNavController().navigate(R.id.action_store_to_search)
+            navController.popBackStack()
+
+        }
+
+        binding.ivProfileStore.setOnClickListener {
+
+            findNavController().navigate(R.id.action_store_to_settings)
+            navController.popBackStack()
+
+        }
+
+        binding.ivCartStore.setOnClickListener {
+
+            findNavController().navigate(R.id.action_store_to_cart)
+            navController.popBackStack()
 
         }
 

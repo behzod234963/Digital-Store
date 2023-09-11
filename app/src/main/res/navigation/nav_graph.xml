@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_store_to_search"
             app:destination="@id/search" />
+        <action
+            android:id="@+id/action_store_to_cart"
+            app:destination="@id/cart" />
     </fragment>
     <fragment
         android:id="@+id/settings"
@@ -36,4 +39,9 @@
         android:name="com.example.digital_store.Fragments.Main.Search"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/cart"
+        android:name="com.example.digital_store.Fragments.Main.Cart"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" />
 </navigation>
