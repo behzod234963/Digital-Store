@@ -24,7 +24,7 @@ import kotlin.coroutines.CoroutineContext
 class Details : Fragment() {
 
     lateinit var binding: FragmentDetailsBinding
-    lateinit var products:ProductsItem
+    lateinit var products:ArrayList<ProductsItem>
     lateinit var detailsAdapter:DetailsAdapter
     val args:DetailsArgs by navArgs()
 
@@ -46,11 +46,13 @@ class Details : Fragment() {
     }
 
     private fun initView() {
+        detailsAdapter=DetailsAdapter()
+        products= ArrayList()
+        binding.rvDetailsDetails.adapter=detailsAdapter
         var productId=1
         productId=args.DetailsId
         loadDetail(productId)
-        detailsAdapter=DetailsAdapter()
-        binding.rvDetailsDetails.adapter=detailsAdapter
+        detailsAdapter.submitList(products)
         binding.ivBackDetails.setOnClickListener{
 
             findNavController().navigate(R.id.action_details_to_store)
@@ -61,12 +63,17 @@ class Details : Fragment() {
 
     private fun loadDetail(id:Int) {
 
+        products=ArrayList()
+
         ApiClient.api_servis.getProductById(id).enqueue(object :Callback<ProductsItem>{
             override fun onResponse(call: Call<ProductsItem>, response: Response<ProductsItem>) {
 
 
                 if (response.isSuccessful){
 
+                    products.clear()
+                    products.addAll(products)
+                    detailsAdapter.submitList(products)
 
                 }
 
