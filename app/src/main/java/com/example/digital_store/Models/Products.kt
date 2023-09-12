@@ -30,7 +30,8 @@ data class ProductsItem(
 
 	@field:SerializedName("category")
 	val category: String? = null
-)
+) {
+}
 
 data class Rating(
 
@@ -39,4 +40,8 @@ data class Rating(
 
 	@field:SerializedName("count")
 	val count: Int? = null
-)
+) {
+	override fun toString(): String {
+		return "$rate"
+	}
+}

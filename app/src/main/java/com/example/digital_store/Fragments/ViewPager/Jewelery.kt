@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.digital_store.Adapter.AllProductsAdapter
 import com.example.digital_store.DataBase.Remote.ApiClient
@@ -73,7 +74,7 @@ class Jewelery : Fragment() {
             }
 
             override fun onFailure(call: Call<ArrayList<ProductsItem>>, t: Throwable) {
-                TODO("Not yet implemented")
+                Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show()
             }
 
 

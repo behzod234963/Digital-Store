@@ -15,25 +15,25 @@ import retrofit2.http.Query
 interface ApiServis {
 
     @GET("products")
-    fun getAllProducts():retrofit2.Call<ArrayList<ProductsItem>>
+    fun getAllProducts():Call<ArrayList<ProductsItem>>
 
     @GET("products/{id}")
-    fun getProductById(@Path("id")id:Int):retrofit2.Call<ArrayList<ProductsItem>>
+    fun getProductById(@Path("id")id:Int):Call<ProductsItem>
 
     @GET("products/sort")
-    fun sortProducts(@Query("sort")sort:String="desc"):retrofit2.Call<ArrayList<ProductsItem>>
+    fun sortProducts(@Query("sort")sort:String="desc"):Call<ArrayList<ProductsItem>>
 
     @GET("products/categories")
-    fun getAllCategories():retrofit2.Call<ArrayList<ProductsItem>>
+    fun getAllCategories():Call<ArrayList<ProductsItem>>
 
     @GET("products/category/{category}")
-    fun getCategoryByName(@Path("category")category: String):retrofit2.Call<ArrayList<ProductsItem>>
+    fun getCategoryByName(@Path("category")category: String):Call<ArrayList<ProductsItem>>
 
     @POST("products")
-    fun createProduct(@Body()productItem:ProductsDetails):retrofit2.Call<ProductsItem>
+    fun createProduct(@Body()productItem:ProductsDetails):Call<ProductsItem>
 
     @PUT("products/{id}")
-    fun editProduct(@Path("id")id:Int,@Body()productItem:ProductsDetails):retrofit2.Call<ProductsItem>
+    fun editProduct(@Path("id")id:Int,@Body()productItem:ProductsDetails):Call<ProductsItem>
 
     @DELETE("products/{id}")
     fun deleteProduct(@Path("id")id:Int)

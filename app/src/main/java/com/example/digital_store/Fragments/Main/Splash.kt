@@ -13,7 +13,6 @@ import com.example.digital_store.databinding.FragmentSplashBinding
 
 class Splash : Fragment() {
 
-    lateinit var navController: NavController
     lateinit var binding: FragmentSplashBinding
 
     override fun onCreateView(
@@ -38,9 +37,7 @@ class Splash : Fragment() {
 
     private fun initView() {
 
-        navController=NavController(requireContext())
         findNavController().navigate(R.id.action_splash_to_store)
-        navController.popBackStack()
 
     }
 }

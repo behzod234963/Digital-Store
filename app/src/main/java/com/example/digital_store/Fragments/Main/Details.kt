@@ -1,29 +1,33 @@
 package com.example.digital_store.Fragments.Main
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.NavArgs
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.digital_store.Adapter.DetailsAdapter
 import com.example.digital_store.DataBase.Remote.ApiClient
 import com.example.digital_store.Models.ProductsItem
 import com.example.digital_store.R
 import com.example.digital_store.databinding.FragmentDetailsBinding
+import kotlinx.coroutines.CoroutineScope
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.coroutines.CoroutineContext
 
 class Details : Fragment() {
 
     lateinit var binding: FragmentDetailsBinding
-    lateinit var products:ArrayList<ProductsItem>
+    lateinit var products:ProductsItem
     lateinit var detailsAdapter:DetailsAdapter
     val args:DetailsArgs by navArgs()
-    var productId=1
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,37 +46,36 @@ class Details : Fragment() {
     }
 
     private fun initView() {
-
+        var productId=1
         productId=args.DetailsId
         loadDetail(productId)
-        products=ArrayList()
         detailsAdapter=DetailsAdapter()
+        binding.ivBackDetails.setOnClickListener{
+
+            findNavController().navigate(R.id.action_details_to_store)
+
+        }
 
     }
 
     private fun loadDetail(id:Int) {
 
-        ApiClient.api_servis.getProductById(id).enqueue(object :Callback<ArrayList<ProductsItem>>{
-            override fun onResponse(
-                call: Call<ArrayList<ProductsItem>>,
-                response: Response<ArrayList<ProductsItem>>
-            ) {
+        ApiClient.api_servis.getProductById(id).enqueue(object :Callback<ProductsItem>{
+            override fun onResponse(call: Call<ProductsItem>, response: Response<ProductsItem>) {
 
                 if (response.isSuccessful){
 
-                    products.clear()
-                    products.addAll(response.body()!!)
-                    detailsAdapter.submitList(products)
 
                 }
 
             }
 
-            override fun onFailure(call: Call<ArrayList<ProductsItem>>, t: Throwable) {
+            override fun onFailure(call: Call<ProductsItem>, t: Throwable) {
 
-                Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show()
 
             }
+
         })
 
     }
