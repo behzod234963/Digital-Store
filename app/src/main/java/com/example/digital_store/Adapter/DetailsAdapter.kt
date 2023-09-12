@@ -14,7 +14,12 @@ import com.example.digital_store.R
 class DetailsAdapter:RecyclerView.Adapter<DetailsAdapter.DetailsViewHolder>() {
 
     var onClick:((Int)->Unit)?=null
-    val details:ArrayList<ProductsItem> =ArrayList()
+    var details:ArrayList<ProductsItem> =ArrayList()
+
+        set(value){
+            field=value
+            notifyDataSetChanged()
+        }
 
     fun submitList(list:ArrayList<ProductsItem>){
 
@@ -38,15 +43,15 @@ class DetailsAdapter:RecyclerView.Adapter<DetailsAdapter.DetailsViewHolder>() {
 
     override fun onBindViewHolder(holder: DetailsViewHolder, position: Int) {
 
-        val details=details[position]
+        val detail=details[position]
 
         holder.apply {
 
-            Glide.with(ivImage).load(details.image).into(ivImage)
-            tvPrice.text=details.price.toString()
-            tvTitle.text=details.title
-            tvRating.text=details.rating.toString()
-            tvDescription.text=details.description
+            Glide.with(ivImage).load(detail.image).into(ivImage)
+            tvPrice.text=detail.price.toString()
+            tvTitle.text=detail.title
+            tvRating.text=detail.rating.toString()
+            tvDescription.text=detail.description
 
             llDetails.setOnClickListener {
 

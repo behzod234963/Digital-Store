@@ -8,8 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.NavArgs
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.digital_store.Adapter.DetailsAdapter
 import com.example.digital_store.DataBase.Remote.ApiClient
 import com.example.digital_store.Models.ProductsItem
@@ -26,7 +28,9 @@ class Details : Fragment() {
     lateinit var binding: FragmentDetailsBinding
     lateinit var products:ArrayList<ProductsItem>
     lateinit var detailsAdapter:DetailsAdapter
+    lateinit var navController:NavController
     val args:DetailsArgs by navArgs()
+    var detailId=1
 
 
     override fun onCreateView(
@@ -46,16 +50,19 @@ class Details : Fragment() {
     }
 
     private fun initView() {
-        detailsAdapter=DetailsAdapter()
+
         products= ArrayList()
-        binding.rvDetailsDetails.adapter=detailsAdapter
-        var productId=1
-        productId=args.DetailsId
-        loadDetail(productId)
+        detailsAdapter= DetailsAdapter()
+        detailId=args.id
+        loadDetail(id)
+        binding.rvDetailsDetails.adapter=DetailsAdapter()
         detailsAdapter.submitList(products)
-        binding.ivBackDetails.setOnClickListener{
+        navController= NavController(requireContext())
+
+        binding.ivBackDetails.setOnClickListener {
 
             findNavController().navigate(R.id.action_details_to_store)
+            navController.popBackStack()
 
         }
 
@@ -81,7 +88,10 @@ class Details : Fragment() {
 
             override fun onFailure(call: Call<ProductsItem>, t: Throwable) {
 
-                Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show()
+                products.clear()
+                products.addAll(products)
+                detailsAdapter.submitList(products)
+                Log.d("11111","${t.localizedMessage}")
 
             }
 

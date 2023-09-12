@@ -74,7 +74,7 @@ class Jewelery : Fragment() {
             }
 
             override fun onFailure(call: Call<ArrayList<ProductsItem>>, t: Throwable) {
-                Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "${t.localizedMessage}", Toast.LENGTH_SHORT).show()
             }
 
 

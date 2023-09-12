@@ -75,9 +75,8 @@
             android:id="@+id/action_details_to_cart"
             app:destination="@id/cart" />
         <argument
-            android:name="DetailsId"
-            app:argType="integer"
-            android:defaultValue="1" />
+            android:name="id"
+            app:argType="integer" />
         <action
             android:id="@+id/action_details_to_store"
             app:destination="@id/store" />
