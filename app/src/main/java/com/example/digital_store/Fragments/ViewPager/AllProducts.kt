@@ -51,7 +51,7 @@ class AllProducts : Fragment() {
         productsAdapter.onClick={position->
 
             val navController=Navigation.findNavController(requireView())
-            navController?.navigate(R.id.action_allProducts_to_details, bundleOf("id" to allProductsList[position].id))
+            navController?.navigate(R.id.action_global_details, bundleOf("id" to allProductsList[position].id))
 
         }
 

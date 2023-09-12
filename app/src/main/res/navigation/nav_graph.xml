@@ -79,4 +79,12 @@
             app:argType="integer"
             android:defaultValue="1" />
     </fragment>
+    <action
+        android:id="@+id/action_global_allProducts"
+        app:destination="@id/allProducts"
+        app:popUpTo="@id/details" />
+    <action
+        android:id="@+id/action_global_details"
+        app:destination="@id/details"
+        app:popUpTo="@id/nav_graph" />
 </navigation>
