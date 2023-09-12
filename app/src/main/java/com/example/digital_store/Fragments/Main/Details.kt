@@ -50,6 +50,7 @@ class Details : Fragment() {
         productId=args.DetailsId
         loadDetail(productId)
         detailsAdapter=DetailsAdapter()
+        binding.rvDetailsDetails.adapter=detailsAdapter
         binding.ivBackDetails.setOnClickListener{
 
             findNavController().navigate(R.id.action_details_to_store)
@@ -62,6 +63,7 @@ class Details : Fragment() {
 
         ApiClient.api_servis.getProductById(id).enqueue(object :Callback<ProductsItem>{
             override fun onResponse(call: Call<ProductsItem>, response: Response<ProductsItem>) {
+
 
                 if (response.isSuccessful){
 

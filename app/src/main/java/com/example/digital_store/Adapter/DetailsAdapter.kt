@@ -16,6 +16,13 @@ class DetailsAdapter:RecyclerView.Adapter<DetailsAdapter.DetailsViewHolder>() {
     var onClick:((Int)->Unit)?=null
     val details:ArrayList<ProductsItem> =ArrayList()
 
+    fun submitList(list:ArrayList<ProductsItem>){
+
+        details.clear()
+        details.addAll(list)
+        notifyDataSetChanged()
+
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailsViewHolder {
 
