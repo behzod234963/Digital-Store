@@ -18,6 +18,7 @@ import com.example.digital_store.Models.ProductsItem
 import com.example.digital_store.R
 import com.example.digital_store.databinding.FragmentDetailsBinding
 import kotlinx.coroutines.CoroutineScope
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,8 +30,6 @@ class Details : Fragment() {
     lateinit var products:ArrayList<ProductsItem>
     lateinit var detailsAdapter:DetailsAdapter
     lateinit var navController:NavController
-    val args:DetailsArgs by navArgs()
-    var detailId=1
 
 
     override fun onCreateView(
@@ -53,11 +52,12 @@ class Details : Fragment() {
 
         products= ArrayList()
         detailsAdapter= DetailsAdapter()
-        detailId=args.id
-        loadDetail(id)
+        val id=arguments?.getInt("id")
+        id?.let { loadDetail(it) }
         binding.rvDetailsDetails.adapter=DetailsAdapter()
-        detailsAdapter.submitList(products)
         navController= NavController(requireContext())
+
+
 
         binding.ivBackDetails.setOnClickListener {
 
@@ -72,26 +72,16 @@ class Details : Fragment() {
 
         products=ArrayList()
 
-        ApiClient.api_servis.getProductById(id).enqueue(object :Callback<ProductsItem>{
+        ApiClient.apiServis.getProductById(id).enqueue(object :Callback<ProductsItem>{
             override fun onResponse(call: Call<ProductsItem>, response: Response<ProductsItem>) {
 
 
-                if (response.isSuccessful){
-
-                    products.clear()
-                    products.addAll(products)
-                    detailsAdapter.submitList(products)
-
-                }
 
             }
 
             override fun onFailure(call: Call<ProductsItem>, t: Throwable) {
 
-                products.clear()
-                products.addAll(products)
-                detailsAdapter.submitList(products)
-                Log.d("11111","${t.localizedMessage}")
+                Toast.makeText(requireContext(), t.localizedMessage, Toast.LENGTH_LONG).show()
 
             }
 

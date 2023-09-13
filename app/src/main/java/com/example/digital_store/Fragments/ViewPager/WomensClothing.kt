@@ -35,7 +35,7 @@ class WomensClothing : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_gaming, container, false)
+        return inflater.inflate(R.layout.fragment_womens_clothing, container, false)
     }
 
     companion object {

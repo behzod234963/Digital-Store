@@ -30,7 +30,7 @@
             app:destination="@id/cart" />
         <action
             android:id="@+id/action_store_to_allProducts"
-            app:destination="@id/allProducts" />
+            app:destination="@id/navigation" />
         <action
             android:id="@+id/action_store_to_details"
             app:destination="@id/details" />
@@ -54,19 +54,6 @@
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart" />
     <fragment
-        android:id="@+id/allProducts"
-        android:name="com.example.digital_store.Fragments.ViewPager.AllProducts"
-        android:label="fragment_all_products"
-        tools:layout="@layout/fragment_all_products" >
-        <action
-            android:id="@+id/action_allProducts_to_details"
-            app:destination="@id/details" />
-        <argument
-            android:name="all_products_id"
-            app:argType="integer"
-            android:defaultValue="1" />
-    </fragment>
-    <fragment
         android:id="@+id/details"
         android:name="com.example.digital_store.Fragments.Main.Details"
         android:label="fragment_details"
@@ -74,19 +61,27 @@
         <action
             android:id="@+id/action_details_to_cart"
             app:destination="@id/cart" />
-        <argument
-            android:name="id"
-            app:argType="integer" />
         <action
             android:id="@+id/action_details_to_store"
             app:destination="@id/store" />
     </fragment>
-    <action
-        android:id="@+id/action_global_allProducts"
-        app:destination="@id/allProducts"
-        app:popUpTo="@id/details" />
-    <action
-        android:id="@+id/action_global_details"
-        app:destination="@id/details"
-        app:popUpTo="@id/nav_graph" />
+    <navigation android:id="@+id/navigation"
+        app:startDestination="@id/allProducts">
+        <fragment
+            android:id="@+id/allProducts"
+            android:name="com.example.digital_store.Fragments.ViewPager.AllProducts"
+            android:label="fragment_all_products"
+            tools:layout="@layout/fragment_all_products">
+            <action
+                android:id="@+id/action_allProducts_to_details"
+                app:destination="@id/details" />
+            <action
+                android:id="@+id/action_allProducts_pop"
+                app:popUpTo="@id/allProducts"
+                app:popUpToInclusive="true" />
+        </fragment>
+        <action
+            android:id="@+id/action_global_details2"
+            app:destination="@id/details" />
+    </navigation>
 </navigation>

@@ -4,13 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Fragments.ViewPager.AllProducts"
-    android:orientation="vertical">
+    tools:context=".Fragments.ViewPager.Electronics"
+    android:background="@color/white">
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvAllProducts_itemall"
+        android:id="@+id/rvElectronics"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        tools:listitem="@layout/item_electronics"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"
-        tools:listitem="@layout/item_all_products"/>
+        app:spanCount="2" />
 </LinearLayout>

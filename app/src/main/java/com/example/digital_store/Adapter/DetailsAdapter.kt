@@ -16,19 +16,6 @@ class DetailsAdapter:RecyclerView.Adapter<DetailsAdapter.DetailsViewHolder>() {
     var onClick:((Int)->Unit)?=null
     var details:ArrayList<ProductsItem> =ArrayList()
 
-        set(value){
-            field=value
-            notifyDataSetChanged()
-        }
-
-    fun submitList(list:ArrayList<ProductsItem>){
-
-        details.clear()
-        details.addAll(list)
-        notifyDataSetChanged()
-
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailsViewHolder {
 
         return DetailsViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_details,parent,false))
@@ -50,14 +37,8 @@ class DetailsAdapter:RecyclerView.Adapter<DetailsAdapter.DetailsViewHolder>() {
             Glide.with(ivImage).load(detail.image).into(ivImage)
             tvPrice.text=detail.price.toString()
             tvTitle.text=detail.title
-            tvRating.text=detail.rating.toString()
+            tvRating.text=detail.rating?.rate.toString()
             tvDescription.text=detail.description
-
-            llDetails.setOnClickListener {
-
-                onClick?.invoke(position)
-
-            }
 
         }
 
@@ -66,7 +47,6 @@ class DetailsAdapter:RecyclerView.Adapter<DetailsAdapter.DetailsViewHolder>() {
 
     class DetailsViewHolder(view: View):RecyclerView.ViewHolder(view){
 
-        val llDetails:LinearLayout=view.findViewById(R.id.llDetails_details)
         val ivImage:ImageView=view.findViewById(R.id.ivDetailsImage_details)
         val tvPrice:TextView=view.findViewById(R.id.tvPrice_details)
         val tvTitle:TextView=view.findViewById(R.id.tvTitle_details)

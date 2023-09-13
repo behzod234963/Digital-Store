@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.digital_store.Adapter.SearchAdapter
 import com.example.digital_store.DataBase.Remote.ApiClient
 import com.example.digital_store.Models.ProductsItem
-import com.example.digital_store.R
 import com.example.digital_store.databinding.FragmentSearchBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -59,7 +58,7 @@ class Search : Fragment() {
 
     private fun loadList() {
 
-        ApiClient.api_servis.getAllProducts().enqueue(object :Callback<ArrayList<ProductsItem>>{
+        ApiClient.apiServis.getAllProducts().enqueue(object :Callback<ArrayList<ProductsItem>>{
             override fun onResponse(
                 call: Call<ArrayList<ProductsItem>>,
                 response: Response<ArrayList<ProductsItem>>

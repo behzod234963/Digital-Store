@@ -6,11 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.navigation.fragment.findNavController
 import com.example.digital_store.Adapter.AllProductsAdapter
+import com.example.digital_store.Adapter.JeweleryAdapter
 import com.example.digital_store.DataBase.Remote.ApiClient
 import com.example.digital_store.Models.ProductsItem
-import com.example.digital_store.R
 import com.example.digital_store.databinding.FragmentJeweleryBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -20,7 +19,7 @@ import retrofit2.Response
 class Jewelery : Fragment() {
 
     lateinit var binding: FragmentJeweleryBinding
-    lateinit var jeweleryAdapter:AllProductsAdapter
+    lateinit var jeweleryAdapter:JeweleryAdapter
     lateinit var products:ArrayList<ProductsItem>
 
     override fun onCreateView(
@@ -42,10 +41,9 @@ class Jewelery : Fragment() {
     private fun initView() {
 
         products= ArrayList()
-        val category="jewelery"
-        loadProducts(category)
-        jeweleryAdapter= AllProductsAdapter()
-        binding.rvJewelery.adapter=AllProductsAdapter()
+        jeweleryAdapter= JeweleryAdapter()
+        binding.rvJewelery.adapter=jeweleryAdapter
+        loadCategory("electronics")
 
         jeweleryAdapter.onClick={position->
 
@@ -55,9 +53,9 @@ class Jewelery : Fragment() {
 
     }
 
-    private fun loadProducts(category:String) {
+    private fun loadCategory(category:String) {
 
-        ApiClient.api_servis.getCategoryByName(category).enqueue(object :Callback<ArrayList<ProductsItem>>{
+        ApiClient.apiServis.getCategoryByName(category).enqueue(object :Callback<ArrayList<ProductsItem>>{
             override fun onResponse(
                 call: Call<ArrayList<ProductsItem>>,
                 response: Response<ArrayList<ProductsItem>>
@@ -74,10 +72,10 @@ class Jewelery : Fragment() {
             }
 
             override fun onFailure(call: Call<ArrayList<ProductsItem>>, t: Throwable) {
-                Toast.makeText(requireContext(), "${t.localizedMessage}", Toast.LENGTH_SHORT).show()
+
+                Toast.makeText(requireContext(), "${t.localizedMessage}", Toast.LENGTH_LONG).show()
+
             }
-
-
         })
 
     }

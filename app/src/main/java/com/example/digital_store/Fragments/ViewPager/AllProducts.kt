@@ -16,7 +16,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import com.example.digital_store.Adapter.AllProductsAdapter
-import com.example.digital_store.Fragments.Main.Store
+import com.example.digital_store.Fragments.Main.Details
 import com.example.digital_store.R
 
 
@@ -51,8 +51,7 @@ class AllProducts : Fragment() {
 
         productsAdapter.onClick={position->
 
-            val navController=Navigation.findNavController(requireView())
-            navController?.navigate(R.id.action_global_details, bundleOf("id" to allProductsList[position].id))
+            findNavController().navigate(R.id.action_global_details2, bundleOf("id" to allProductsList[position].id))
 
         }
 
@@ -60,7 +59,7 @@ class AllProducts : Fragment() {
 
     private fun loadProducts() {
 
-        ApiClient.api_servis.getAllProducts().enqueue(object :Callback<ArrayList<ProductsItem>>{
+        ApiClient.apiServis.getAllProducts().enqueue(object :Callback<ArrayList<ProductsItem>>{
             override fun onResponse(
                 call: Call<ArrayList<ProductsItem>>,
                 response: Response<ArrayList<ProductsItem>>
@@ -86,4 +85,5 @@ class AllProducts : Fragment() {
         })
 
     }
+
 }
