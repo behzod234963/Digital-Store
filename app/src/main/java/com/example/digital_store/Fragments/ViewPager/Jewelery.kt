@@ -43,7 +43,7 @@ class Jewelery : Fragment() {
         products= ArrayList()
         jeweleryAdapter= JeweleryAdapter()
         binding.rvJewelery.adapter=jeweleryAdapter
-        loadCategory("electronics")
+        loadCategory("jewelery")
 
         jeweleryAdapter.onClick={position->
 

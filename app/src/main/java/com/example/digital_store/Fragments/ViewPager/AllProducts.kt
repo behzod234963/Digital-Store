@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
@@ -18,6 +19,7 @@ import retrofit2.Response
 import com.example.digital_store.Adapter.AllProductsAdapter
 import com.example.digital_store.Fragments.Main.Details
 import com.example.digital_store.R
+import com.example.digital_store.SharedPreferences
 
 
 class AllProducts : Fragment() {
@@ -51,7 +53,9 @@ class AllProducts : Fragment() {
 
         productsAdapter.onClick={position->
 
-            findNavController().navigate(R.id.action_global_details2, bundleOf("id" to allProductsList[position].id))
+            val id=allProductsList[position].id
+            val putId=SharedPreferences(requireContext()).saveId(id!!)
+            findNavController().navigate(R.id.action_global_allProducts)
 
         }
 

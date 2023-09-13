@@ -14,8 +14,10 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.digital_store.Adapter.DetailsAdapter
 import com.example.digital_store.DataBase.Remote.ApiClient
+import com.example.digital_store.Fragments.ViewPager.AllProducts
 import com.example.digital_store.Models.ProductsItem
 import com.example.digital_store.R
+import com.example.digital_store.SharedPreferences
 import com.example.digital_store.databinding.FragmentDetailsBinding
 import kotlinx.coroutines.CoroutineScope
 import okhttp3.logging.HttpLoggingInterceptor
@@ -51,18 +53,18 @@ class Details : Fragment() {
     private fun initView() {
 
         products= ArrayList()
-        detailsAdapter= DetailsAdapter()
-        val id=arguments?.getInt("id")
-        id?.let { loadDetail(it) }
+        val getId=SharedPreferences(requireContext()).getId()
         binding.rvDetailsDetails.adapter=DetailsAdapter()
+        loadDetail(getId)
         navController= NavController(requireContext())
-
+        val details=Details()
 
 
         binding.ivBackDetails.setOnClickListener {
 
             findNavController().navigate(R.id.action_details_to_store)
             navController.popBackStack()
+            val del=requireContext().deleteSharedPreferences("pref")
 
         }
 
