@@ -50,12 +50,7 @@ class AllProducts(val listener:Navigator) : Fragment() {
         productsAdapter.onClick={position->
 
             listener.saveAction(R.id.action_store_to_details,
-                bundleOf("DetailsId" to allProductsList[position].id,
-                    "DetailsImage" to allProductsList[position].image,
-                    "DetailsTitle" to allProductsList[position].title,
-                    "DetailsPrice" to allProductsList[position].price,
-                    "DetailsDescription" to allProductsList[position].description,
-                    "DetailsRate" to allProductsList[position].rating?.rate))
+                bundleOf("DetailsId" to allProductsList[position].id))
 
         }
 

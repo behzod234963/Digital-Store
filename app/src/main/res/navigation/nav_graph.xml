@@ -65,22 +65,6 @@
             android:name="DetailsId"
             app:argType="integer"
             android:defaultValue="1" />
-        <argument
-            android:name="detailsImage"
-            app:argType="string" />
-        <argument
-            android:name="detailsTitle"
-            app:argType="string" />
-        <argument
-            android:name="detailsPrice" />
-        <argument
-            android:name="detailsCategory"
-            app:argType="string" />
-        <argument android:name="detailsRating"
-            app:argType="integer" />
-        <argument
-            android:name="detailsDescription"
-            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/allProducts"

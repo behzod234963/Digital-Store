@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.example.digital_store.Adapter.DetailsAdapter
 import com.example.digital_store.DataBase.Remote.ApiClient
 import com.example.digital_store.Models.ProductsItem
 import com.example.digital_store.Models.Rating
@@ -22,8 +23,9 @@ class Details : Fragment() {
 
     lateinit var binding: FragmentDetailsBinding
     lateinit var products:ArrayList<ProductsItem>
-
+    lateinit var detailsAdapter:DetailsAdapter
     val args:DetailsArgs by navArgs()
+    var detailsID=1
 
 
     override fun onCreateView(
@@ -44,6 +46,12 @@ class Details : Fragment() {
 
     private fun initView() {
 
+        detailsAdapter= DetailsAdapter()
+        products=ArrayList()
+        binding.rvDetails.adapter=detailsAdapter
+        detailsID=args.DetailsId
+        loadDetail(detailsID)
+        detailsAdapter.submitList(products)
 
         binding.ivBackDetails.setOnClickListener {
 
@@ -60,6 +68,12 @@ class Details : Fragment() {
         ApiClient.apiServis.getProductById(id).enqueue(object :Callback<ProductsItem>{
             override fun onResponse(call: Call<ProductsItem>, response: Response<ProductsItem>) {
 
+                if (response.isSuccessful){
+
+                    products.clear()
+                    detailsAdapter.submitList(products)
+
+                }
 
             }
 
