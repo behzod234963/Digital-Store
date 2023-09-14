@@ -39,7 +39,11 @@
         android:id="@+id/settings"
         android:name="com.example.digital_store.Fragments.Main.Settings"
         android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settings_to_wishlist"
+            app:destination="@id/wishlist" />
+    </fragment>
     <fragment
         android:id="@+id/search"
         android:name="com.example.digital_store.Fragments.Main.Search"
@@ -76,4 +80,13 @@
         app:destination="@id/details"
         app:launchSingleTop="true"
         app:popUpToInclusive="true" />
+    <fragment
+        android:id="@+id/wishlist"
+        android:name="com.example.digital_store.Fragments.Main.Wishlist"
+        android:label="fragment_wishlist"
+        tools:layout="@layout/fragment_wishlist" >
+        <action
+            android:id="@+id/action_wishlist_to_details"
+            app:destination="@id/details" />
+    </fragment>
 </navigation>

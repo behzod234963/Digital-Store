@@ -68,12 +68,7 @@ class Details : Fragment() {
         ApiClient.apiServis.getProductById(id).enqueue(object :Callback<ProductsItem>{
             override fun onResponse(call: Call<ProductsItem>, response: Response<ProductsItem>) {
 
-                if (response.isSuccessful){
 
-                    products.clear()
-                    detailsAdapter.submitList(products)
-
-                }
 
             }
 

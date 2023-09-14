@@ -21,6 +21,8 @@ interface ApiServis {
     @GET("products")
     fun getAllProducts(): Call<ArrayList<ProductsItem>>
 
+
+//    get single product
     @GET("products/{id}")
     fun getProductById(@Path("id") id: Int): Call<ProductsItem>
 

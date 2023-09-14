@@ -1,8 +1,5 @@
 package com.example.digital_store.DataBase.Remote
 
-import okhttp3.Interceptor
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 object ApiClient {
