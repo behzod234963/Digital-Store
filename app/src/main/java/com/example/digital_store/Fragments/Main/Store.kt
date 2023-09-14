@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
+import androidx.navigation.Navigator
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager
@@ -21,13 +22,12 @@ import com.example.digital_store.databinding.FragmentStoreBinding
 import com.example.digital_store.Adapter.ViewPagerAdapter
 import com.example.digital_store.Models.ProductsItem
 
-class Store : Fragment() {
+class Store : Fragment(), com.example.digital_store.Navigation.Navigator {
 
     lateinit var binding: FragmentStoreBinding
     lateinit var vpTitle:ArrayList<String>
     lateinit var vpFragment:ArrayList<Fragment>
     lateinit var vpAdapter: ViewPagerAdapter
-    lateinit var navController: NavController
     lateinit var productsAdapter: AllProductsAdapter
     lateinit var products:ArrayList<ProductsItem>
 
@@ -54,32 +54,26 @@ class Store : Fragment() {
         vpFragment=ArrayList()
         products=ArrayList()
         loadItems()
-        navController=NavController(requireContext())
         vpAdapter= ViewPagerAdapter(vpFragment, vpTitle, childFragmentManager)
         val vpViewPager: ViewPager =view.findViewById(R.id.vpViewPager_store)
         binding.tlTabLayoutStore.setupWithViewPager(vpViewPager)
         vpViewPager.adapter=vpAdapter
-        val allProducts=AllProducts()
-        val store=Store()
 
         binding.ivSearchStore.setOnClickListener {
 
             findNavController().navigate(R.id.action_store_to_search)
-            navController.popBackStack()
 
         }
 
         binding.ivProfileStore.setOnClickListener {
 
             findNavController().navigate(R.id.action_store_to_settings)
-            navController.popBackStack()
 
         }
 
         binding.ivCartStore.setOnClickListener {
 
             findNavController().navigate(R.id.action_store_to_cart)
-            navController.popBackStack()
 
         }
 
@@ -90,7 +84,7 @@ class Store : Fragment() {
         vpFragment= ArrayList()
         vpTitle=ArrayList()
         vpTitle.add("All")
-        vpFragment.add(AllProducts())
+        vpFragment.add(AllProducts(this))
         vpTitle.add("Jewelery")
         vpFragment.add(Jewelery())
         vpTitle.add("Electronics")
@@ -99,6 +93,20 @@ class Store : Fragment() {
         vpFragment.add(MensClothing())
         vpTitle.add("WomensClothing")
         vpFragment.add(WomensClothing())
+
+    }
+
+    override fun saveAction(actionID: Int, bundle: Bundle?) {
+
+        when(actionID){
+
+            R.id.action_store_to_details->{
+
+                findNavController().navigate(R.id.action_store_to_details)
+
+            }
+
+        }
 
     }
 }
