@@ -8,10 +8,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.digital_store.Adapter.DetailsAdapter
+import com.bumptech.glide.Glide
 import com.example.digital_store.DataBase.Remote.ApiClient
 import com.example.digital_store.Models.ProductsItem
+import com.example.digital_store.Models.Rating
 import com.example.digital_store.R
 import com.example.digital_store.databinding.FragmentDetailsBinding
 import retrofit2.Call
@@ -22,8 +22,7 @@ class Details : Fragment() {
 
     lateinit var binding: FragmentDetailsBinding
     lateinit var products:ArrayList<ProductsItem>
-    lateinit var detailsAdapter:DetailsAdapter
-    var detailsId=1
+
     val args:DetailsArgs by navArgs()
 
 
@@ -45,13 +44,6 @@ class Details : Fragment() {
 
     private fun initView() {
 
-        products= ArrayList()
-        detailsAdapter= DetailsAdapter()
-        detailsId=args.DetailsId
-        binding.rvDetailsDetails.adapter=detailsAdapter
-        binding.rvDetailsDetails.layoutManager=LinearLayoutManager(requireContext())
-        loadDetail(detailsId)
-
 
         binding.ivBackDetails.setOnClickListener {
 
@@ -67,7 +59,6 @@ class Details : Fragment() {
 
         ApiClient.apiServis.getProductById(id).enqueue(object :Callback<ProductsItem>{
             override fun onResponse(call: Call<ProductsItem>, response: Response<ProductsItem>) {
-
 
 
             }
