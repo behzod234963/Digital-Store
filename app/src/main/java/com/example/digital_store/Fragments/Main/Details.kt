@@ -6,13 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
-import com.example.digital_store.Adapter.DetailsAdapter
 import com.example.digital_store.DataBase.Remote.ApiClient
 import com.example.digital_store.Models.ProductsItem
-import com.example.digital_store.Models.Rating
 import com.example.digital_store.R
 import com.example.digital_store.databinding.FragmentDetailsBinding
 import retrofit2.Call
@@ -22,10 +21,10 @@ import retrofit2.Response
 class Details : Fragment() {
 
     lateinit var binding: FragmentDetailsBinding
-    lateinit var products:ArrayList<ProductsItem>
-//    lateinit var detailsAdapter:DetailsAdapter
-    val args:DetailsArgs by navArgs()
-    var detailsID=1
+    lateinit var products: ArrayList<ProductsItem>
+    lateinit var navController: NavController
+    val args: DetailsArgs by navArgs()
+    var detailsID = 1
 
 
     override fun onCreateView(
@@ -33,7 +32,7 @@ class Details : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding= FragmentDetailsBinding.inflate(layoutInflater,container,false)
+        binding = FragmentDetailsBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -44,31 +43,36 @@ class Details : Fragment() {
 
     }
 
+    //    Initialize data
     private fun initView() {
 
-//        detailsAdapter= DetailsAdapter()
-        products=ArrayList()
-//        binding.rvDetails.adapter=detailsAdapter
-        detailsID=args.DetailsId
+        products = ArrayList()
+        navController= NavController(requireContext())
+        detailsID = args.DetailsId
         loadDetail(detailsID)
-//        detailsAdapter.submitList(products)
 
-        binding.ivBackDetails.setOnClickListener {
+        binding.apply {
 
-            findNavController().navigate(R.id.action_details_to_store)
+            ivBackDetails.setOnClickListener {
+
+                findNavController().navigate(R.id.action_details_to_store)
+                navController.popBackStack()
+
+            }
 
         }
 
     }
 
-    private fun loadDetail(id:Int) {
+    //    Loading details
+    private fun loadDetail(id: Int) {
 
-        products=ArrayList()
+        products = ArrayList()
 
-        ApiClient.apiServis.getProductById(id).enqueue(object :Callback<ProductsItem>{
+        ApiClient.apiServis.getProductById(id).enqueue(object : Callback<ProductsItem> {
             override fun onResponse(call: Call<ProductsItem>, response: Response<ProductsItem>) {
 
-                if(response.isSuccessful){
+                if (response.isSuccessful) {
 
                     loadData(response.body()!!)
 
@@ -86,15 +90,16 @@ class Details : Fragment() {
 
     }
 
+    //    Loading items
     private fun loadData(body: ProductsItem) {
 
         binding.apply {
 
             Glide.with(this@Details).load(body.image).into(ivDetailsImageDetails)
-            tvTitleDetails.text=body.title
-            tvPriceDetails.text="${body.price.toString()} USD"
-            tvRatingDetails.text=body.rating.toString()
-            tvDescriptionDetails.text=body.description
+            tvTitleDetails.text = body.title
+            tvPriceDetails.text = "${body.price.toString()} USD"
+            tvRatingDetails.text = body.rating.toString()
+            tvDescriptionDetails.text = body.description
 
         }
 

@@ -18,12 +18,13 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/ivProfile_store"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:src="@drawable/pic_splash_logo"
-                android:scaleType="centerCrop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                app:shapeAppearanceOverlay="@style/circle_profile"/>
+                android:scaleType="centerCrop"
+                android:layout_margin="5dp"
+                android:src="@mipmap/ic_launcher"
+                app:shapeAppearanceOverlay="@style/circle_profile" />
 
             <ImageView
                 android:layout_width="30dp"

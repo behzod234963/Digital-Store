@@ -9,17 +9,18 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.digital_store.R
 import com.example.digital_store.databinding.FragmentSettingsBinding
+
 class Settings : Fragment() {
 
     lateinit var binding: FragmentSettingsBinding
-    lateinit var navController:NavController
+    lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding= FragmentSettingsBinding.inflate(layoutInflater,container,false)
+        binding = FragmentSettingsBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -30,9 +31,11 @@ class Settings : Fragment() {
 
     }
 
+    //    Initialize data
     private fun initView() {
 
-        navController=NavController(requireContext())
+        navController = NavController(requireContext())
+
         binding.apply {
 
             tvWishlistSettings.setOnClickListener {
@@ -41,6 +44,8 @@ class Settings : Fragment() {
                 navController.popBackStack()
 
             }
+
+
 
         }
 
