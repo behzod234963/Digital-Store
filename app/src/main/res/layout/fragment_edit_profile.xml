@@ -6,18 +6,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.Main.EditProfile"
     android:background="@color/white"
-    android:orientation="vertical"
-    android:padding="10dp">
+    android:orientation="vertical">
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/white">
             <ImageView
+                android:id="@+id/ivBack_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/pic_back"/>
+                android:src="@drawable/pic_back"
+                android:background="@drawable/bg_whitebg_button"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -33,11 +35,14 @@
         android:layout_height="match_parent"
         app:cardElevation="15dp"
         android:layout_weight="1"
-        android:layout_margin="5dp">
+        android:layout_margin="10dp"
+        app:cardCornerRadius="15dp"
+        app:cardBackgroundColor="@color/white">
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_gravity="center"
+            android:background="@color/white"
             android:paddingHorizontal="10dp">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etFirstName_edit"
@@ -55,10 +60,13 @@
         android:layout_height="match_parent"
         app:cardElevation="15dp"
         android:layout_weight="1"
-        android:layout_margin="5dp">
+        app:cardCornerRadius="15dp"
+        android:layout_margin="10dp"
+        app:cardBackgroundColor="@color/white">
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:background="@color/white"
             android:layout_gravity="center"
             android:paddingHorizontal="10dp">
             <com.google.android.material.textfield.TextInputEditText
@@ -76,11 +84,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:cardElevation="15dp"
+        app:cardCornerRadius="15dp"
+        app:cardBackgroundColor="@color/white"
         android:layout_weight="1"
-        android:layout_margin="5dp">
+        android:layout_margin="10dp">
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:background="@color/white"
             android:layout_gravity="center"
             android:paddingHorizontal="10dp">
             <com.google.android.material.textfield.TextInputEditText
@@ -98,11 +109,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:cardElevation="15dp"
+        app:cardCornerRadius="15dp"
         android:layout_weight="1"
-        android:layout_margin="5dp">
+        android:layout_margin="10dp"
+        app:cardBackgroundColor="@color/white">
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:background="@color/white"
             android:layout_gravity="center"
             android:paddingHorizontal="10dp">
             <com.google.android.material.textfield.TextInputEditText
@@ -120,11 +134,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:cardElevation="15dp"
+        app:cardCornerRadius="15dp"
         android:layout_weight="1"
-        android:layout_margin="5dp">
+        app:cardBackgroundColor="@color/white"
+        android:layout_margin="10dp">
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:background="@color/white"
             android:layout_gravity="center"
             android:paddingHorizontal="10dp">
             <com.google.android.material.textfield.TextInputEditText

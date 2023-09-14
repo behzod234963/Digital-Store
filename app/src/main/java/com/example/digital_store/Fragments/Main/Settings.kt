@@ -38,7 +38,14 @@ class Settings : Fragment() {
 
         binding.apply {
 
-            tvWishlistSettings.setOnClickListener {
+            llEditProfileSettings.setOnClickListener {
+
+                findNavController().navigate(R.id.action_settings_to_editProfile)
+                navController.popBackStack()
+
+            }
+
+            llWishlistSettings.setOnClickListener {
 
                 findNavController().navigate(R.id.action_settings_to_wishlist)
                 navController.popBackStack()

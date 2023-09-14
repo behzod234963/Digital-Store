@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -16,6 +17,7 @@ class SearchAdapter:RecyclerView.Adapter<SearchAdapter.SearchViewHolder>(),Filte
 
     val list:ArrayList<ProductsItem> = ArrayList()
     var oldList:ArrayList<ProductsItem> = ArrayList()
+    var itemClick:((Int)->Unit)?=null
 
     fun submitList(list:ArrayList<ProductsItem>){
 
@@ -48,6 +50,12 @@ class SearchAdapter:RecyclerView.Adapter<SearchAdapter.SearchViewHolder>(),Filte
                 tvCost.text=products.price.toString()
                 tvRating.text=products.rating.toString()
 
+                llSearchClick.setOnClickListener {
+
+                    itemClick?.invoke(position)
+
+                }
+
             }
 
         }
@@ -61,6 +69,7 @@ class SearchAdapter:RecyclerView.Adapter<SearchAdapter.SearchViewHolder>(),Filte
         val tvType:TextView=view.findViewById(R.id.tvType_search)
         val tvCost:TextView=view.findViewById(R.id.tvCost_search)
         val tvRating:TextView=view.findViewById(R.id.tvRating_search)
+        val llSearchClick:LinearLayout=view.findViewById(R.id.llSearchClick_search)
 
     }
 

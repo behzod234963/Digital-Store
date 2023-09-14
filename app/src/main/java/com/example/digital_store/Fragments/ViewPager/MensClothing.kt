@@ -6,20 +6,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
+import androidx.navigation.NavController
 import com.example.digital_store.Adapter.JeweleryAdapter
 import com.example.digital_store.Adapter.MensAdapter
 import com.example.digital_store.DataBase.Remote.ApiClient
 import com.example.digital_store.Models.ProductsItem
+import com.example.digital_store.Navigation.Navigator
+import com.example.digital_store.R
 import com.example.digital_store.databinding.FragmentJeweleryBinding
 import com.example.digital_store.databinding.FragmentMensClothingBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-class MensClothing : Fragment() {
+
+class MensClothing(val listener: Navigator) : Fragment() {
 
     lateinit var binding: FragmentMensClothingBinding
-    lateinit var mensAdapter:MensAdapter
-    lateinit var products:ArrayList<ProductsItem>
+    lateinit var mensAdapter: MensAdapter
+    lateinit var products: ArrayList<ProductsItem>
+    lateinit var navController: NavController
 
 
     override fun onCreateView(
@@ -27,7 +33,7 @@ class MensClothing : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding= FragmentMensClothingBinding.inflate(layoutInflater,container,false)
+        binding = FragmentMensClothingBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -38,22 +44,29 @@ class MensClothing : Fragment() {
 
     }
 
+    //    Initialize data
     private fun initView() {
 
-        products= ArrayList()
-        mensAdapter= MensAdapter()
-        binding.rvMensClothing.adapter=mensAdapter
+        navController = NavController(requireContext())
+        products = ArrayList()
+        mensAdapter = MensAdapter()
+        binding.rvMensClothing.adapter = mensAdapter
         loadCategory("men's clothing")
 
-        mensAdapter.onClick={ position->
+        mensAdapter.onClick = { position ->
 
-
+            listener.saveAction(
+                R.id.action_store_to_details,
+                bundleOf("DetailsId" to products[position].id)
+            )
+            navController.popBackStack()
 
         }
 
     }
 
-    private fun loadCategory(category:String) {
+    //    Loading category
+    private fun loadCategory(category: String) {
 
         ApiClient.apiServis.getCategoryByName(category).enqueue(object :
             Callback<ArrayList<ProductsItem>> {
@@ -62,7 +75,7 @@ class MensClothing : Fragment() {
                 response: Response<ArrayList<ProductsItem>>
             ) {
 
-                if (response.isSuccessful){
+                if (response.isSuccessful) {
 
                     products.clear()
                     products.addAll(response.body()!!)

@@ -47,6 +47,7 @@ class Store : Fragment(), com.example.digital_store.Navigation.Navigator {
 
     }
 
+//    Initialize data
     private fun initView(view: View) {
 
         productsAdapter= AllProductsAdapter()
@@ -79,6 +80,7 @@ class Store : Fragment(), com.example.digital_store.Navigation.Navigator {
 
     }
 
+//    Loading Items
     private fun loadItems() {
 
         vpFragment= ArrayList()
@@ -86,16 +88,17 @@ class Store : Fragment(), com.example.digital_store.Navigation.Navigator {
         vpTitle.add("All")
         vpFragment.add(AllProducts(this))
         vpTitle.add("Jewelery")
-        vpFragment.add(Jewelery())
+        vpFragment.add(Jewelery(this))
         vpTitle.add("Electronics")
-        vpFragment.add(Electronics())
+        vpFragment.add(Electronics(this))
         vpTitle.add("MensClothing")
-        vpFragment.add(MensClothing())
+        vpFragment.add(MensClothing(this))
         vpTitle.add("WomensClothing")
-        vpFragment.add(WomensClothing())
+        vpFragment.add(WomensClothing(this))
 
     }
 
+//    Navigator
     override fun saveAction(actionID: Int, bundle: Bundle?) {
 
         when(actionID){

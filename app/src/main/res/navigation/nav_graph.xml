@@ -45,12 +45,19 @@
         <action
             android:id="@+id/action_settings_to_wishlist"
             app:destination="@id/wishlist" />
+        <action
+            android:id="@+id/action_settings_to_editProfile"
+            app:destination="@id/editProfile" />
     </fragment>
     <fragment
         android:id="@+id/search"
         android:name="com.example.digital_store.Fragments.Main.Search"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_search_to_details"
+            app:destination="@id/details" />
+    </fragment>
     <fragment
         android:id="@+id/cart"
         android:name="com.example.digital_store.Fragments.Main.Cart"
@@ -72,11 +79,6 @@
             app:argType="integer"
             android:defaultValue="1" />
     </fragment>
-    <fragment
-        android:id="@+id/allProducts"
-        android:name="com.example.digital_store.Fragments.ViewPager.AllProducts"
-        android:label="fragment_all_products"
-        tools:layout="@layout/fragment_all_products" />
     <action
         android:id="@+id/action_global_allProducts"
         app:destination="@id/details"
@@ -91,4 +93,9 @@
             android:id="@+id/action_wishlist_to_details"
             app:destination="@id/details" />
     </fragment>
+    <fragment
+        android:id="@+id/editProfile"
+        android:name="com.example.digital_store.Fragments.Main.EditProfile"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" />
 </navigation>
