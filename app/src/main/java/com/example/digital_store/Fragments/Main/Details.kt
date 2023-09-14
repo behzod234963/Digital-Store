@@ -46,6 +46,7 @@ class Details : Fragment() {
     //    Initialize data
     private fun initView() {
 
+        binding.lavLoadingDetails.visibility=View.VISIBLE
         products = ArrayList()
         navController= NavController(requireContext())
         detailsID = args.DetailsId
@@ -74,6 +75,7 @@ class Details : Fragment() {
 
                 if (response.isSuccessful) {
 
+                    binding.lavLoadingDetails.visibility=View.GONE
                     loadData(response.body()!!)
 
                 }
@@ -82,6 +84,7 @@ class Details : Fragment() {
 
             override fun onFailure(call: Call<ProductsItem>, t: Throwable) {
 
+                binding.lavLoadingDetails.visibility=View.GONE
                 Toast.makeText(requireContext(), t.localizedMessage, Toast.LENGTH_LONG).show()
 
             }

@@ -39,8 +39,10 @@ class Wishlist : Fragment(),Navigator {
 
     }
 
+//    Initialize data
     private fun initView() {
 
+        binding.lavLoadingWishlist.visibility=View.VISIBLE
         wishAdapter= WishlistAdapter()
         products=ArrayList()
         binding.apply {
@@ -57,6 +59,7 @@ class Wishlist : Fragment(),Navigator {
 
     }
 
+//    Loading items
     private fun loadWishlist() {
 
         ApiClient.apiServis.getAllProducts().enqueue(object :Callback<ArrayList<ProductsItem>>{
@@ -67,6 +70,7 @@ class Wishlist : Fragment(),Navigator {
 
                 if (response.isSuccessful){
 
+                    binding.lavLoadingWishlist.visibility=View.GONE
                     products.clear()
                     products.addAll(response.body()!!)
                     wishAdapter.submitList(products)
@@ -76,7 +80,9 @@ class Wishlist : Fragment(),Navigator {
             }
 
             override fun onFailure(call: Call<ArrayList<ProductsItem>>, t: Throwable) {
-                TODO("Not yet implemented")
+
+                binding.lavLoadingWishlist.visibility=View.GONE
+
             }
 
 
@@ -84,6 +90,7 @@ class Wishlist : Fragment(),Navigator {
 
     }
 
+//    Navigator
     override fun saveAction(actionID: Int, bundle: Bundle?) {
 
         when(actionID){

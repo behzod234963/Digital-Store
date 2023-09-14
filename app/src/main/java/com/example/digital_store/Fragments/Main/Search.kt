@@ -46,6 +46,7 @@ class Search : Fragment() {
     //    Initialize data
     private fun initView() {
 
+        binding.lavLoadingSearch.visibility=View.VISIBLE
         list = ArrayList()
         loadList()
         searchAdapter = SearchAdapter()
@@ -83,6 +84,7 @@ class Search : Fragment() {
 
                 if (response.isSuccessful) {
 
+                    binding.lavLoadingSearch.visibility=View.GONE
                     list.clear()
                     list.addAll(response.body()!!)
                     searchAdapter.submitList(list)
@@ -92,7 +94,9 @@ class Search : Fragment() {
             }
 
             override fun onFailure(call: Call<ArrayList<ProductsItem>>, t: Throwable) {
-                TODO("Not yet implemented")
+
+                binding.lavLoadingSearch.visibility=View.GONE
+
             }
 
         })

@@ -45,6 +45,7 @@ class AllProducts(val listener: Navigator) : Fragment() {
     //    Initialize data
     private fun initView() {
 
+        binding.lavLoadingAllProducts.visibility=View.VISIBLE
         navController = NavController(requireContext())
         productsAdapter = AllProductsAdapter()
         allProductsList = ArrayList()
@@ -76,9 +77,11 @@ class AllProducts(val listener: Navigator) : Fragment() {
 
                 if (response.isSuccessful) {
 
+                    binding.lavLoadingAllProducts.visibility=View.GONE
                     allProductsList.clear()
                     allProductsList.addAll(response.body()!!)
                     productsAdapter.submitList(allProductsList)
+
 
                 }
 
@@ -86,6 +89,7 @@ class AllProducts(val listener: Navigator) : Fragment() {
 
             override fun onFailure(call: Call<ArrayList<ProductsItem>>, t: Throwable) {
 
+                binding.lavLoadingAllProducts.visibility=View.GONE
                 Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show()
 
             }

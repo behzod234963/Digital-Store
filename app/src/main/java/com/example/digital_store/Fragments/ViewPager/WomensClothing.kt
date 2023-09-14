@@ -46,6 +46,7 @@ class WomensClothing(val listener: Navigator) : Fragment() {
     //    Initialize data
     private fun initView() {
 
+        binding.lavLoadingWomens.visibility=View.VISIBLE
         navController = NavController(requireContext())
         products = ArrayList()
         electronicsAdapter = WomensAdapter()
@@ -76,6 +77,7 @@ class WomensClothing(val listener: Navigator) : Fragment() {
 
                 if (response.isSuccessful) {
 
+                    binding.lavLoadingWomens.visibility=View.GONE
                     products.clear()
                     products.addAll(response.body()!!)
                     electronicsAdapter.submitList(products)
@@ -86,6 +88,7 @@ class WomensClothing(val listener: Navigator) : Fragment() {
 
             override fun onFailure(call: Call<ArrayList<ProductsItem>>, t: Throwable) {
 
+                binding.lavLoadingWomens.visibility=View.GONE
                 Toast.makeText(requireContext(), "${t.localizedMessage}", Toast.LENGTH_LONG).show()
 
             }

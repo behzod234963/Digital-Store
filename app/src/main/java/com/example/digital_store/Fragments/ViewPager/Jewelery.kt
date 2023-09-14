@@ -47,6 +47,7 @@ class Jewelery(val listener: Navigator) : Fragment() {
     //    Initialize data
     private fun initView() {
 
+        binding.lavLoadingJewelery.visibility=View.VISIBLE
         navController = NavController(requireContext())
         products = ArrayList()
         jeweleryAdapter = JeweleryAdapter()
@@ -77,6 +78,7 @@ class Jewelery(val listener: Navigator) : Fragment() {
 
                     if (response.isSuccessful) {
 
+                        binding.lavLoadingJewelery.visibility=View.GONE
                         products.clear()
                         products.addAll(response.body()!!)
                         jeweleryAdapter.submitList(products)
@@ -87,6 +89,7 @@ class Jewelery(val listener: Navigator) : Fragment() {
 
                 override fun onFailure(call: Call<ArrayList<ProductsItem>>, t: Throwable) {
 
+                    binding.lavLoadingJewelery.visibility=View.GONE
                     Toast.makeText(requireContext(), "${t.localizedMessage}", Toast.LENGTH_LONG)
                         .show()
 

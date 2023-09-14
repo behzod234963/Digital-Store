@@ -45,6 +45,7 @@ class Electronics(val listener: Navigator) : Fragment() {
     //    Initialize data
     private fun initView() {
 
+        binding.lavLoadingElectronics.visibility=View.VISIBLE
         navController = NavController(requireContext())
         products = ArrayList()
         electronicsAdapter = ElectronicsAdapter()
@@ -75,6 +76,7 @@ class Electronics(val listener: Navigator) : Fragment() {
 
                 if (response.isSuccessful) {
 
+                    binding.lavLoadingElectronics.visibility=View.GONE
                     products.clear()
                     products.addAll(response.body()!!)
                     electronicsAdapter.submitList(products)
@@ -85,6 +87,7 @@ class Electronics(val listener: Navigator) : Fragment() {
 
             override fun onFailure(call: Call<ArrayList<ProductsItem>>, t: Throwable) {
 
+                binding.lavLoadingElectronics.visibility=View.GONE
                 Toast.makeText(requireContext(), "${t.localizedMessage}", Toast.LENGTH_LONG).show()
 
             }
