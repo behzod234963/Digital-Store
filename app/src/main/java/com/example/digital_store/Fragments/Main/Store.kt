@@ -102,7 +102,7 @@ class Store : Fragment(), com.example.digital_store.Navigation.Navigator {
 
             R.id.action_store_to_details->{
 
-                findNavController().navigate(R.id.action_store_to_details)
+                findNavController().navigate(R.id.action_store_to_details,bundle)
 
             }
 

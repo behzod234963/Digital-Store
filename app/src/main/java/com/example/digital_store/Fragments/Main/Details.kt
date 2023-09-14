@@ -23,7 +23,7 @@ class Details : Fragment() {
 
     lateinit var binding: FragmentDetailsBinding
     lateinit var products:ArrayList<ProductsItem>
-    lateinit var detailsAdapter:DetailsAdapter
+//    lateinit var detailsAdapter:DetailsAdapter
     val args:DetailsArgs by navArgs()
     var detailsID=1
 
@@ -46,12 +46,12 @@ class Details : Fragment() {
 
     private fun initView() {
 
-        detailsAdapter= DetailsAdapter()
+//        detailsAdapter= DetailsAdapter()
         products=ArrayList()
-        binding.rvDetails.adapter=detailsAdapter
+//        binding.rvDetails.adapter=detailsAdapter
         detailsID=args.DetailsId
         loadDetail(detailsID)
-        detailsAdapter.submitList(products)
+//        detailsAdapter.submitList(products)
 
         binding.ivBackDetails.setOnClickListener {
 
@@ -68,7 +68,11 @@ class Details : Fragment() {
         ApiClient.apiServis.getProductById(id).enqueue(object :Callback<ProductsItem>{
             override fun onResponse(call: Call<ProductsItem>, response: Response<ProductsItem>) {
 
+                if(response.isSuccessful){
 
+                    loadData(response.body()!!)
+
+                }
 
             }
 
@@ -79,6 +83,20 @@ class Details : Fragment() {
             }
 
         })
+
+    }
+
+    private fun loadData(body: ProductsItem) {
+
+        binding.apply {
+
+            Glide.with(this@Details).load(body.image).into(ivDetailsImageDetails)
+            tvTitleDetails.text=body.title
+            tvPriceDetails.text="${body.price.toString()} USD"
+            tvRatingDetails.text=body.rating.toString()
+            tvDescriptionDetails.text=body.description
+
+        }
 
     }
 
