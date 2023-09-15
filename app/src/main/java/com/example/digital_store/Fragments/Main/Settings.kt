@@ -69,7 +69,14 @@ class Settings : Fragment() {
 
             llProfileSettings.setOnClickListener {
 
-                findNavController().navigate(R.id.action_settings_to_editProfile, bundleOf("editID" to 4))
+                findNavController().navigate(R.id.action_settings_to_about, bundleOf("editID" to 4))
+                navController.popBackStack()
+
+            }
+
+            llLogoutSettings.setOnClickListener {
+
+                findNavController().navigate(R.id.action_settings_to_signIn)
                 navController.popBackStack()
 
             }

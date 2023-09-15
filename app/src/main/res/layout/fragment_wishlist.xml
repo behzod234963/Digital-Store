@@ -45,8 +45,8 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lavLoading_Wishlist"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         app:lottie_fileName="loading.json"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
