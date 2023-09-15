@@ -51,6 +51,9 @@
         <action
             android:id="@+id/action_settings_to_signIn"
             app:destination="@id/signIn" />
+        <action
+            android:id="@+id/action_settings_to_about"
+            app:destination="@id/about" />
     </fragment>
     <fragment
         android:id="@+id/search"
@@ -104,10 +107,15 @@
         android:id="@+id/editProfile"
         android:name="com.example.digital_store.Fragments.Main.EditProfile"
         android:label="fragment_edit_profile"
-        tools:layout="@layout/fragment_edit_profile" />
+        tools:layout="@layout/fragment_edit_profile" >
+        <argument
+            android:name="editID"
+            app:argType="integer"
+            android:defaultValue="12" />
+    </fragment>
     <fragment
         android:id="@+id/signIn"
-        android:name="com.example.digital_store.SignIn"
+        android:name="com.example.digital_store.Fragments.Main.SignIn"
         android:label="fragment_sign_in"
         tools:layout="@layout/fragment_sign_in" >
         <action
@@ -116,11 +124,20 @@
     </fragment>
     <fragment
         android:id="@+id/signUp"
-        android:name="com.example.digital_store.SignUp"
+        android:name="com.example.digital_store.Fragments.Main.SignUp"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up" >
         <action
             android:id="@+id/action_signUp_to_signIn"
             app:destination="@id/signIn" />
+    </fragment>
+    <fragment
+        android:id="@+id/about"
+        android:name="com.example.digital_store.Fragments.Main.About"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" >
+        <action
+            android:id="@+id/action_about_to_editProfile"
+            app:destination="@id/editProfile" />
     </fragment>
 </navigation>

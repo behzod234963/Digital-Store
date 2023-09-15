@@ -69,7 +69,7 @@ interface ApiServis {
     fun getAllUsers(): Call<ArrayList<UsersItem>>
 
     @GET("users/{id}")
-    fun getUserById(@Path("id") id: Int): Call<ArrayList<UsersItem>>
+    fun getUserById(@Path("id") id: Int): Call<UsersItem>
 
     @GET("users/sort")
     fun sortUsers(@Query("sort") sort: String = "desc"): retrofit2.Call<ArrayList<UsersItem>>

@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.digital_store.Adapter.SearchAdapter
 import com.example.digital_store.DataBase.Remote.ApiClient
 import com.example.digital_store.Models.ProductsItem
-import com.example.digital_store.Navigation.Navigator
 import com.example.digital_store.R
 import com.example.digital_store.databinding.FragmentSearchBinding
 import retrofit2.Call
@@ -25,7 +24,7 @@ class Search : Fragment() {
     lateinit var navController: NavController
     lateinit var binding: FragmentSearchBinding
     lateinit var list: ArrayList<ProductsItem>
-    lateinit var searchAdapter: SearchAdapter
+    lateinit var searchAdapter:SearchAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -4,16 +4,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
+import com.example.digital_store.DataBase.Remote.ApiClient
+import com.example.digital_store.Models.UsersItem
 import com.example.digital_store.R
 import com.example.digital_store.databinding.FragmentSettingsBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class Settings : Fragment() {
 
     lateinit var binding: FragmentSettingsBinding
     lateinit var navController: NavController
+    lateinit var users:ArrayList<UsersItem>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +43,8 @@ class Settings : Fragment() {
     private fun initView() {
 
         navController = NavController(requireContext())
-
+        users= ArrayList()
+        loadUser(4)
         binding.apply {
 
             llEditProfileSettings.setOnClickListener {
@@ -52,7 +61,52 @@ class Settings : Fragment() {
 
             }
 
+            ivBackSettings.setOnClickListener {
 
+                navController.popBackStack()
+
+            }
+
+            llProfileSettings.setOnClickListener {
+
+                findNavController().navigate(R.id.action_settings_to_editProfile, bundleOf("editID" to 4))
+                navController.popBackStack()
+
+            }
+
+        }
+
+    }
+
+//    Loading user details
+    private fun loadUser(id: Int) {
+
+        ApiClient.apiServis.getUserById(id).enqueue(object :Callback<UsersItem>{
+            override fun onResponse(call: Call<UsersItem>, response: Response<UsersItem>) {
+
+                if (response.isSuccessful){
+
+                    laodItems(response.body())
+
+                }
+
+            }
+
+            override fun onFailure(call: Call<UsersItem>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+        })
+
+    }
+
+//    Loading items
+    private fun laodItems(body: UsersItem?) {
+
+        binding.apply {
+
+            ivProfileSettings.setImageResource(R.drawable.pic_digital_store)
+            tvUsernameSettings.text=body?.username
+            tvEmailSettings.text=body?.email
 
         }
 

@@ -1,13 +1,19 @@
 package com.example.digital_store.Fragments.Main
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavController
+import com.example.digital_store.DataBase.Remote.ApiClient
+import com.example.digital_store.Models.UsersItem
 import com.example.digital_store.R
 import com.example.digital_store.databinding.FragmentEditProfileBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class EditProfile : Fragment() {
@@ -34,12 +40,32 @@ class EditProfile : Fragment() {
     private fun initView() {
 
     navController=NavController(requireContext())
+    loadUser(id)
 
         binding.ivBackEdit.setOnClickListener {
 
             navController.popBackStack()
 
         }
+
+    }
+
+    private fun loadUser(id: Int) {
+
+        ApiClient.apiServis.getUserById(id).enqueue(object :Callback<UsersItem>{
+            override fun onResponse(call: Call<UsersItem>, response: Response<UsersItem>) {
+
+                if (response.isSuccessful){
+
+
+                }
+
+            }
+
+            override fun onFailure(call: Call<UsersItem>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+        })
 
     }
 
