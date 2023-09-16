@@ -102,6 +102,9 @@
         <action
             android:id="@+id/action_wishlist_to_details"
             app:destination="@id/details" />
+        <argument
+            android:name="wishID"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/editProfile"

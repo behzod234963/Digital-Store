@@ -8,9 +8,9 @@ import androidx.room.PrimaryKey
 data class WishListObject(
 
     @PrimaryKey(autoGenerate = true)
-    val id :Int?=null,
+    val id:Int?=null,
     val image:String,
     val title:String,
-    val price:Double,
+    val price: String,
     val rating:String,
     val description:String)

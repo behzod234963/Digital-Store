@@ -1,6 +1,7 @@
 package com.example.digital_store.DataBase.SQLite
 
 import android.app.Application
+import com.example.digital_store.Models.ProductsItem
 import com.example.digital_store.Models.WishListObject
 
 class WIshListRepository(val app:Application) {
@@ -25,11 +26,16 @@ class WIshListRepository(val app:Application) {
 
     }
 
-    fun clearAll(product:WishListObject){
+    fun clearAll(product: ArrayList<WishListObject>){
 
         wishListDao.clearAll(product)
 
     }
 
+    fun deleteById(id:Int){
+
+        wishListDao.deleteById(id)
+
+    }
 
 }

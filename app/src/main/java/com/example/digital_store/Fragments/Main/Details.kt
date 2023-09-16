@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -22,6 +23,7 @@ import retrofit2.Response
 
 class Details : Fragment() {
 
+    lateinit var link:String
     lateinit var binding: FragmentDetailsBinding
     lateinit var products: ArrayList<ProductsItem>
     lateinit var navController: NavController
@@ -67,28 +69,17 @@ class Details : Fragment() {
 
             ivWishlistDetails.setOnClickListener {
 
-                val image = ivDetailsImageDetails
-                val title = tvTitleDetails.text
-                val rating = tvRatingDetails.text
-                val desc = tvDescriptionDetails.text
-                val price = tvPriceDetails.text.toString()
                 ivWishlistDetails.setImageResource(R.drawable.ic_heart_checked)
-                wishListRepository.saveProduct(
-                    WishListObject(
-                        null,
-                        image.toString(),
-                        title.toString(),
-                        price.toDouble(),
-                        rating.toString(),
-                        desc.toString()
-                    )
-                )
+                val wish=Wishlist()
+                val id = tvIdDetails.text.toString()
+                wish.arguments= bundleOf("wishID" to id.toInt())
 
             }
 
         }
 
     }
+
 
     //    Loading details
     private fun loadDetail(id: Int) {
@@ -123,7 +114,8 @@ class Details : Fragment() {
 
         binding.apply {
 
-            Glide.with(this@Details).load(body.image).into(ivDetailsImageDetails)
+            tvIdDetails.text=body.id.toString()
+            Glide.with(this@Details).load(body.image).into(ivDetailsImageDetails).toString()
             tvTitleDetails.text = body.title
             tvPriceDetails.text = "${body.price.toString()} USD"
             tvRatingDetails.text = body.rating.toString()

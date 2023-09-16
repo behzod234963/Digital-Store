@@ -22,6 +22,9 @@ interface WishListInterface {
     fun getById(id:Int):WishListObject
 
     @Delete
-    fun clearAll(product:WishListObject)
+    fun clearAll(product: ArrayList<WishListObject>)
+
+    @Query("DELETE FROM data WHERE :id=id")
+    fun deleteById(id: Int)
 
 }
