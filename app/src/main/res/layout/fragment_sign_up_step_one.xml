@@ -155,7 +155,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="Do you have any account? Sign in here"
+            android:text="Do you have any account? SignIn here"
             android:textSize="17sp"
             android:layout_gravity="center_horizontal"
             android:textColor="@color/black"/>

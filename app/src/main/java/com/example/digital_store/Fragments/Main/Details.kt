@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.digital_store.DataBase.Remote.ApiClient
+import com.example.digital_store.DataBase.SQLite.WIshListRepository
 import com.example.digital_store.Models.ProductsItem
 import com.example.digital_store.R
 import com.example.digital_store.databinding.FragmentDetailsBinding
@@ -23,6 +24,7 @@ class Details : Fragment() {
     lateinit var binding: FragmentDetailsBinding
     lateinit var products: ArrayList<ProductsItem>
     lateinit var navController: NavController
+    lateinit var wishListRepository:WIshListRepository
     val args: DetailsArgs by navArgs()
     var detailsID = 1
 
@@ -58,6 +60,13 @@ class Details : Fragment() {
 
                 findNavController().navigate(R.id.action_details_to_store)
                 navController.popBackStack()
+
+            }
+
+            ivWishlistDetails.setOnClickListener {
+
+                ivWishlistDetails.setImageResource(R.drawable.ic_heart_checked)
+
 
             }
 

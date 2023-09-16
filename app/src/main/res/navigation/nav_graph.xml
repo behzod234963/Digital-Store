@@ -133,6 +133,9 @@
         <action
             android:id="@+id/action_signUp_to_signIn"
             app:destination="@id/signIn" />
+        <action
+            android:id="@+id/action_signUp_to_signUpStepTwo"
+            app:destination="@id/signUpStepTwo" />
     </fragment>
     <fragment
         android:id="@+id/about"
@@ -142,5 +145,19 @@
         <action
             android:id="@+id/action_about_to_editProfile"
             app:destination="@id/editProfile" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpStepTwo"
+        android:name="com.example.digital_store.Fragments.Main.SignUpStepTwo"
+        android:label="fragment_sign_up_step_two"
+        tools:layout="@layout/fragment_sign_up_step_two" >
+        <action
+            android:id="@+id/action_signUpStepTwo_to_store"
+            app:destination="@id/store"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/nav_graph"/>
+        <action
+            android:id="@+id/action_signUpStepTwo_to_cart"
+            app:destination="@id/cart" />
     </fragment>
 </navigation>
