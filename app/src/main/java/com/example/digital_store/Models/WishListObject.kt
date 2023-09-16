@@ -11,5 +11,6 @@ data class WishListObject(
     val id :Int?=null,
     val image:String,
     val title:String,
+    val price:Double,
     val rating:String,
     val description:String)

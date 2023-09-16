@@ -1,11 +1,11 @@
 package com.example.digital_store.Fragments.Main
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.example.digital_store.DataBase.Remote.ApiClient
 import com.example.digital_store.DataBase.SQLite.WIshListRepository
 import com.example.digital_store.Models.ProductsItem
+import com.example.digital_store.Models.WishListObject
 import com.example.digital_store.R
 import com.example.digital_store.databinding.FragmentDetailsBinding
 import retrofit2.Call
@@ -24,7 +25,7 @@ class Details : Fragment() {
     lateinit var binding: FragmentDetailsBinding
     lateinit var products: ArrayList<ProductsItem>
     lateinit var navController: NavController
-    lateinit var wishListRepository:WIshListRepository
+    lateinit var wishListRepository: WIshListRepository
     val args: DetailsArgs by navArgs()
     var detailsID = 1
 
@@ -48,9 +49,10 @@ class Details : Fragment() {
     //    Initialize data
     private fun initView() {
 
-        binding.lavLoadingDetails.visibility=View.VISIBLE
+        wishListRepository = WIshListRepository(requireActivity().application)
+        binding.lavLoadingDetails.visibility = View.VISIBLE
         products = ArrayList()
-        navController= NavController(requireContext())
+        navController = NavController(requireContext())
         detailsID = args.DetailsId
         loadDetail(detailsID)
 
@@ -65,8 +67,22 @@ class Details : Fragment() {
 
             ivWishlistDetails.setOnClickListener {
 
+                val image = ivDetailsImageDetails
+                val title = tvTitleDetails.text
+                val rating = tvRatingDetails.text
+                val desc = tvDescriptionDetails.text
+                val price = tvPriceDetails.text.toString()
                 ivWishlistDetails.setImageResource(R.drawable.ic_heart_checked)
-
+                wishListRepository.saveProduct(
+                    WishListObject(
+                        null,
+                        image.toString(),
+                        title.toString(),
+                        price.toDouble(),
+                        rating.toString(),
+                        desc.toString()
+                    )
+                )
 
             }
 
@@ -84,7 +100,7 @@ class Details : Fragment() {
 
                 if (response.isSuccessful) {
 
-                    binding.lavLoadingDetails.visibility=View.GONE
+                    binding.lavLoadingDetails.visibility = View.GONE
                     loadData(response.body()!!)
 
                 }
@@ -93,7 +109,7 @@ class Details : Fragment() {
 
             override fun onFailure(call: Call<ProductsItem>, t: Throwable) {
 
-                binding.lavLoadingDetails.visibility=View.GONE
+                binding.lavLoadingDetails.visibility = View.GONE
                 Toast.makeText(requireContext(), t.localizedMessage, Toast.LENGTH_LONG).show()
 
             }
