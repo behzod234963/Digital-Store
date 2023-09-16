@@ -127,9 +127,9 @@
     </fragment>
     <fragment
         android:id="@+id/signUp"
-        android:name="com.example.digital_store.Fragments.Main.SignUp"
+        android:name="com.example.digital_store.Fragments.Main.SignUpStepOne"
         android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" >
+        tools:layout="@layout/fragment_sign_up_step_one" >
         <action
             android:id="@+id/action_signUp_to_signIn"
             app:destination="@id/signIn" />
