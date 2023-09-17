@@ -23,10 +23,10 @@ import retrofit2.Response
 
 class Details : Fragment() {
 
-    lateinit var link:String
     lateinit var binding: FragmentDetailsBinding
     lateinit var products: ArrayList<ProductsItem>
     lateinit var navController: NavController
+    lateinit var wishList:ArrayList<WishListObject>
     lateinit var wishListRepository: WIshListRepository
     val args: DetailsArgs by navArgs()
     var detailsID = 1
@@ -54,6 +54,7 @@ class Details : Fragment() {
         wishListRepository = WIshListRepository(requireActivity().application)
         binding.lavLoadingDetails.visibility = View.VISIBLE
         products = ArrayList()
+        wishList=ArrayList()
         navController = NavController(requireContext())
         detailsID = args.DetailsId
         loadDetail(detailsID)
@@ -70,9 +71,21 @@ class Details : Fragment() {
             ivWishlistDetails.setOnClickListener {
 
                 ivWishlistDetails.setImageResource(R.drawable.ic_heart_checked)
-                val wish=Wishlist()
-                val id = tvIdDetails.text.toString()
-                wish.arguments= bundleOf("wishID" to id.toInt())
+                val id=tvIdDetails.text
+                val image=ivDetailsImageDetails.resources.toString()
+                val title=tvTitleDetails.text
+                val price=tvPriceDetails.text
+                val rating=tvRatingDetails.text
+                val desc=tvDescriptionDetails.text
+                val wishlist=Wishlist()
+                wishlist.arguments= bundleOf("wishImage" to image)
+                wishListRepository.saveProduct(WishListObject(
+                    id.toString().toInt(),
+                    image.toString(),
+                    title.toString(),
+                    price.toString(),
+                    rating.toString(),
+                    desc.toString()))
 
             }
 

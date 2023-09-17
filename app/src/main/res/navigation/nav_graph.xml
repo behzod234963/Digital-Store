@@ -105,6 +105,9 @@
         <argument
             android:name="wishID"
             app:argType="integer" />
+        <argument
+            android:name="wishImage"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/editProfile"

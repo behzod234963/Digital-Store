@@ -9,20 +9,16 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.digital_store.Adapter.WishlistAdapter
-import com.example.digital_store.DataBase.Remote.ApiClient
 import com.example.digital_store.DataBase.SQLite.WIshListRepository
-import com.example.digital_store.Models.ProductsItem
+import com.example.digital_store.Models.WishListObject
 import com.example.digital_store.Navigation.Navigator
 import com.example.digital_store.R
 import com.example.digital_store.databinding.FragmentWishlistBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class Wishlist : Fragment(), Navigator {
 
     lateinit var wishAdapter: WishlistAdapter
-    lateinit var products: ArrayList<ProductsItem>
+    lateinit var products: ArrayList<WishListObject>
     lateinit var wIshListRepository: WIshListRepository
      var wishID=0
     lateinit var wishArgs:WishlistArgs
@@ -46,13 +42,12 @@ class Wishlist : Fragment(), Navigator {
     //    Initialize data
     private fun initView() {
 
-        wishArgs=WishlistArgs(wishID)
         wishID=wishArgs.wishID
         wIshListRepository = WIshListRepository(requireActivity().application)
         wishAdapter = WishlistAdapter()
         products = ArrayList()
         binding.rvWishlist.adapter = wishAdapter
-        loadWishlist(wishID)
+        loadWishlist()
         wishAdapter.submitList(products)
         binding.apply {
 
@@ -67,8 +62,23 @@ class Wishlist : Fragment(), Navigator {
 
             ivClearWishlist.setOnClickListener {
 
-                products.clear()
+                clearAll(products)
                 wishAdapter.submitList(products)
+
+            }
+            wishAdapter.deleteItem={
+
+                try {
+
+                    deleteProduct(products[it].id!!)
+                    loadWishlist()
+                    wishAdapter.submitList(products)
+
+                }catch (e:IndexOutOfBoundsException){
+
+                    Toast.makeText(requireContext(), "Wishlist is already empty", Toast.LENGTH_SHORT).show()
+
+                }
 
             }
 
@@ -76,25 +86,18 @@ class Wishlist : Fragment(), Navigator {
 
     }
 
+    private fun clearAll(list:ArrayList<WishListObject>) {
+
+        wIshListRepository.clearAll(list)
+
+    }
+
 
     //    Loading items
-    private fun loadWishlist(id:Int) {
+    private fun loadWishlist() {
 
-        ApiClient.apiServis.getProductById(id).enqueue(object :Callback<ProductsItem>{
-            override fun onResponse(call: Call<ProductsItem>, response: Response<ProductsItem>) {
-
-                if (response.isSuccessful){
-
-                    wishAdapter.submitList(products)
-
-                }
-
-            }
-
-            override fun onFailure(call: Call<ProductsItem>, t: Throwable) {
-                TODO("Not yet implemented")
-            }
-        })
+        products= ArrayList()
+        products=wIshListRepository.getAll() as ArrayList<WishListObject>
 
     }
 
