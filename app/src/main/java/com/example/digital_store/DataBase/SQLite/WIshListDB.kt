@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.digital_store.Models.ProductsItem
 import com.example.digital_store.Models.WishListObject
 
 

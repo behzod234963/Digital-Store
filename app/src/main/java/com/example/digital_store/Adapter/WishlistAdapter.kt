@@ -44,9 +44,10 @@ class WishlistAdapter :RecyclerView.Adapter<WishlistAdapter.WishlistViewHolder>(
         val list=list[position]
         holder.apply {
 
+            Glide.with(ivImage).load(list.links).into(ivImage)
             tvTitle.text=list.title
-            tvPrice.text= list.price.toString()
-            tvRate.text= list.rating.toString()
+            tvPrice.text= list.price
+            tvRate.text= list.rating
             llClick.setOnClickListener {
 
                 itemClick?.invoke(position)

@@ -78,6 +78,7 @@ class Store : Fragment(), com.example.digital_store.Navigation.Navigator {
 
         }
 
+
     }
 
 //    Loading Items

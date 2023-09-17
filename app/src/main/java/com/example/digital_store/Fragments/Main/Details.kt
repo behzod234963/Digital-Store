@@ -26,7 +26,7 @@ class Details : Fragment() {
     lateinit var binding: FragmentDetailsBinding
     lateinit var products: ArrayList<ProductsItem>
     lateinit var navController: NavController
-    lateinit var wishList:ArrayList<WishListObject>
+    lateinit var wishList: ArrayList<WishListObject>
     lateinit var wishListRepository: WIshListRepository
     val args: DetailsArgs by navArgs()
     var detailsID = 1
@@ -54,7 +54,7 @@ class Details : Fragment() {
         wishListRepository = WIshListRepository(requireActivity().application)
         binding.lavLoadingDetails.visibility = View.VISIBLE
         products = ArrayList()
-        wishList=ArrayList()
+        wishList = ArrayList()
         navController = NavController(requireContext())
         detailsID = args.DetailsId
         loadDetail(detailsID)
@@ -70,22 +70,345 @@ class Details : Fragment() {
 
             ivWishlistDetails.setOnClickListener {
 
-                ivWishlistDetails.setImageResource(R.drawable.ic_heart_checked)
-                val id=tvIdDetails.text
-                val image=ivDetailsImageDetails.resources.toString()
-                val title=tvTitleDetails.text
-                val price=tvPriceDetails.text
-                val rating=tvRatingDetails.text
-                val desc=tvDescriptionDetails.text
-                val wishlist=Wishlist()
-                wishlist.arguments= bundleOf("wishImage" to image)
-                wishListRepository.saveProduct(WishListObject(
-                    id.toString().toInt(),
-                    image.toString(),
-                    title.toString(),
-                    price.toString(),
-                    rating.toString(),
-                    desc.toString()))
+                saveItems()
+
+            }
+
+        }
+
+    }
+
+
+    //    Saving for wishlist
+    private fun saveItems() {
+
+        binding.apply {
+
+            ivWishlistDetails.setImageResource(R.drawable.ic_heart_checked)
+            val id = tvIdDetails.text
+            val title = tvTitleDetails.text
+            val price = tvPriceDetails.text
+            val rating = tvRatingDetails.text
+            val desc = tvDescriptionDetails.text
+            when (id) {
+
+                1.toString() -> {
+
+                    wishListRepository.saveProduct(
+                        WishListObject(
+                            id=id.toString().toInt(),
+                            null,
+                            title=title.toString(),
+                            price = price.toString(),
+                            links = R.string.one.toString(),
+                            rating = rating.toString(),
+                            description = desc.toString()
+                        )
+                    )
+
+                }
+
+                2.toString() -> {
+
+                    wishListRepository.saveProduct(
+                        WishListObject(
+                            id.toString().toInt(),
+                            null,
+                            title.toString(),
+                            price.toString(),
+                            R.string.two.toString(),
+                            rating.toString(),
+                            desc.toString()
+                        )
+                    )
+
+                }
+
+                3.toString() -> {
+
+                    wishListRepository.saveProduct(
+                        WishListObject(
+                            id.toString().toInt(),
+                            null,
+                            title.toString(),
+                            price.toString(),
+                            R.string.three.toString(),
+                            rating.toString(),
+                            desc.toString()
+                        )
+                    )
+
+                }
+
+                4.toString() -> {
+
+                    wishListRepository.saveProduct(
+                        WishListObject(
+                            id.toString().toInt(),
+                            null,
+                            title.toString(),
+                            price.toString(),
+                            R.string.four.toString(),
+                            rating.toString(),
+                            desc.toString()
+                        )
+                    )
+
+                }
+
+                5.toString() -> {
+
+                    wishListRepository.saveProduct(
+                        WishListObject(
+                            id.toString().toInt(),
+                            null,
+                            title.toString(),
+                            price.toString(),
+                            R.string.five.toString(),
+                            rating.toString(),
+                            desc.toString()
+                        )
+                    )
+
+                }
+
+                6.toString() -> {
+
+                    wishListRepository.saveProduct(
+                        WishListObject(
+                            id.toString().toInt(),
+                            null,
+                            title.toString(),
+                            price.toString(),
+                            R.string.six.toString(),
+                            rating.toString(),
+                            desc.toString()
+                        )
+                    )
+
+                }
+
+                7.toString() -> {
+
+                    wishListRepository.saveProduct(
+                        WishListObject(
+                            id.toString().toInt(),
+                            null,
+                            title.toString(),
+                            price.toString(),
+                            R.string.seven.toString(),
+                            rating.toString(),
+                            desc.toString()
+                        )
+                    )
+
+                }
+
+                8.toString() -> {
+
+                    wishListRepository.saveProduct(
+                        WishListObject(
+                            id.toString().toInt(),
+                            null,
+                            title.toString(),
+                            price.toString(),
+                            R.string.eight.toString(),
+                            rating.toString(),
+                            desc.toString()
+                        )
+                    )
+
+                }
+
+                9.toString() -> {
+
+                    wishListRepository.saveProduct(
+                        WishListObject(
+                            id.toString().toInt(),
+                            null,
+                            title.toString(),
+                            price.toString(),
+                            R.string.nine.toString(),
+                            rating.toString(),
+                            desc.toString()
+                        )
+                    )
+
+                }
+
+                10.toString() -> {
+
+                    wishListRepository.saveProduct(
+                        WishListObject(
+                            id.toString().toInt(),
+                            null,
+                            title.toString(),
+                            price.toString(),
+                            R.string.ten.toString(),
+                            rating.toString(),
+                            desc.toString()
+                        )
+                    )
+
+                }
+
+                11.toString() -> {
+
+                    wishListRepository.saveProduct(
+                        WishListObject(
+                            id.toString().toInt(),
+                            null,
+                            title.toString(),
+                            price.toString(),
+                            R.string.eleven.toString(),
+                            rating.toString(),
+                            desc.toString()
+                        )
+                    )
+
+                }
+
+                12.toString() -> {
+
+                    wishListRepository.saveProduct(
+                        WishListObject(
+                            id.toString().toInt(),
+                            null,
+                            title.toString(),
+                            price.toString(),
+                            R.string.twelve.toString(),
+                            rating.toString(),
+                            desc.toString()
+                        )
+                    )
+
+                }
+
+                13.toString() -> {
+
+                    wishListRepository.saveProduct(
+                        WishListObject(
+                            id.toString().toInt(),
+                            null,
+                            title.toString(),
+                            price.toString(),
+                            R.string.thirteen.toString(),
+                            rating.toString(),
+                            desc.toString()
+                        )
+                    )
+
+                }
+
+                14.toString() -> {
+
+                    wishListRepository.saveProduct(
+                        WishListObject(
+                            id.toString().toInt(),
+                            null,
+                            title.toString(),
+                            price.toString(),
+                            R.string.fourteen.toString(),
+                            rating.toString(),
+                            desc.toString()
+                        )
+                    )
+
+                }
+
+                15.toString() -> {
+
+                    wishListRepository.saveProduct(
+                        WishListObject(
+                            id.toString().toInt(),
+                            null,
+                            title.toString(),
+                            price.toString(),
+                            R.string.fiveteen.toString(),
+                            rating.toString(),
+                            desc.toString()
+                        )
+                    )
+
+                }
+
+                16.toString() -> {
+                    wishListRepository.saveProduct(
+                        WishListObject(
+                            id.toString().toInt(),
+                            null,
+                            title.toString(),
+                            price.toString(),
+                            R.string.sixteen.toString(),
+                            rating.toString(),
+                            desc.toString()
+                        )
+                    )
+                }
+
+                17.toString() -> {
+
+                    wishListRepository.saveProduct(
+                        WishListObject(
+                            id.toString().toInt(),
+                            null,
+                            title.toString(),
+                            price.toString(),
+                            R.string.seventeen.toString(),
+                            rating.toString(),
+                            desc.toString()
+                        )
+                    )
+
+                }
+
+                18.toString() -> {
+
+                    wishListRepository.saveProduct(
+                        WishListObject(
+                            id.toString().toInt(),
+                            null,
+                            title.toString(),
+                            price.toString(),
+                            R.string.eighteen.toString(),
+                            rating.toString(),
+                            desc.toString()
+                        )
+                    )
+
+                }
+
+                19.toString() -> {
+
+                    wishListRepository.saveProduct(
+                        WishListObject(
+                            id.toString().toInt(),
+                            null,
+                            title.toString(),
+                            price.toString(),
+                            R.string.nineteen.toString(),
+                            rating.toString(),
+                            desc.toString()
+                        )
+                    )
+
+                }
+
+                20.toString() -> {
+
+                    wishListRepository.saveProduct(
+                        WishListObject(
+                            id.toString().toInt(),
+                            null,
+                            title.toString(),
+                            price.toString(),
+                            R.string.twenty.toString(),
+                            rating.toString(),
+                            desc.toString()
+                        )
+                    )
+
+                }
 
             }
 
@@ -122,12 +445,12 @@ class Details : Fragment() {
 
     }
 
-    //    Loading items
+    //    Loading items into details
     private fun loadData(body: ProductsItem) {
 
         binding.apply {
 
-            tvIdDetails.text=body.id.toString()
+            tvIdDetails.text = body.id.toString()
             Glide.with(this@Details).load(body.image).into(ivDetailsImageDetails).toString()
             tvTitleDetails.text = body.title
             tvPriceDetails.text = "${body.price.toString()} USD"
