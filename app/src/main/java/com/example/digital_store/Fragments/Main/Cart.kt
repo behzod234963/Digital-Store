@@ -5,56 +5,122 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
+import com.example.digital_store.Adapter.CartAdapter
+import com.example.digital_store.DataBase.SQLite.DataBaseRepository
+import com.example.digital_store.Models.RoomData
 import com.example.digital_store.R
+import com.example.digital_store.databinding.FragmentCartBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [Cart.newInstance] factory method to
- * create an instance of this fragment.
- */
 class Cart : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    lateinit var binding: FragmentCartBinding
+    lateinit var cartRepository: DataBaseRepository
+    lateinit var cartAdapter: CartAdapter
+    private lateinit var carts: ArrayList<RoomData.Cart>
+    lateinit var navController: NavController
+    var totalCost=""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cart, container, false)
+        binding= FragmentCartBinding.inflate(layoutInflater,container,false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Cart.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Cart().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        initView()
+
     }
+
+
+    //    Initialize data
+    private fun initView() {
+
+        navController = NavController(requireContext())
+        cartRepository = DataBaseRepository(requireActivity().application)
+        cartAdapter = CartAdapter()
+        binding.rvCartCart.adapter = cartAdapter
+        carts = ArrayList()
+        loadCarts()
+        cartAdapter.submitList(carts)
+
+        var price=""
+
+        binding.apply {
+
+            cartAdapter.onClick = {
+
+                findNavController().navigate(R.id.action_cart_to_details)
+                navController.popBackStack()
+
+            }
+
+            ivBackCart.setOnClickListener {
+
+                navController.popBackStack()
+
+            }
+
+            ivClearAllCart.setOnClickListener {
+
+                clearAllCart()
+                cartAdapter.submitList(carts)
+                loadCarts()
+
+            }
+
+            tvTotalCartCart.text="Total ${carts.size} items"
+
+            for (i in carts.indices){
+
+                price+=carts[i].price.toDouble()
+
+            }
+
+            totalCost=price
+            tvTotalCostCart.text="${totalCost} USD"
+
+            cartAdapter.deleteItem={
+
+                deleteCartByID(id)
+                loadCarts()
+                cartAdapter.submitList(carts)
+
+            }
+
+        }
+
+    }
+
+
+//    Delete single cart
+    private fun deleteCartByID(id: Int) {
+
+        cartRepository.deleteCartByID(id)
+
+    }
+
+
+    //    Clear all carts
+    private fun clearAllCart() {
+
+        cartRepository.clearAllCart(carts)
+
+    }
+
+
+    //    Loading carts
+    private fun loadCarts() {
+
+        carts = ArrayList()
+        carts = cartRepository.getAllCart() as ArrayList<RoomData.Cart>
+
+    }
+
 }

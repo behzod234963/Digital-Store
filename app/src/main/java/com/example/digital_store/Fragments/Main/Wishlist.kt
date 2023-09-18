@@ -1,7 +1,6 @@
 package com.example.digital_store.Fragments.Main
 
 import android.os.Bundle
-import android.telecom.Call
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,22 +9,17 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.digital_store.Adapter.WishlistAdapter
-import com.example.digital_store.DataBase.Remote.ApiClient
-import com.example.digital_store.DataBase.SQLite.WIshListRepository
-import com.example.digital_store.Models.Products
-import com.example.digital_store.Models.ProductsItem
-import com.example.digital_store.Models.WishListObject
+import com.example.digital_store.DataBase.SQLite.DataBaseRepository
+import com.example.digital_store.Models.RoomData
 import com.example.digital_store.Navigation.Navigator
 import com.example.digital_store.R
 import com.example.digital_store.databinding.FragmentWishlistBinding
-import retrofit2.Callback
-import retrofit2.Response
 
 class Wishlist : Fragment(), Navigator {
 
     lateinit var wishAdapter: WishlistAdapter
-    lateinit var products: ArrayList<WishListObject>
-    lateinit var wIshListRepository: WIshListRepository
+    lateinit var products: ArrayList<RoomData.WishList>
+    lateinit var wIshListRepository: DataBaseRepository
     var wishID = 0
     lateinit var wishArgs: WishlistArgs
     lateinit var binding: FragmentWishlistBinding
@@ -48,7 +42,7 @@ class Wishlist : Fragment(), Navigator {
     //    Initialize data
     private fun initView() {
 
-        wIshListRepository = WIshListRepository(requireActivity().application)
+        wIshListRepository = DataBaseRepository(requireActivity().application)
         wishAdapter = WishlistAdapter()
         products = ArrayList()
         binding.rvWishlist.adapter = wishAdapter
@@ -97,7 +91,7 @@ class Wishlist : Fragment(), Navigator {
     }
 
 
-    private fun clearAll(list: ArrayList<WishListObject>) {
+    private fun clearAll(list: ArrayList<RoomData.WishList>) {
 
         wIshListRepository.clearAll(list)
 
@@ -108,7 +102,7 @@ class Wishlist : Fragment(), Navigator {
     private fun loadWishlist() {
 
         products = ArrayList()
-        products = wIshListRepository.getAll() as ArrayList<WishListObject>
+        products = wIshListRepository.getAll() as ArrayList<RoomData.WishList>
 
     }
 

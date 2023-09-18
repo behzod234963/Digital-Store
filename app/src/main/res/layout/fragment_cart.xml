@@ -3,18 +3,91 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.Main.Cart">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.Main.Cart"
+    android:orientation="vertical">
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/white">
             <ImageView
                 android:id="@+id/ivBack_cart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/pic_back"/>
+                android:src="@drawable/pic_back"
+                android:padding="1dp"
+                android:background="@drawable/bg_whitebg_button"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Shopping cart"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+            <ImageView
+                android:id="@+id/ivClearAll_cart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_whitebg_button"
+                android:src="@drawable/ic_delete"
+                android:layout_gravity="end"
+                android:layout_marginEnd="10dp"/>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCart_cart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/item_cart"
+        android:layout_weight="1"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="3.5"
+        android:paddingHorizontal="10dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_weight="2">
+            <TextView
+                android:id="@+id/tvTotalCart_cart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Total items"
+                android:textColor="@color/gray"
+                android:gravity="center_vertical"
+                android:textSize="17sp"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/tvTotalCost_cart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="USD 500"
+                android:gravity="end|center_vertical"
+                android:textSize="17sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:paddingEnd="10dp"
+                android:layout_weight="1"/>
+        </LinearLayout>
+        <Button
+            android:id="@+id/btn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="10dp"
+            app:backgroundTint="@null"
+            android:background="@drawable/bg_button_litegreen"
+            android:text="Proceed to checkout"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:layout_marginBottom="10dp"/>
+    </LinearLayout>
 </LinearLayout>

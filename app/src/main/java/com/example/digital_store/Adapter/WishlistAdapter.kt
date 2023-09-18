@@ -1,9 +1,5 @@
 package com.example.digital_store.Adapter
 
-import android.app.Application
-import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,18 +8,16 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.digital_store.DataBase.SQLite.WIshListRepository
-import com.example.digital_store.Models.ProductsItem
-import com.example.digital_store.Models.WishListObject
+import com.example.digital_store.Models.RoomData
 import com.example.digital_store.R
 
 class WishlistAdapter :RecyclerView.Adapter<WishlistAdapter.WishlistViewHolder>(){
 
-    val list:ArrayList<WishListObject> = ArrayList()
+    val list:ArrayList<RoomData.WishList> = ArrayList()
     var itemClick:((Int)->Unit)?=null
     var deleteItem:((Int)->Unit) ? =null
 
-    fun submitList(list: ArrayList<WishListObject>){
+    fun submitList(list: ArrayList<RoomData.WishList>){
 
         this.list.clear()
         this.list.addAll(list)

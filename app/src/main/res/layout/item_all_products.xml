@@ -43,7 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="bottom"
+                android:gravity="center_vertical"
                 android:orientation="vertical">
                 <TextView
                     android:id="@+id/tvProductTitle_allproduct"
@@ -51,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:text="lenovo thinkpad e15 g2 black"
                     android:inputType="textMultiLine"
-                    android:textSize="16sp"
+                    android:textSize="15sp"
                     android:textColor="@color/black"
                     android:layout_margin="10dp"
                     tools:ignore="TextViewEdits" />
@@ -60,7 +60,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Laptops"
-                    android:textSize="16sp"
+                    android:textSize="15sp"
                     android:layout_marginStart="10dp"
                     android:textColor="@color/black"/>
                 <TextView

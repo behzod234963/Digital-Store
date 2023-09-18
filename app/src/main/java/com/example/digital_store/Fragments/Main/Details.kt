@@ -1,8 +1,5 @@
 package com.example.digital_store.Fragments.Main
 
-import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,15 +11,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.digital_store.DataBase.Remote.ApiClient
-import com.example.digital_store.DataBase.SQLite.WIshListRepository
+import com.example.digital_store.DataBase.SQLite.DataBaseRepository
 import com.example.digital_store.Models.ProductsItem
-import com.example.digital_store.Models.WishListObject
+import com.example.digital_store.Models.RoomData
 import com.example.digital_store.R
 import com.example.digital_store.databinding.FragmentDetailsBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.ByteArrayOutputStream
 import java.net.URL
 
 class Details : Fragment() {
@@ -30,9 +26,9 @@ class Details : Fragment() {
     lateinit var binding: FragmentDetailsBinding
     lateinit var products: ArrayList<ProductsItem>
     lateinit var navController: NavController
-    lateinit var wishList: ArrayList<WishListObject>
+    lateinit var wishList: ArrayList<RoomData.WishList>
     lateinit var url:URL
-    lateinit var wishListRepository: WIshListRepository
+    lateinit var repository: DataBaseRepository
     val args: DetailsArgs by navArgs()
     var detailsID = 1
 
@@ -56,7 +52,7 @@ class Details : Fragment() {
     //    Initialize data
     private fun initView() {
 
-        wishListRepository = WIshListRepository(requireActivity().application)
+        repository = DataBaseRepository(requireActivity().application)
         binding.lavLoadingDetails.visibility = View.VISIBLE
         products = ArrayList()
         wishList = ArrayList()
@@ -73,6 +69,25 @@ class Details : Fragment() {
 
             }
 
+            btnAddCartDetails.setOnClickListener {
+
+                Toast.makeText(requireContext(), "Successfully added", Toast.LENGTH_SHORT).show()
+                val id = tvIdDetails.text
+                val title=tvTitleDetails.text
+                val price=tvPriceDetails.text
+
+                repository.saveCart(
+
+                    RoomData.Cart(
+                        id=id.toString().toInt(),
+                        image = url.toString(),
+                        title=title.toString(),
+                        price=price.toString()
+                    )
+                )
+
+            }
+
             ivWishlistDetails.setOnClickListener {
 
                 ivWishlistDetails.setImageResource(R.drawable.ic_heart_checked)
@@ -81,12 +96,12 @@ class Details : Fragment() {
                 val price=tvPriceDetails.text
                 val rating=tvRatingDetails.text
                 val description=tvDescriptionDetails.text
-                wishListRepository.saveProduct(
-                    WishListObject(
+                repository.saveProduct(
+                    RoomData.WishList(
                         id = id.toString().toInt(),
-                        title=title.toString(),
+                        title = title.toString(),
                         price = price.toString(),
-                        rating =rating.toString(),
+                        rating = rating.toString(),
                         description = description.toString(),
                         image = url.toString()
                     )
