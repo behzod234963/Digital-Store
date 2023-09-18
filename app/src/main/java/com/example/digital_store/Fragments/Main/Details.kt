@@ -75,6 +75,7 @@ class Details : Fragment() {
 
             ivWishlistDetails.setOnClickListener {
 
+                ivWishlistDetails.setImageResource(R.drawable.ic_heart_checked)
                 val title=tvTitleDetails.text
                 val price=tvPriceDetails.text
                 val rating=tvRatingDetails.text
