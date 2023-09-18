@@ -76,13 +76,14 @@ class Details : Fragment() {
             ivWishlistDetails.setOnClickListener {
 
                 ivWishlistDetails.setImageResource(R.drawable.ic_heart_checked)
+                val id = tvIdDetails.text
                 val title=tvTitleDetails.text
                 val price=tvPriceDetails.text
                 val rating=tvRatingDetails.text
                 val description=tvDescriptionDetails.text
                 wishListRepository.saveProduct(
                     WishListObject(
-                        id = null,
+                        id = id.toString().toInt(),
                         title=title.toString(),
                         price = price.toString(),
                         rating =rating.toString(),

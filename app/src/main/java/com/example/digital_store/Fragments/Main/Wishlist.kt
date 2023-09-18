@@ -68,6 +68,7 @@ class Wishlist : Fragment(), Navigator {
             ivClearWishlist.setOnClickListener {
 
                 clearAll(products)
+                loadWishlist()
                 wishAdapter.submitList(products)
 
             }
