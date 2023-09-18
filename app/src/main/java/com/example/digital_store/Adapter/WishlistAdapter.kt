@@ -2,6 +2,8 @@ package com.example.digital_store.Adapter
 
 import android.app.Application
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,7 +46,7 @@ class WishlistAdapter :RecyclerView.Adapter<WishlistAdapter.WishlistViewHolder>(
         val list=list[position]
         holder.apply {
 
-            Glide.with(ivImage).load(list.links).into(ivImage)
+            Glide.with(ivImage).load(list.image).into(ivImage)
             tvTitle.text=list.title
             tvPrice.text= list.price
             tvRate.text= list.rating

@@ -9,7 +9,6 @@ data class WishListObject(
     @PrimaryKey(autoGenerate = true)
     val id:Int?=null,
     val image:String?=null,
-    val links:String,
     val title:String,
     val price: String,
     val rating:String,
