@@ -17,6 +17,9 @@ class CartAdapter :RecyclerView.Adapter<CartAdapter.CartViewHolder>(){
     var deleteItem:((Int)->Unit)?=null
     var onClick:((Int)->Unit)?=null
     var cartslist:ArrayList<RoomData.Cart> =ArrayList()
+    var count:((Int)->Unit)?=null
+    var plus:((Int)->Unit)? =null
+    var minus:((Int)->Unit)? =null
     var cartCount=1
 
     fun submitList(carts:ArrayList<RoomData.Cart>){
@@ -75,17 +78,13 @@ class CartAdapter :RecyclerView.Adapter<CartAdapter.CartViewHolder>(){
 
             ivMinus.setOnClickListener {
 
-                if (cartCount >1){
-
-                    cartCount--
-
-                }
+                minus?.invoke(position)
 
             }
 
             ivPlus.setOnClickListener {
 
-                cartCount++
+                plus?.invoke(position)
 
             }
 
@@ -95,6 +94,7 @@ class CartAdapter :RecyclerView.Adapter<CartAdapter.CartViewHolder>(){
 
             }
 
+            count?.invoke(position)
             tvCountCart.text=cartCount.toString()
 
         }

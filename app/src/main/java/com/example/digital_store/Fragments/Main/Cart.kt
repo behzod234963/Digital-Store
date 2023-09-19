@@ -75,22 +75,28 @@ class Cart : Fragment() {
 
             }
 
-//            tvTotalCartCart.text = "Total ${carts.size} items"
-//
-//            for (i in carts.indices) {
-//
-//                price += carts[i].price.toInt()
-//
-//            }
-//
-//            totalCost = price
-//            tvTotalCostCart.text = totalCost.toString()
+            tvTotalCartCart.text = "Total ${carts.size} items"
+
+            for (i in carts.indices) {
+
+                price += carts[i].price.toInt()
+
+            }
+
+            totalCost = price
+            tvTotalCostCart.text = totalCost.toString()
 
             cartAdapter.deleteItem = {
 
-                deleteCartByID(id)
+                deleteCartByID(carts[it].id!!)
                 loadCarts()
                 cartAdapter.submitList(carts)
+
+            }
+
+            cartAdapter.plus={
+
+
 
             }
 
