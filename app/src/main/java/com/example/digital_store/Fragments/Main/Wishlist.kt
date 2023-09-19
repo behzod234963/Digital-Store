@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.MediaController
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.digital_store.Adapter.WishlistAdapter
 import com.example.digital_store.DataBase.SQLite.DataBaseRepository
 import com.example.digital_store.Models.RoomData
@@ -19,6 +22,7 @@ class Wishlist : Fragment(), Navigator {
 
     lateinit var wishAdapter: WishlistAdapter
     lateinit var products: ArrayList<RoomData.WishList>
+    lateinit var navController: NavController
     lateinit var wIshListRepository: DataBaseRepository
     var wishID = 0
     lateinit var wishArgs: WishlistArgs
@@ -48,6 +52,7 @@ class Wishlist : Fragment(), Navigator {
         binding.rvWishlist.adapter = wishAdapter
         loadWishlist()
         wishAdapter.submitList(products)
+        navController=NavController(requireContext())
         binding.apply {
 
             wishAdapter.itemClick = { position ->
@@ -59,7 +64,7 @@ class Wishlist : Fragment(), Navigator {
 
             }
 
-            ivClearWishlist.setOnClickListener {
+            llClearWishlist.setOnClickListener {
 
                 clearAll(products)
                 loadWishlist()
@@ -83,6 +88,12 @@ class Wishlist : Fragment(), Navigator {
                     ).show()
 
                 }
+
+            }
+
+            llBackWishlist.setOnClickListener {
+
+                navController.popBackStack()
 
             }
 

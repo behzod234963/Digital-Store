@@ -69,6 +69,18 @@ class Search : Fragment() {
 
         }
 
+        binding.llBackSearch.setOnClickListener {
+
+            navController.popBackStack()
+
+        }
+
+        binding.llCartSearch.setOnClickListener {
+
+            findNavController().navigate(R.id.action_search_to_cart)
+            navController.popBackStack()
+
+        }
 
     }
 

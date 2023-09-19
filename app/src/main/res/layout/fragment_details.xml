@@ -15,20 +15,31 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/white">
-            <ImageView
-                android:id="@+id/ivBack_details"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/pic_back"
-                android:background="@drawable/bg_whitebg_button"/>
-            <ImageView
-                android:id="@+id/ivCart_details"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+            <LinearLayout
+                android:id="@+id/llBack_details"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:background="@drawable/bg_whitebg_button">
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/pic_back"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/llCart_details"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:gravity="center"
                 android:layout_gravity="end"
-                android:layout_marginRight="20dp"
-                android:src="@drawable/pic_store"
-                android:background="@drawable/bg_whitebg_button"/>
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/bg_whitebg_button">
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/pic_store"/>
+            </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
     <LinearLayout
@@ -81,12 +92,18 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="end|center_vertical">
-                        <ImageView
-                            android:id="@+id/ivWishlist_details"
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
-                            android:src="@drawable/ic_heart_unchecked"
-                            android:background="@drawable/bg_whitebg_button"/>
+                        <LinearLayout
+                            android:id="@+id/llWishlist_details"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:gravity="center"
+                            android:background="@drawable/bg_whitebg_button">
+                            <ImageView
+                                android:id="@+id/ivWishlist_details"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:src="@drawable/ic_heart_unchecked" />
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
                 <LinearLayout

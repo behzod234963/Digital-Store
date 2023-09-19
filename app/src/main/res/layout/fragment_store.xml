@@ -44,15 +44,19 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/ivCart_store"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+            <LinearLayout
+                android:id="@+id/llCart_store"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="end"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="15dp"
-                android:src="@drawable/pic_store"
-                android:background="@drawable/bg_whitebg_button"/>
+                android:gravity="center"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/bg_whitebg_button">
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/pic_store"/>
+            </LinearLayout>
 
             <ImageView
                 android:id="@+id/ivSearch_store"

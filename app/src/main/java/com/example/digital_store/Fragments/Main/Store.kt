@@ -72,7 +72,7 @@ class Store : Fragment(), com.example.digital_store.Navigation.Navigator {
 
         }
 
-        binding.ivCartStore.setOnClickListener {
+        binding.llCartStore.setOnClickListener {
 
             findNavController().navigate(R.id.action_store_to_cart)
 

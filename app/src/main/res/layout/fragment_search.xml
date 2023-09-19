@@ -16,23 +16,38 @@
             android:layout_height="?attr/actionBarSize"
             android:padding="10dp"
             android:background="@color/white">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/pic_back"/>
+            <LinearLayout
+                android:id="@+id/llBack_search"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:background="@drawable/bg_whitebg_button">
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/pic_back"/>
+            </LinearLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Search"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 android:layout_gravity="center"/>
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/pic_store"
-                android:layout_gravity="end"
-                android:layout_marginEnd="10dp"/>
+            <LinearLayout
+                android:id="@+id/llCart_search"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:background="@drawable/bg_whitebg_button"
+                android:layout_gravity="end">
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/pic_store"/>
+            </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 

@@ -14,12 +14,18 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/white">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/pic_back"
-                android:padding="1dp"
-                android:background="@drawable/bg_whitebg_button"/>
+            <LinearLayout
+                android:id="@+id/llBack_wishlist"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:background="@drawable/bg_whitebg_button">
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/pic_back" />
+            </LinearLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -28,14 +34,19 @@
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
-            <ImageView
-                android:id="@+id/ivClear_wishlist"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_delete"
+            <LinearLayout
+                android:id="@+id/llClear_wishlist"
+                android:gravity="center"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="end"
                 android:layout_marginRight="10dp"
-                android:background="@drawable/bg_whitebg_button"/>
+                android:background="@drawable/bg_whitebg_button">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_delete"/>
+            </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
     <androidx.recyclerview.widget.RecyclerView
@@ -43,5 +54,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/item_wishlist"
+        android:layout_margin="10dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 </LinearLayout>

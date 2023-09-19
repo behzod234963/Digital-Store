@@ -49,7 +49,7 @@ class WishlistAdapter :RecyclerView.Adapter<WishlistAdapter.WishlistViewHolder>(
                 itemClick?.invoke(position)
 
             }
-            ivDelete.setOnClickListener {
+            llDelete.setOnClickListener {
 
                 deleteItem?.invoke(position)
 
@@ -66,7 +66,7 @@ class WishlistAdapter :RecyclerView.Adapter<WishlistAdapter.WishlistViewHolder>(
         val tvTitle:TextView=view.findViewById(R.id.tvTitle_wishlist)
         val tvPrice:TextView=view.findViewById(R.id.tvPrice_wishlist)
         val tvRate:TextView=view.findViewById(R.id.tvRating_wishlist)
-        val ivDelete:ImageView=view.findViewById(R.id.ivDelete_wishlist)
+        val llDelete:ImageView=view.findViewById(R.id.llDelete_wishlist)
 
     }
 

@@ -72,14 +72,17 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </FrameLayout>
-    <ImageView
-        android:id="@+id/ivDelete_wishlist"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_delete"
+    <LinearLayout
+        android:id="@+id/llDelete_wishlist"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:layout_gravity="end"
-        android:padding="1dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/bg_whitebg_button"/>
+        android:gravity="center"
+        android:layout_margin="20dp"
+        android:background="@drawable/bg_whitebg_button">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_delete"/>
+    </LinearLayout>
 </FrameLayout>

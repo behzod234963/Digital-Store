@@ -62,9 +62,8 @@ class Details : Fragment() {
 
         binding.apply {
 
-            ivBackDetails.setOnClickListener {
+            llBackDetails.setOnClickListener {
 
-                findNavController().navigate(R.id.action_details_to_store)
                 navController.popBackStack()
 
             }
@@ -88,7 +87,14 @@ class Details : Fragment() {
 
             }
 
-            ivWishlistDetails.setOnClickListener {
+            llCartDetails.setOnClickListener {
+
+                findNavController().navigate(R.id.action_details_to_cart)
+                navController.popBackStack()
+
+            }
+
+            llWishlistDetails.setOnClickListener {
 
                 ivWishlistDetails.setImageResource(R.drawable.ic_heart_checked)
                 val id = tvIdDetails.text
