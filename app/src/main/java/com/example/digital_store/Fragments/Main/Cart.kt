@@ -1,5 +1,6 @@
 package com.example.digital_store.Fragments.Main
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -18,16 +19,17 @@ class Cart : Fragment() {
     lateinit var binding: FragmentCartBinding
     lateinit var cartRepository: DataBaseRepository
     lateinit var cartAdapter: CartAdapter
-    private lateinit var carts: ArrayList<RoomData.Cart>
+    lateinit var carts: ArrayList<RoomData.Cart>
     lateinit var navController: NavController
-    var totalCost=""
+    var totalCost = 0
+    var price = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding= FragmentCartBinding.inflate(layoutInflater,container,false)
+        binding = FragmentCartBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -42,17 +44,15 @@ class Cart : Fragment() {
     //    Initialize data
     private fun initView() {
 
-        navController = NavController(requireContext())
-        cartRepository = DataBaseRepository(requireActivity().application)
-        cartAdapter = CartAdapter()
-        binding.rvCartCart.adapter = cartAdapter
-        carts = ArrayList()
-        loadCarts()
-        cartAdapter.submitList(carts)
-
-        var price=""
-
         binding.apply {
+
+            cartRepository = DataBaseRepository(requireActivity().application)
+            cartAdapter = CartAdapter()
+            rvCartCart.adapter = cartAdapter
+            carts = ArrayList()
+            loadCarts()
+            cartAdapter.submitList(carts)
+            navController = NavController(requireContext())
 
             cartAdapter.onClick = {
 
@@ -75,18 +75,18 @@ class Cart : Fragment() {
 
             }
 
-            tvTotalCartCart.text="Total ${carts.size} items"
+//            tvTotalCartCart.text = "Total ${carts.size} items"
+//
+//            for (i in carts.indices) {
+//
+//                price += carts[i].price.toInt()
+//
+//            }
+//
+//            totalCost = price
+//            tvTotalCostCart.text = totalCost.toString()
 
-            for (i in carts.indices){
-
-                price+=carts[i].price.toDouble()
-
-            }
-
-            totalCost=price
-            tvTotalCostCart.text="${totalCost} USD"
-
-            cartAdapter.deleteItem={
+            cartAdapter.deleteItem = {
 
                 deleteCartByID(id)
                 loadCarts()
@@ -99,7 +99,7 @@ class Cart : Fragment() {
     }
 
 
-//    Delete single cart
+    //    Delete single cart
     private fun deleteCartByID(id: Int) {
 
         cartRepository.deleteCartByID(id)

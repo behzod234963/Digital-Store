@@ -32,16 +32,16 @@ interface DataBaseDaO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveCart(cart: RoomData.Cart)
 
-    @Query("SELECT *FROM carts")
+    @Query("SELECT *FROM `carts list`")
     fun getAllCart():List<RoomData.Cart>
 
-    @Query("SELECT *FROM carts WHERE :id=id")
+    @Query("SELECT *FROM `carts list` WHERE :id=id")
     fun getCartByID(id:Int): RoomData.Cart
 
     @Delete
     fun clearAllCart(cart:ArrayList<RoomData.Cart>)
 
-    @Query("DELETE FROM carts WHERE :id=id")
+    @Query("DELETE FROM `carts list` WHERE :id=id")
     fun deleteCartsByID(id:Int)
 
 }

@@ -44,25 +44,25 @@ interface ApiServis {
     @DELETE("products/{id}")
     fun deleteProduct(@Path("id") id: Int)
 
-    @GET("carts")
+    @GET("cartslist")
     fun getAllCarts(): Call<ArrayList<CartsItem>>
 
-    @GET("carts/{id}")
+    @GET("cartslist/{id}")
     fun getCartById(@Path("id") id: Int): Call<ArrayList<CartsItem>>
 
-    @GET("carts/sort")
+    @GET("cartslist/sort")
     fun sortCarts(@Query("sort") sort: String = "desc"): retrofit2.Call<ArrayList<CartsItem>>
 
-    @GET("carts/user/{id}")
+    @GET("cartslist/user/{id}")
     fun getUserCarts(@Path("id") id: Int): Call<ArrayList<CartsItem>>
 
-    @POST("carts")
+    @POST("cartslist")
     fun addNewCart(@Body() cart: CartsItem): Call<CartsItem>
 
-    @PUT("carts/{id}")
+    @PUT("cartslist/{id}")
     fun editCart(@Path("id") id: Int, @Body() cart: CartsItem): Call<CartsItem>
 
-    @DELETE("carts/{id}")
+    @DELETE("cartslist/{id}")
     fun deleteCart(@Path("id") id: Int)
 
     @GET("users")

@@ -6,10 +6,10 @@ import androidx.room.PrimaryKey
 class RoomData {
 
 
-    @Entity("carts")
+    @Entity("carts list")
     data class Cart(
 
-        @PrimaryKey
+        @PrimaryKey(autoGenerate = true)
         val id:Int?=null,
         val image:String,
         val title:String,

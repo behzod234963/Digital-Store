@@ -14,7 +14,7 @@ abstract class DataBaseCore : RoomDatabase (){
 
     companion object{
 
-        var DB_INSTANCE:DataBaseCore?=null
+        private var DB_INSTANCE:DataBaseCore?=null
 
         fun appDataBase(ctx:Context):DataBaseCore{
 

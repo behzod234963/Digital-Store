@@ -15,10 +15,11 @@
             android:background="@color/white">
             <ImageView
                 android:id="@+id/ivBack_cart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:src="@drawable/pic_back"
-                android:padding="1dp"
+                android:padding="2dp"
+                android:paddingLeft="2dp"
                 android:background="@drawable/bg_whitebg_button"/>
             <TextView
                 android:layout_width="wrap_content"

@@ -9,8 +9,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.digital_store.Models.Products
-import com.example.digital_store.Models.ProductsItem
 import com.example.digital_store.Models.RoomData
 import com.example.digital_store.R
 
@@ -18,26 +16,29 @@ class CartAdapter :RecyclerView.Adapter<CartAdapter.CartViewHolder>(){
 
     var deleteItem:((Int)->Unit)?=null
     var onClick:((Int)->Unit)?=null
-    val carts:ArrayList<RoomData.Cart> =ArrayList()
-    var count:((Int)->Unit)?=null
-    var cartCount=0
+    var cartslist:ArrayList<RoomData.Cart> =ArrayList()
+    var cartCount=1
 
     fun submitList(carts:ArrayList<RoomData.Cart>){
 
-        carts.clear()
-        carts.addAll(carts)
+        cartslist.clear()
+        cartslist.addAll(carts)
         notifyDataSetChanged()
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder =
-        CartViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_cart,parent,false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):CartViewHolder{
 
-    override fun getItemCount()=carts.size
+        return CartViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_cart,parent,false))
 
+    }
+
+    override fun getItemCount()=cartslist.size
+
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
 
-        val cart=carts[position]
+        val cart=cartslist[position]
 
         holder.apply {
 
@@ -56,11 +57,11 @@ class CartAdapter :RecyclerView.Adapter<CartAdapter.CartViewHolder>(){
 
                 tvCategory.text="Men's clothing"
 
-            }else if (cart.id in 5..8){
+            }else if (cart.id in (5..8)){
 
                 tvCategory.text="Jewelery"
 
-            }else if (cart.id in 9..14){
+            }else if (cart.id in (9..14)){
 
                 tvCategory.text="Electronics"
 
@@ -70,7 +71,7 @@ class CartAdapter :RecyclerView.Adapter<CartAdapter.CartViewHolder>(){
 
             }
 
-            tvPrice.text= cart.price.toString()
+            tvPrice.text= cart.price
 
             ivMinus.setOnClickListener {
 
@@ -81,8 +82,6 @@ class CartAdapter :RecyclerView.Adapter<CartAdapter.CartViewHolder>(){
                 }
 
             }
-
-            count?.invoke(position)
 
             ivPlus.setOnClickListener {
 
