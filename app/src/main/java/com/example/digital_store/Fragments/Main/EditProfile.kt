@@ -40,9 +40,9 @@ class EditProfile : Fragment() {
     private fun initView() {
 
     navController=NavController(requireContext())
-    loadUser(id)
+    loadUser(4)
 
-        binding.ivBackEdit.setOnClickListener {
+        binding.llBackEdit.setOnClickListener {
 
             navController.popBackStack()
 
@@ -57,6 +57,7 @@ class EditProfile : Fragment() {
 
                 if (response.isSuccessful){
 
+                    loadUserData(response.body())
 
                 }
 
@@ -66,6 +67,28 @@ class EditProfile : Fragment() {
                 TODO("Not yet implemented")
             }
         })
+
+    }
+
+
+//    Loading user data
+    private fun loadUserData(body: UsersItem?) {
+
+        binding.apply {
+
+            var firstName=etFirstNameEdit.text.toString()
+            var lastName=etLastNameEdit.text.toString()
+            var email=etEmailEdit.text.toString()
+            var phone=etPhoneEdit.text.toString()
+            var address=etAddressEdit.text.toString()
+
+            firstName=body?.name?.firstname!!
+            lastName= body.name.lastname!!
+            email= body.email!!
+            phone= body.phone!!
+            address= body.address.toString()
+
+        }
 
     }
 

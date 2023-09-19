@@ -117,10 +117,12 @@
                 </LinearLayout>
             </LinearLayout>
             <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lavUserLoading_settings"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="75dp"
                 app:lottie_fileName="userloading.json"
                 app:lottie_autoPlay="true"
+                android:visibility="visible"
                 app:lottie_loop="true"/>
         </FrameLayout>
     </androidx.cardview.widget.CardView>

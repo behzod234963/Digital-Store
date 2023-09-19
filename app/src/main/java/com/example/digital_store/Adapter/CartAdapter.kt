@@ -87,6 +87,9 @@ class CartAdapter :RecyclerView.Adapter<CartAdapter.CartViewHolder>(){
                 if(cart.count<100){
 
                     cart.count++
+                    cartslist.add(cart)
+                    notifyDataSetChanged()
+                    cartslist.clear()
 
                 }
 

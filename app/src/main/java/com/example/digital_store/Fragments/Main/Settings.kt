@@ -21,7 +21,7 @@ class Settings : Fragment() {
 
     lateinit var binding: FragmentSettingsBinding
     lateinit var navController: NavController
-    lateinit var users:ArrayList<UsersItem>
+    lateinit var users: ArrayList<UsersItem>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,8 +42,12 @@ class Settings : Fragment() {
     //    Initialize data
     private fun initView() {
 
+        binding.lavUserLoadingSettings.visibility = View.VISIBLE
+
+        binding.llProfileSettings.visibility=View.GONE
+
         navController = NavController(requireContext())
-        users= ArrayList()
+        users = ArrayList()
         loadUser(4)
         binding.apply {
 
@@ -61,7 +65,7 @@ class Settings : Fragment() {
 
             }
 
-            ivBackSettings.setOnClickListener {
+            llBackSettings.setOnClickListener {
 
                 navController.popBackStack()
 
@@ -85,14 +89,17 @@ class Settings : Fragment() {
 
     }
 
-//    Loading user details
+    //    Loading user details
     private fun loadUser(id: Int) {
 
-        ApiClient.apiServis.getUserById(id).enqueue(object :Callback<UsersItem>{
+        ApiClient.apiServis.getUserById(id).enqueue(object : Callback<UsersItem> {
             override fun onResponse(call: Call<UsersItem>, response: Response<UsersItem>) {
 
-                if (response.isSuccessful){
+                if (response.isSuccessful) {
 
+                    binding.lavUserLoadingSettings.visibility = View.GONE
+
+                    binding.llProfileSettings.visibility=View.VISIBLE
                     laodItems(response.body())
 
                 }
@@ -100,20 +107,22 @@ class Settings : Fragment() {
             }
 
             override fun onFailure(call: Call<UsersItem>, t: Throwable) {
-                TODO("Not yet implemented")
+
+                binding.lavUserLoadingSettings.visibility=View.VISIBLE
+
             }
         })
 
     }
 
-//    Loading items
+    //    Loading items
     private fun laodItems(body: UsersItem?) {
 
         binding.apply {
 
             ivProfileSettings.setImageResource(R.drawable.pic_digital_store)
-            tvUsernameSettings.text=body?.username
-            tvEmailSettings.text=body?.email
+            tvUsernameSettings.text = body?.username
+            tvEmailSettings.text = body?.email
 
         }
 

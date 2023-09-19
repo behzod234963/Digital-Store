@@ -22,8 +22,8 @@ class Cart : Fragment() {
     lateinit var cartAdapter: CartAdapter
     lateinit var carts: ArrayList<RoomData.Cart>
     lateinit var navController: NavController
-    var totalCost = 0
-    var price = 0
+    var totalCost = ""
+    var price = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -70,9 +70,13 @@ class Cart : Fragment() {
 
             llClearAllCart.setOnClickListener {
 
-                clearAllCart()
-                cartAdapter.submitList(carts)
-                loadCarts()
+                try {
+
+                    clearAllCart()
+                    loadCarts()
+                    cartAdapter.submitList(carts)
+
+                }catch (_:IndexOutOfBoundsException){ }
 
             }
 
@@ -80,18 +84,26 @@ class Cart : Fragment() {
 
             for (i in carts.indices) {
 
-                price += carts[i].price.toInt()
+                price += carts[i].price
 
             }
 
             totalCost = price
-            tvTotalCostCart.text = totalCost.toString()
+            tvTotalCostCart.text = totalCost
 
             cartAdapter.deleteItem = {
 
-                deleteCartByID(carts[it].id!!)
-                cartAdapter.submitList(carts)
-                loadCarts()
+                try {
+
+                    deleteCartByID(carts[it].id!!)
+                    loadCarts()
+                    cartAdapter.submitList(carts)
+
+                }catch (e:IndexOutOfBoundsException){
+
+                    Toast.makeText(requireContext(), "", Toast.LENGTH_SHORT).show()
+
+                }
 
             }
 
