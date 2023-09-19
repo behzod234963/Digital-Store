@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
+    android:layout_margin="10dp"
     android:background="@color/white">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -73,19 +74,23 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingBottom="10dp"
                     android:orientation="horizontal">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1">
-                        <ImageView
-                            android:id="@+id/ivMinus_cart"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical">
+                        <LinearLayout
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/ic_minus"
-                            android:background="@drawable/bg_whitebg_button"/>
+                            android:background="@drawable/bg_whitebg_button"
+                            android:gravity="center">
+                            <ImageView
+                                android:id="@+id/ivMinus_cart"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_minus"/>
+                        </LinearLayout>
                         <TextView
                             android:id="@+id/tvCartCount_cart"
                             android:layout_width="wrap_content"
@@ -96,25 +101,32 @@
                             android:textSize="18sp"
                             android:text="4"
                             android:layout_marginHorizontal="10dp"/>
-                        <ImageView
-                            android:id="@+id/ivPlus_cart"
-                            android:layout_width="31dp"
-                            android:padding="1dp"
-                            android:layout_height="31dp"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/ic_plus"
-                            android:background="@drawable/bg_whitebg_button"/>
+                        <LinearLayout
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:background="@drawable/bg_whitebg_button"
+                            android:gravity="center">
+                            <ImageView
+                                android:id="@+id/ivPlus_cart"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:src="@drawable/ic_plus" />
+                        </LinearLayout>
                     </LinearLayout>
-
-                    <ImageView
-                        android:id="@+id/ivDelete_cart"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_delete"
-                        android:layout_gravity="end"
-                        android:padding="3dp"
-                        android:background="@drawable/bg_whitebg_button"
-                        android:layout_marginEnd="10dp"/>
+                    <LinearLayout
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/bg_whitebg_button">
+                        <ImageView
+                            android:id="@+id/ivDelete_cart"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/ic_delete" />
+                    </LinearLayout>
 
                 </LinearLayout>
             </LinearLayout>

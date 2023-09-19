@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.digital_store.Adapter.CartAdapter
@@ -61,13 +62,13 @@ class Cart : Fragment() {
 
             }
 
-            ivBackCart.setOnClickListener {
+            llBackCart.setOnClickListener {
 
                 navController.popBackStack()
 
             }
 
-            ivClearAllCart.setOnClickListener {
+            llClearAllCart.setOnClickListener {
 
                 clearAllCart()
                 cartAdapter.submitList(carts)
@@ -89,16 +90,17 @@ class Cart : Fragment() {
             cartAdapter.deleteItem = {
 
                 deleteCartByID(carts[it].id!!)
-                loadCarts()
                 cartAdapter.submitList(carts)
+                loadCarts()
 
             }
 
-            cartAdapter.plus={
+            btn.setOnClickListener {
 
-
+                Toast.makeText(requireContext(), "Operation not implemented", Toast.LENGTH_SHORT).show()
 
             }
+
 
         }
 
