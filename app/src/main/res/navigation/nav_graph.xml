@@ -54,6 +54,9 @@
         <action
             android:id="@+id/action_settings_to_about"
             app:destination="@id/about" />
+        <action
+            android:id="@+id/action_settings_to_store"
+            app:destination="@id/store" />
     </fragment>
     <fragment
         android:id="@+id/search"
@@ -157,6 +160,9 @@
         <action
             android:id="@+id/action_about_to_editProfile"
             app:destination="@id/editProfile" />
+        <action
+            android:id="@+id/action_about_to_settings"
+            app:destination="@id/settings" />
     </fragment>
     <fragment
         android:id="@+id/signUpStepTwo"

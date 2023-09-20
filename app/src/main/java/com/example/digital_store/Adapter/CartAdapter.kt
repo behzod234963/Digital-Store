@@ -77,8 +77,6 @@ class CartAdapter :RecyclerView.Adapter<CartAdapter.CartViewHolder>(){
 
             }
 
-            tvPrice.text= cart.price
-
             ivMinus.setOnClickListener {
 
                 if (cart.count>1){
@@ -107,6 +105,7 @@ class CartAdapter :RecyclerView.Adapter<CartAdapter.CartViewHolder>(){
 
             }
 
+            tvPrice.text= "${ cart.price } USD"
             tvCountCart.text=cart.count.toString()
 
         }

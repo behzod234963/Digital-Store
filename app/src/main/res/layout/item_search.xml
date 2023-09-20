@@ -29,7 +29,7 @@
 
                 <ImageView
                     android:id="@+id/ivImage_search"
-                    android:layout_width="100dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="150dp"
                     android:src="@drawable/pic_laptop" />
             </LinearLayout>

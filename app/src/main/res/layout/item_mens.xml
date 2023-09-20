@@ -28,12 +28,9 @@
                 android:layout_weight="1">
                 <ImageView
                     android:id="@+id/ivImage_mens"
-                    android:padding="30dp"
-                    android:layout_width="match_parent"
+                    android:padding="10dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:adjustViewBounds="true"
-                    android:scaleType="centerCrop"
-                    android:layout_margin="10dp"
                     android:layout_gravity="center"
                     android:src="@drawable/pic_laptop"/>
             </LinearLayout>
@@ -49,17 +46,17 @@
                     android:layout_height="wrap_content"
                     android:text="lenovo thinkpad e15 g2 black"
                     android:inputType="textMultiLine"
-                    android:textSize="16sp"
+                    android:textSize="15sp"
                     android:textColor="@color/black"
-                    android:layout_margin="10dp"
+                    android:layout_margin="5dp"
                     tools:ignore="TextViewEdits" />
                 <TextView
                     android:id="@+id/tvCategory_mens"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Jewelery"
-                    android:textSize="16sp"
-                    android:layout_margin="10dp"
+                    android:textSize="15sp"
+                    android:layout_margin="5dp"
                     android:textColor="@color/black"/>
                 <TextView
                     android:id="@+id/tvPrice_mens"
@@ -69,7 +66,7 @@
                     android:textSize="16sp"
                     android:layout_gravity="bottom"
                     android:textColor="@color/black"
-                    android:layout_margin="10dp"/>
+                    android:layout_margin="5dp"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -81,7 +78,7 @@
                     android:layout_height="25dp"
                     android:layout_gravity="center"
                     android:src="@drawable/pic_rating_star"
-                    android:layout_margin="10dp"/>
+                    android:layout_margin="5dp"/>
                 <TextView
                     android:id="@+id/tvRating_mens"
                     android:layout_width="wrap_content"

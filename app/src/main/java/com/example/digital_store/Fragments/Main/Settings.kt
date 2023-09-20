@@ -67,6 +67,7 @@ class Settings : Fragment() {
 
             llBackSettings.setOnClickListener {
 
+                findNavController().navigate(R.id.action_settings_to_store)
                 navController.popBackStack()
 
             }

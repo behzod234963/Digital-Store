@@ -1,10 +1,13 @@
 package com.example.digital_store.Fragments.Main
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -27,10 +30,11 @@ class Details : Fragment() {
     lateinit var products: ArrayList<ProductsItem>
     lateinit var navController: NavController
     lateinit var wishList: ArrayList<RoomData.WishList>
-    lateinit var url:URL
+    lateinit var url: URL
     lateinit var repository: DataBaseRepository
     val args: DetailsArgs by navArgs()
     var detailsID = 1
+    var count=0
 
 
     override fun onCreateView(
@@ -64,26 +68,33 @@ class Details : Fragment() {
 
             llBackDetails.setOnClickListener {
 
+                findNavController().navigate(R.id.action_details_to_store)
                 navController.popBackStack()
 
             }
 
             btnAddCartDetails.setOnClickListener {
 
-                Toast.makeText(requireContext(), "Successfully added", Toast.LENGTH_SHORT).show()
-                val id = tvIdDetails.text
-                val title=tvTitleDetails.text
-                val price=tvPriceDetails.text
+                try {
 
-                repository.saveCart(
+                    Toast.makeText(requireContext(), "Successfully added", Toast.LENGTH_SHORT)
+                        .show()
+                    val id = tvIdDetails.text
+                    val title = tvTitleDetails.text
+                    val price = tvPriceDetails.text
 
-                    RoomData.Cart(
-                        id=id.toString().toInt(),
-                        image = url.toString(),
-                        title=title.toString(),
-                        price=price.toString()
+                    repository.saveCart(
+
+                        RoomData.Cart(
+                            id = id.toString().toInt(),
+                            image = url.toString(),
+                            title = title.toString(),
+                            price = price.toString()
+                        )
                     )
-                )
+
+                } catch (_: NumberFormatException) {
+                }
 
             }
 
@@ -96,24 +107,52 @@ class Details : Fragment() {
 
             llWishlistDetails.setOnClickListener {
 
-                ivWishlistDetails.setImageResource(R.drawable.ic_heart_checked)
-                val id = tvIdDetails.text
-                val title=tvTitleDetails.text
-                val price=tvPriceDetails.text
-                val rating=tvRatingDetails.text
-                val description=tvDescriptionDetails.text
-                repository.saveProduct(
-                    RoomData.WishList(
-                        id = id.toString().toInt(),
-                        title = title.toString(),
-                        price = price.toString(),
-                        rating = rating.toString(),
-                        description = description.toString(),
-                        image = url.toString()
+                try {
+
+                    ivWishlistDetails.setImageResource(R.drawable.ic_heart_checked)
+                    val id = tvIdDetails.text
+                    val title = tvTitleDetails.text
+                    val price = tvPriceDetails.text
+                    val rating = tvRatingDetails.text
+                    val description = tvDescriptionDetails.text
+                    repository.saveProduct(
+                        RoomData.WishList(
+                            id = id.toString().toInt(),
+                            title = title.toString(),
+                            price = price.toString(),
+                            rating = rating.toString(),
+                            description = description.toString(),
+                            image = url.toString()
+                        )
                     )
-                )
+
+                } catch (_: NumberFormatException) {
+                }
 
             }
+
+        }
+
+    }
+
+    private fun onExit() {
+
+        var count = 0
+        count++
+        if (count == 1) {
+
+            Handler(Looper.getMainLooper()).postDelayed({
+
+                count = 0
+
+            }, 2000)
+            Toast.makeText(requireContext(), "Tap twice to exit", Toast.LENGTH_SHORT).show()
+
+        }
+
+        if (count == 2) {
+
+            requireActivity().finish()
 
         }
 
@@ -151,7 +190,7 @@ class Details : Fragment() {
 
     private fun getURl(body: ProductsItem) {
 
-        url=URL(body.image)
+        url = URL(body.image)
 
     }
 

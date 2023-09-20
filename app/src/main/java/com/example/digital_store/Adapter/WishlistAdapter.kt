@@ -66,7 +66,7 @@ class WishlistAdapter :RecyclerView.Adapter<WishlistAdapter.WishlistViewHolder>(
         val tvTitle:TextView=view.findViewById(R.id.tvTitle_wishlist)
         val tvPrice:TextView=view.findViewById(R.id.tvPrice_wishlist)
         val tvRate:TextView=view.findViewById(R.id.tvRating_wishlist)
-        val llDelete:ImageView=view.findViewById(R.id.llDelete_wishlist)
+        val llDelete:LinearLayout=view.findViewById(R.id.llDelete_wishlist)
 
     }
 

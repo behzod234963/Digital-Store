@@ -23,8 +23,8 @@ class Cart : Fragment() {
     lateinit var cartAdapter: CartAdapter
     lateinit var carts: ArrayList<RoomData.Cart>
     lateinit var navController: NavController
-    var totalCost = ""
-    var price = ""
+    var totalCost = 0.0
+    var price = 0.0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,6 +44,7 @@ class Cart : Fragment() {
 
 
     //    Initialize data
+    @SuppressLint("SetTextI18n")
     private fun initView() {
 
         binding.apply {
@@ -85,15 +86,6 @@ class Cart : Fragment() {
 
             tvTotalCartCart.text = "Total ${carts.size} items"
 
-            for (i in carts.indices) {
-
-                price += carts[i].price
-
-            }
-
-            totalCost = price
-            tvTotalCostCart.text = totalCost
-
             cartAdapter.deleteItem = {
 
                 try {
@@ -123,7 +115,7 @@ class Cart : Fragment() {
 
             }
             cartAdapter.minus={
-
+                
                 cartAdapter.submitList(carts)
 
             }

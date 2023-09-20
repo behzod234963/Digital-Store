@@ -30,12 +30,9 @@
                 android:layout_weight="1">
                 <ImageView
                     android:id="@+id/ivProductImage_allproducts"
-                    android:padding="30dp"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:adjustViewBounds="true"
-                    android:scaleType="centerCrop"
-                    android:layout_margin="10dp"
+                    android:padding="10dp"
                     android:layout_gravity="center"
                     android:src="@drawable/pic_laptop"/>
             </LinearLayout>
@@ -53,7 +50,7 @@
                     android:inputType="textMultiLine"
                     android:textSize="15sp"
                     android:textColor="@color/black"
-                    android:layout_margin="10dp"
+                    android:layout_margin="5dp"
                     tools:ignore="TextViewEdits" />
                 <TextView
                     android:id="@+id/tvType_allproducts"

@@ -47,8 +47,9 @@ class About : Fragment() {
 
         binding.apply {
 
-            ivBackAbout.setOnClickListener {
+            llBackAbout.setOnClickListener {
 
+                findNavController().navigate(R.id.action_about_to_settings)
                 navController.popBackStack()
 
             }

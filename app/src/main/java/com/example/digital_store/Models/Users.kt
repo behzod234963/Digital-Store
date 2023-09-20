@@ -60,7 +60,11 @@ data class Address(
 
 	@field:SerializedName("geolocation")
 	val geolocation: Geolocation? = null
-)
+) {
+	override fun toString(): String {
+		return "$city, $street"
+	}
+}
 
 data class Name(
 

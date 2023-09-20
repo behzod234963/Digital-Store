@@ -1,9 +1,13 @@
 package com.example.digital_store.Fragments.Main
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -30,6 +34,7 @@ class Store : Fragment(), com.example.digital_store.Navigation.Navigator {
     lateinit var vpAdapter: ViewPagerAdapter
     lateinit var productsAdapter: AllProductsAdapter
     lateinit var products:ArrayList<ProductsItem>
+    var count=0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,6 +70,30 @@ class Store : Fragment(), com.example.digital_store.Navigation.Navigator {
             findNavController().navigate(R.id.action_store_to_search)
 
         }
+
+    requireActivity().onBackPressedDispatcher.addCallback {
+
+        count++
+
+        if (count>1){
+
+            requireActivity().finish()
+
+        }
+
+        if (count==1){
+
+            Handler(Looper.getMainLooper()).postDelayed({
+
+                count=0
+
+            },3000)
+            Toast.makeText(requireContext(), "twice tap to exit", Toast.LENGTH_SHORT).show()
+
+        }
+
+
+    }
 
         binding.ivProfileStore.setOnClickListener {
 
