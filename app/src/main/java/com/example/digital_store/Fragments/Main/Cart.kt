@@ -122,6 +122,11 @@ class Cart : Fragment() {
                 cartAdapter.submitList(carts)
 
             }
+            cartAdapter.minus={
+
+                cartAdapter.submitList(carts)
+
+            }
 
         }
 

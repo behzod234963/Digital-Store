@@ -81,7 +81,14 @@ class CartAdapter :RecyclerView.Adapter<CartAdapter.CartViewHolder>(){
 
             ivMinus.setOnClickListener {
 
-               minus?.invoke(position)
+                if (cart.count>1){
+
+                    cart.count--
+                    val countList=ArrayList<RoomData.Cart>()
+                    submitList(countList)
+                    minus?.invoke(position)
+
+                }
 
             }
 
