@@ -105,7 +105,7 @@ class CartAdapter :RecyclerView.Adapter<CartAdapter.CartViewHolder>(){
 
             }
 
-            tvPrice.text= "${ cart.price } USD"
+            tvPrice.text= cart.price
             tvCountCart.text=cart.count.toString()
 
         }

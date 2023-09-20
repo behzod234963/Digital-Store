@@ -34,7 +34,7 @@ class Details : Fragment() {
     lateinit var repository: DataBaseRepository
     val args: DetailsArgs by navArgs()
     var detailsID = 1
-    var count=0
+    var count = 0
 
 
     override fun onCreateView(
@@ -63,6 +63,14 @@ class Details : Fragment() {
         navController = NavController(requireContext())
         detailsID = args.DetailsId
         loadDetail(detailsID)
+
+        mainController()
+
+    }
+
+
+//    Business logic for this fragment
+    private fun mainController() {
 
         binding.apply {
 
@@ -135,29 +143,6 @@ class Details : Fragment() {
 
     }
 
-    private fun onExit() {
-
-        var count = 0
-        count++
-        if (count == 1) {
-
-            Handler(Looper.getMainLooper()).postDelayed({
-
-                count = 0
-
-            }, 2000)
-            Toast.makeText(requireContext(), "Tap twice to exit", Toast.LENGTH_SHORT).show()
-
-        }
-
-        if (count == 2) {
-
-            requireActivity().finish()
-
-        }
-
-    }
-
 
     //    Loading details
     private fun loadDetail(id: Int) {
@@ -188,6 +173,8 @@ class Details : Fragment() {
 
     }
 
+
+    //    Getting image url
     private fun getURl(body: ProductsItem) {
 
         url = URL(body.image)

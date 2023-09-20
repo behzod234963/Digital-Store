@@ -29,19 +29,19 @@ import com.example.digital_store.Models.ProductsItem
 class Store : Fragment(), com.example.digital_store.Navigation.Navigator {
 
     lateinit var binding: FragmentStoreBinding
-    lateinit var vpTitle:ArrayList<String>
-    lateinit var vpFragment:ArrayList<Fragment>
+    lateinit var vpTitle: ArrayList<String>
+    lateinit var vpFragment: ArrayList<Fragment>
     lateinit var vpAdapter: ViewPagerAdapter
     lateinit var productsAdapter: AllProductsAdapter
-    lateinit var products:ArrayList<ProductsItem>
-    var count=0
+    lateinit var products: ArrayList<ProductsItem>
+    var count = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding= FragmentStoreBinding.inflate(layoutInflater, container, false)
+        binding = FragmentStoreBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -52,48 +52,24 @@ class Store : Fragment(), com.example.digital_store.Navigation.Navigator {
 
     }
 
-//    Initialize data
+    //    Initialize data
     private fun initView(view: View) {
 
-        productsAdapter= AllProductsAdapter()
-        vpTitle= ArrayList()
-        vpFragment=ArrayList()
-        products=ArrayList()
+        productsAdapter = AllProductsAdapter()
+        vpTitle = ArrayList()
+        vpFragment = ArrayList()
+        products = ArrayList()
         loadItems()
-        vpAdapter= ViewPagerAdapter(vpFragment, vpTitle, childFragmentManager)
-        val vpViewPager: ViewPager =view.findViewById(R.id.vpViewPager_store)
+        vpAdapter = ViewPagerAdapter(vpFragment, vpTitle, childFragmentManager)
+        val vpViewPager: ViewPager = view.findViewById(R.id.vpViewPager_store)
         binding.tlTabLayoutStore.setupWithViewPager(vpViewPager)
-        vpViewPager.adapter=vpAdapter
+        vpViewPager.adapter = vpAdapter
 
         binding.ivSearchStore.setOnClickListener {
 
             findNavController().navigate(R.id.action_store_to_search)
 
         }
-
-    requireActivity().onBackPressedDispatcher.addCallback {
-
-        count++
-
-        if (count>1){
-
-            requireActivity().finish()
-
-        }
-
-        if (count==1){
-
-            Handler(Looper.getMainLooper()).postDelayed({
-
-                count=0
-
-            },3000)
-            Toast.makeText(requireContext(), "twice tap to exit", Toast.LENGTH_SHORT).show()
-
-        }
-
-
-    }
 
         binding.ivProfileStore.setOnClickListener {
 
@@ -110,11 +86,11 @@ class Store : Fragment(), com.example.digital_store.Navigation.Navigator {
 
     }
 
-//    Loading Items
+    //    Loading Items
     private fun loadItems() {
 
-        vpFragment= ArrayList()
-        vpTitle=ArrayList()
+        vpFragment = ArrayList()
+        vpTitle = ArrayList()
         vpTitle.add("All")
         vpFragment.add(AllProducts(this))
         vpTitle.add("Jewelery")
@@ -128,18 +104,49 @@ class Store : Fragment(), com.example.digital_store.Navigation.Navigator {
 
     }
 
-//    Navigator
+    //    Navigator
     override fun saveAction(actionID: Int, bundle: Bundle?) {
 
-        when(actionID){
+        when (actionID) {
 
-            R.id.action_store_to_details->{
+            R.id.action_store_to_details -> {
 
-                findNavController().navigate(R.id.action_store_to_details,bundle)
+                findNavController().navigate(R.id.action_store_to_details, bundle)
 
             }
 
         }
 
     }
+
+
+    //    Double tap to exit
+//    fun doubleTapToExit() {
+//
+//        requireActivity().onBackPressedDispatcher.addCallback {
+//
+//            count++
+//
+//            if (count > 1) {
+//
+//                requireActivity().finish()
+//
+//            }
+//
+//            if (count == 1) {
+//
+//                Handler(Looper.getMainLooper()).postDelayed({
+//
+//                    count = 0
+//
+//                }, 3000)
+//                Toast.makeText(requireContext(), "twice tap to exit", Toast.LENGTH_SHORT).show()
+//
+//            }
+//
+//
+//        }
+//
+//    }
+
 }
