@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.digital_store.Adapter.CartAdapter
@@ -57,13 +58,14 @@ class Cart : Fragment() {
 
             cartAdapter.onClick = {
 
-                findNavController().navigate(R.id.action_cart_to_details)
+                findNavController().navigate(R.id.action_cart_to_details, bundleOf("DetailsId" to carts[it].id))
                 navController.popBackStack()
 
             }
 
             llBackCart.setOnClickListener {
 
+                findNavController().navigate(R.id.action_cart_to_store)
                 navController.popBackStack()
 
             }
@@ -76,7 +78,8 @@ class Cart : Fragment() {
                     loadCarts()
                     cartAdapter.submitList(carts)
 
-                }catch (_:IndexOutOfBoundsException){ }
+                } catch (_: IndexOutOfBoundsException) {
+                }
 
             }
 
@@ -99,7 +102,7 @@ class Cart : Fragment() {
                     loadCarts()
                     cartAdapter.submitList(carts)
 
-                }catch (e:IndexOutOfBoundsException){
+                } catch (e: IndexOutOfBoundsException) {
 
                     Toast.makeText(requireContext(), "", Toast.LENGTH_SHORT).show()
 
@@ -109,10 +112,16 @@ class Cart : Fragment() {
 
             btn.setOnClickListener {
 
-                Toast.makeText(requireContext(), "Operation not implemented", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Operation not implemented", Toast.LENGTH_SHORT)
+                    .show()
 
             }
 
+            cartAdapter.plus = {
+
+                cartAdapter.submitList(carts)
+
+            }
 
         }
 

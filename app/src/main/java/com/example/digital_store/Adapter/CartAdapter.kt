@@ -7,21 +7,28 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.DiffUtil.DiffResult
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.digital_store.Models.RoomData
 import com.example.digital_store.R
+import com.example.digital_store.Utils.CartDiffUtils
 
 class CartAdapter :RecyclerView.Adapter<CartAdapter.CartViewHolder>(){
 
     var deleteItem:((Int)->Unit)?=null
     var onClick:((Int)->Unit)?=null
+    var plus:((Int)->Unit)?=null
+    var minus:((Int)->Unit)?=null
     var cartslist:ArrayList<RoomData.Cart> =ArrayList()
 
-    fun submitList(carts:ArrayList<RoomData.Cart>){
+    fun submitList(newList:ArrayList<RoomData.Cart>){
 
-        cartslist.clear()
-        cartslist.addAll(carts)
+        val diffUtil=CartDiffUtils(cartslist,newList)
+        val result=DiffUtil.calculateDiff(diffUtil)
+        cartslist=newList
+        result.dispatchUpdatesTo(this)
         notifyDataSetChanged()
 
     }
@@ -74,24 +81,16 @@ class CartAdapter :RecyclerView.Adapter<CartAdapter.CartViewHolder>(){
 
             ivMinus.setOnClickListener {
 
-               if (cart.count>1){
-
-                   cart.count--
-
-               }
+               minus?.invoke(position)
 
             }
 
             ivPlus.setOnClickListener {
 
-                if(cart.count<100){
-
-                    cart.count++
-                    cartslist.add(cart)
-                    notifyDataSetChanged()
-                    cartslist.clear()
-
-                }
+                cart.count++
+                val countList=ArrayList<RoomData.Cart>()
+                submitList(countList)
+                plus?.invoke(position)
 
             }
 
