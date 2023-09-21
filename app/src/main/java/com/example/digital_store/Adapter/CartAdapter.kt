@@ -1,6 +1,8 @@
 package com.example.digital_store.Adapter
 
 import android.annotation.SuppressLint
+import android.app.Application
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,14 +10,15 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.DiffUtil.DiffResult
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.digital_store.DataBase.SQLite.DataBaseRepository
+import com.example.digital_store.DataBase.SharedPreferences.SharedPreferences
 import com.example.digital_store.Models.RoomData
 import com.example.digital_store.R
 import com.example.digital_store.Utils.CartDiffUtils
 
-class CartAdapter :RecyclerView.Adapter<CartAdapter.CartViewHolder>(){
+class CartAdapter(val ctx:Context):RecyclerView.Adapter<CartAdapter.CartViewHolder>(){
 
     var deleteItem:((Int)->Unit)?=null
     var onClick:((Int)->Unit)?=null
@@ -48,7 +51,7 @@ class CartAdapter :RecyclerView.Adapter<CartAdapter.CartViewHolder>(){
 
         holder.apply {
 
-            id.text=cart.id.toString()
+            id.text=id.toString()
 
             llCartClick.setOnClickListener {
 
@@ -77,11 +80,25 @@ class CartAdapter :RecyclerView.Adapter<CartAdapter.CartViewHolder>(){
 
             }
 
+            ivPlus.setOnClickListener {
+
+                val countList=ArrayList<RoomData.Cart>()
+                submitList(countList)
+                cart.count++
+                var result=cart.count*cart.price
+                SharedPreferences(ctx).savePrice(result)
+                tvPrice.text= "$result USD"
+                plus?.invoke(position)
+
+            }
             ivMinus.setOnClickListener {
 
                 if (cart.count>1){
 
                     cart.count--
+                    var price=SharedPreferences(ctx).getPrice()
+                    var result=price-cart.price
+                    tvPrice.text="$result USD"
                     val countList=ArrayList<RoomData.Cart>()
                     submitList(countList)
                     minus?.invoke(position)
@@ -90,15 +107,7 @@ class CartAdapter :RecyclerView.Adapter<CartAdapter.CartViewHolder>(){
 
             }
 
-            ivPlus.setOnClickListener {
 
-                cart.count++
-
-                val countList=ArrayList<RoomData.Cart>()
-                submitList(countList)
-                plus?.invoke(position)
-
-            }
 
             ivDelete.setOnClickListener {
 
@@ -106,7 +115,6 @@ class CartAdapter :RecyclerView.Adapter<CartAdapter.CartViewHolder>(){
 
             }
 
-            tvPrice.text= cart.price
             tvCountCart.text=cart.count.toString()
 
         }

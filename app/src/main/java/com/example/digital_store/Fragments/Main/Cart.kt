@@ -50,7 +50,7 @@ class Cart : Fragment() {
         binding.apply {
 
             cartRepository = DataBaseRepository(requireActivity().application)
-            cartAdapter = CartAdapter()
+            cartAdapter = CartAdapter(requireContext())
             rvCartCart.adapter = cartAdapter
             carts = ArrayList()
             loadCarts()

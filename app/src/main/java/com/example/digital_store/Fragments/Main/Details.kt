@@ -25,6 +25,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.net.URL
+import kotlin.properties.Delegates
 
 class Details : Fragment() {
 
@@ -36,7 +37,9 @@ class Details : Fragment() {
     lateinit var repository: DataBaseRepository
     val args: DetailsArgs by navArgs()
     var detailsID = 1
-    var count = 0
+    var cartID by Delegates.notNull<Int>()
+    var title by Delegates.notNull<String>()
+    var price =0.0
 
 
     override fun onCreateView(
@@ -89,16 +92,13 @@ class Details : Fragment() {
 
                     Toast.makeText(requireContext(), "Successfully added", Toast.LENGTH_SHORT)
                         .show()
-                    val id = tvIdDetails.text
-                    val title = tvTitleDetails.text
-                    val price = tvPriceDetails.text
                     repository.saveCart(
 
                         RoomData.Cart(
-                            id = id.toString().toInt(),
+                            id = cartID,
                             image = url.toString(),
-                            title = title.toString(),
-                            price = price.toString()
+                            title = title,
+                            price = price,
                         )
                     )
 
@@ -183,6 +183,10 @@ class Details : Fragment() {
 
     //    Loading items into details
     private fun loadData(body: ProductsItem) {
+
+        cartID=body.id!!
+        title=body.title!!
+        price= (body.price as Double?)!!
 
         binding.apply {
 

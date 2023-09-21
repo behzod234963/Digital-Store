@@ -65,7 +65,7 @@
                     android:id="@+id/tvPrice_cart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Cost: 1000 USD"
+                    android:text="0 USD"
                     android:layout_marginTop="10dp"
                     android:textColor="@color/black"
                     android:textSize="16sp"

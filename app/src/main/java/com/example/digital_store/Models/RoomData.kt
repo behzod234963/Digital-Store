@@ -13,8 +13,8 @@ class RoomData {
         val id:Int?=null,
         val image:String,
         val title:String,
-        var price:String,
-        var count:Int=1
+        var price:Double,
+        var count:Int=0
 
         )
 
@@ -28,6 +28,5 @@ class RoomData {
         val price: String,
         val rating:String,
         val description:String)
-
 
 }
