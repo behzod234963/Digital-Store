@@ -52,7 +52,7 @@ class Wishlist : Fragment(), Navigator {
         binding.rvWishlist.adapter = wishAdapter
         loadWishlist()
         wishAdapter.submitList(products)
-        navController=NavController(requireContext())
+        navController = NavController(requireContext())
         binding.apply {
 
             wishAdapter.itemClick = { position ->
@@ -79,20 +79,14 @@ class Wishlist : Fragment(), Navigator {
                     loadWishlist()
                     wishAdapter.submitList(products)
 
-                } catch (e: IndexOutOfBoundsException) {
-
-                    Toast.makeText(
-                        requireContext(),
-                        "Wishlist is already empty",
-                        Toast.LENGTH_SHORT
-                    ).show()
-
+                } catch (_: IndexOutOfBoundsException) {
                 }
 
             }
 
             llBackWishlist.setOnClickListener {
 
+                findNavController().navigate(R.id.action_wishlist_to_settings)
                 navController.popBackStack()
 
             }
@@ -102,6 +96,7 @@ class Wishlist : Fragment(), Navigator {
     }
 
 
+    //    Clear all products in the wishlist fragment
     private fun clearAll(list: ArrayList<RoomData.WishList>) {
 
         wIshListRepository.clearAll(list)

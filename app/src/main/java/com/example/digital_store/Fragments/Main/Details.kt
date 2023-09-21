@@ -1,5 +1,6 @@
 package com.example.digital_store.Fragments.Main
 
+import android.net.Network
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -19,6 +20,7 @@ import com.example.digital_store.Models.ProductsItem
 import com.example.digital_store.Models.RoomData
 import com.example.digital_store.R
 import com.example.digital_store.databinding.FragmentDetailsBinding
+import okhttp3.Connection
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -90,7 +92,6 @@ class Details : Fragment() {
                     val id = tvIdDetails.text
                     val title = tvTitleDetails.text
                     val price = tvPriceDetails.text
-
                     repository.saveCart(
 
                         RoomData.Cart(
@@ -101,8 +102,7 @@ class Details : Fragment() {
                         )
                     )
 
-                } catch (_: NumberFormatException) {
-                }
+                } catch (_: NumberFormatException) {}
 
             }
 

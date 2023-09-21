@@ -45,6 +45,7 @@ class Search : Fragment() {
     //    Initialize data
     private fun initView() {
 
+        navController=NavController(requireContext())
         binding.lavLoadingSearch.visibility=View.VISIBLE
         list = ArrayList()
         loadList()
@@ -71,6 +72,7 @@ class Search : Fragment() {
 
         binding.llBackSearch.setOnClickListener {
 
+            findNavController().navigate(R.id.action_search_to_store)
             navController.popBackStack()
 
         }

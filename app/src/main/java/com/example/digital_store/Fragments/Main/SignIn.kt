@@ -48,21 +48,6 @@ SignIn : Fragment() {
         loadUser(4)
         binding.apply {
 
-            btnSignInSignIn.setOnClickListener {
-
-                if (etUsernameSignIn.text?.isNotEmpty()!! && etPasswordSignIn.text?.isNotEmpty()!!) {
-
-                    findNavController().navigate(R.id.action_signIn_to_store)
-                    navController.popBackStack()
-
-                }else{
-
-                    Toast.makeText(requireContext(), " Incorrect \nUsername or Password", Toast.LENGTH_SHORT).show()
-
-                }
-
-            }
-
             tvSignUpSignIn.setOnClickListener{
 
                 findNavController().navigate(R.id.action_signIn_to_signUp)
@@ -98,13 +83,33 @@ SignIn : Fragment() {
 
     private fun loadUserItems(body: UsersItem?) {
 
-        var username=binding.etUsernameSignIn.text.toString()
-        var password=binding.etPasswordSignIn.text.toString()
+        val username=body?.username
+        val password=body?.password
 
         binding.apply {
 
-            username=body?.username.toString()
-            password=body?.password.toString()
+            btnSignInSignIn.setOnClickListener {
+
+                if (etUsernameSignIn.text?.isNotEmpty()!! && etPasswordSignIn.text?.isNotEmpty()!!) {
+
+                    if (etUsernameSignIn.text.toString() == username && etPasswordSignIn.text.toString()==password){
+
+                        findNavController().navigate(R.id.action_signIn_to_store)
+                        navController.popBackStack()
+
+                    }else{
+
+                        Toast.makeText(requireContext(), " Incorrect \nUsername or Password", Toast.LENGTH_SHORT)
+
+                    }
+
+                }else{
+
+                    Toast.makeText(requireContext(), " Incorrect \nUsername or Password", Toast.LENGTH_SHORT).show()
+
+                }
+
+            }
 
         }
 

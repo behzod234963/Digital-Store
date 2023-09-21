@@ -2,11 +2,15 @@ package com.example.digital_store.Fragments.Main
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.text.Editable
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import com.example.digital_store.DataBase.Remote.ApiClient
 import com.example.digital_store.Models.UsersItem
 import com.example.digital_store.R
@@ -44,6 +48,7 @@ class EditProfile : Fragment() {
 
         binding.llBackEdit.setOnClickListener {
 
+            findNavController().navigate(R.id.action_editProfile_to_settings)
             navController.popBackStack()
 
         }
@@ -76,17 +81,17 @@ class EditProfile : Fragment() {
 
         binding.apply {
 
-            var firstName=etFirstNameEdit.text.toString()
+            var fistName=etFirstNameEdit.text.toString()
             var lastName=etLastNameEdit.text.toString()
+            var address=etAddressEdit.text.toString()
             var email=etEmailEdit.text.toString()
             var phone=etPhoneEdit.text.toString()
-            var address=etAddressEdit.text.toString()
 
-            firstName=body?.name?.firstname!!
-            lastName= body.name.lastname!!
-            email= body.email!!
-            phone= body.phone!!
-            address= body.address.toString()
+            fistName=body?.name?.firstname!!
+            lastName=body.name.lastname!!
+            address=body.address?.city!!
+            email=body.email!!
+            phone=body.phone!!
 
         }
 

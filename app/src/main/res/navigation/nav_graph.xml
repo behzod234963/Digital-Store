@@ -69,6 +69,9 @@
         <action
             android:id="@+id/action_search_to_cart"
             app:destination="@id/cart" />
+        <action
+            android:id="@+id/action_search_to_store"
+            app:destination="@id/store" />
     </fragment>
     <fragment
         android:id="@+id/cart"
@@ -117,6 +120,9 @@
         <argument
             android:name="wishID"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_wishlist_to_settings"
+            app:destination="@id/settings" />
     </fragment>
     <fragment
         android:id="@+id/editProfile"
@@ -127,6 +133,9 @@
             android:name="editID"
             app:argType="integer"
             android:defaultValue="12" />
+        <action
+            android:id="@+id/action_editProfile_to_settings"
+            app:destination="@id/settings" />
     </fragment>
     <fragment
         android:id="@+id/signIn"

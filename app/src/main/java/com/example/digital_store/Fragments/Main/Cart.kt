@@ -84,7 +84,12 @@ class Cart : Fragment() {
 
             }
 
-            tvTotalCartCart.text = "Total ${carts.size} items"
+            tvTotalCartCart.text.apply {
+
+                cartAdapter.submitList(carts)
+                tvTotalCartCart.text = "Total ${carts.size} items"
+
+            }
 
             cartAdapter.deleteItem = {
 
