@@ -14,9 +14,10 @@ import com.example.digital_store.Adapter.CartAdapter
 import com.example.digital_store.DataBase.SQLite.DataBaseRepository
 import com.example.digital_store.Models.RoomData
 import com.example.digital_store.R
+import com.example.digital_store.Utils.CartIncDec
 import com.example.digital_store.databinding.FragmentCartBinding
 
-class Cart : Fragment() {
+class Cart : Fragment (),CartIncDec {
 
     lateinit var binding: FragmentCartBinding
     lateinit var cartRepository: DataBaseRepository
@@ -117,11 +118,13 @@ class Cart : Fragment() {
             cartAdapter.plus = {
 
                 cartAdapter.submitList(carts)
+                increaseProduct(carts[it].count,carts[it].price)
 
             }
             cartAdapter.minus={
-                
+
                 cartAdapter.submitList(carts)
+                decreaseProduct(carts[it].count,carts[it].price)
 
             }
 

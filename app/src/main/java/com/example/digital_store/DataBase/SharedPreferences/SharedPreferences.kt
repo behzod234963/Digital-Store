@@ -12,14 +12,14 @@ class SharedPreferences(ctx: Context) {
     fun savePrice(price:Double){
 
         val editor=sharedPrefences.edit()
-        editor.putFloat("price", price.toFloat())
+        editor.putInt("price", price.toInt())
         editor.apply()
 
     }
 
     fun getPrice():Double{
 
-        val price=sharedPrefences.getFloat("price",0.0.toFloat())
+        val price=sharedPrefences.getInt("price",0)
         return price.toDouble()
 
     }
@@ -27,7 +27,7 @@ class SharedPreferences(ctx: Context) {
     fun clearAll(price:Double){
 
         val editor = sharedPrefences.edit()
-        editor.putFloat("price",0.0.toFloat())
+        editor.putInt("price",0)
         editor.apply()
 
     }

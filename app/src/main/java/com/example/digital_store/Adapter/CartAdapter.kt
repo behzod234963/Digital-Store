@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -79,15 +80,11 @@ class CartAdapter(val ctx:Context):RecyclerView.Adapter<CartAdapter.CartViewHold
                 tvCategory.text="Women's clothing"
 
             }
+            tvPrice.text="${cart.price} USD"
 
             ivPlus.setOnClickListener {
 
-                val countList=ArrayList<RoomData.Cart>()
-                submitList(countList)
                 cart.count++
-                var result=cart.count*cart.price
-                SharedPreferences(ctx).savePrice(result)
-                tvPrice.text= "$result USD"
                 plus?.invoke(position)
 
             }
@@ -96,11 +93,6 @@ class CartAdapter(val ctx:Context):RecyclerView.Adapter<CartAdapter.CartViewHold
                 if (cart.count>1){
 
                     cart.count--
-                    var price=SharedPreferences(ctx).getPrice()
-                    var result=price-cart.price
-                    tvPrice.text="$result USD"
-                    val countList=ArrayList<RoomData.Cart>()
-                    submitList(countList)
                     minus?.invoke(position)
 
                 }
