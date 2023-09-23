@@ -3,11 +3,13 @@ package com.example.digital_store.Fragments.Main
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.os.Bundle
+import android.text.Editable
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -85,6 +87,7 @@ class Cart : Fragment(), CartIncDec {
 
                     clearAllCart()
                     loadCarts()
+                    tvTotalCartCart.text = "Total ${carts.size} items"
                     cartAdapter.submitList(carts)
 
                 } catch (_: IndexOutOfBoundsException) {
@@ -94,8 +97,8 @@ class Cart : Fragment(), CartIncDec {
 
             tvTotalCartCart.text.apply {
 
-                cartAdapter.submitList(carts)
                 tvTotalCartCart.text = "Total ${carts.size} items"
+                cartAdapter.submitList(carts)
 
             }
 
@@ -105,6 +108,7 @@ class Cart : Fragment(), CartIncDec {
 
                     deleteCartByID(carts[it].id!!)
                     loadCarts()
+                    tvTotalCartCart.text = "Total ${carts.size} items"
                     cartAdapter.submitList(carts)
 
                 } catch (e: IndexOutOfBoundsException) {
@@ -115,37 +119,7 @@ class Cart : Fragment(), CartIncDec {
 
             }
 
-            cartAdapter.llClick = {
-
-                cartAmountDialog()
-                var currentCount = SharedPreferences(requireContext()).getCount()
-                carts[it].count=currentCount
-                
-                currentPrice(currentCount,carts[it].price)
-
-                btn.setOnClickListener {
-
-                    Toast.makeText(
-                        requireContext(),
-                        "Operation not implemented",
-                        Toast.LENGTH_SHORT
-                    )
-                        .show()
-
-                }
-
-            }
-
         }
-
-    }
-
-    private fun currentPrice(count: Int, price: Double):Double {
-        
-        var result = 0.0
-        result=count*price
-
-        return result
 
     }
 
@@ -174,58 +148,5 @@ class Cart : Fragment(), CartIncDec {
         
     }
 
-
-    //    Creating Custom Dialog for cart amount
-    private fun cartAmountDialog() {
-
-        var count = 1
-
-        binding.apply {
-
-            val cartDialog = Dialog(requireContext())
-            cartDialog.setContentView(R.layout.item_cart_dialog)
-            cartDialog.window?.setLayout(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-            cartDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-            cartDialog.setCancelable(false)
-            val llMinus: LinearLayout = cartDialog.findViewById(R.id.llMinus_cartdialog)
-            val llPlus: LinearLayout = cartDialog.findViewById(R.id.llPlus_cartdialog)
-            val tvCount: TextView = cartDialog.findViewById(R.id.tvCount_dialog)
-            val btnSave: Button = cartDialog.findViewById(R.id.btnSave_dialog)
-            val btnCancel: Button = cartDialog.findViewById(R.id.btnCancel_dialog)
-
-            tvCount.text = count.toString()
-
-            llMinus.setOnClickListener {
-
-                if (count > 1) {
-
-                    count--
-
-                }
-
-            }
-            llPlus.setOnClickListener {
-
-                count++
-
-            }
-            btnSave.setOnClickListener {
-
-                SharedPreferences(requireContext()).saveCount(count)
-
-            }
-            btnCancel.setOnClickListener {
-
-                cartDialog.dismiss()
-
-            }
-            Toast.makeText(requireContext(), "vdbvkvd", Toast.LENGTH_SHORT).show()
-
-        }
-        
-    }
 
 }

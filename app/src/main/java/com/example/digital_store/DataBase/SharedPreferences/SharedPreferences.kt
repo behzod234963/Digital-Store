@@ -32,6 +32,16 @@ class SharedPreferences(ctx: Context) {
 
     }
 
+    fun saveStr(str:String){
+
+        var edt=sharedPrefences.edit()
+        edt.putString("str",str)
+        edt.apply()
+
+    }
+
+    fun getStr():String=sharedPrefences.getString("str","1")!!
+
     fun saveCount(count:Int){
 
         val editor =sharedPrefences.edit()

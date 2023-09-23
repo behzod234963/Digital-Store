@@ -1,5 +1,6 @@
 package com.example.digital_store.Fragments.Main
 
+import android.app.Dialog
 import android.net.Network
 import android.os.Bundle
 import android.os.Handler
@@ -7,6 +8,10 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
@@ -16,6 +21,7 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.digital_store.DataBase.Remote.ApiClient
 import com.example.digital_store.DataBase.SQLite.DataBaseRepository
+import com.example.digital_store.DataBase.SharedPreferences.SharedPreferences
 import com.example.digital_store.Models.ProductsItem
 import com.example.digital_store.Models.RoomData
 import com.example.digital_store.R
@@ -88,21 +94,7 @@ class Details : Fragment() {
 
             btnAddCartDetails.setOnClickListener {
 
-                try {
-
-                    Toast.makeText(requireContext(), "Successfully added", Toast.LENGTH_SHORT)
-                        .show()
-                    repository.saveCart(
-
-                        RoomData.Cart(
-                            id = cartID,
-                            image = url.toString(),
-                            title = title,
-                            price = price,
-                        )
-                    )
-
-                } catch (_: NumberFormatException) {}
+                cartAmountDialog()
 
             }
 
@@ -196,6 +188,98 @@ class Details : Fragment() {
             tvPriceDetails.text = "${body.price.toString()} USD"
             tvRatingDetails.text = body.rating.toString()
             tvDescriptionDetails.text = body.description
+
+        }
+
+    }
+
+    //    Creating Custom Dialog for cart amount
+    private fun cartAmountDialog() {
+
+        binding.apply {
+
+            var count=1
+
+            val cartDialog = Dialog(requireContext())
+            cartDialog.setContentView(R.layout.item_cart_dialog)
+            cartDialog.window?.setLayout(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+            cartDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+            cartDialog.setCancelable(false)
+            val llMinus: LinearLayout? = cartDialog.findViewById(R.id.llMinus_cartdialog)
+            val llPlus: LinearLayout? = cartDialog.findViewById(R.id.llPlus_cartdialog)
+            val tvAmount:TextView=cartDialog.findViewById(R.id.tvAmount_cartDialog)
+            val btnSave: Button? = cartDialog.findViewById(R.id.btnSave_dialog)
+            val btnCancel: Button? = cartDialog.findViewById(R.id.btnCancel_dialog)
+
+
+            llMinus?.setOnClickListener {
+
+                if (count > 1) {
+
+                    count--
+                    tvAmount.text=count.toString()
+
+                }
+
+            }
+            llPlus?.setOnClickListener {
+
+                count++
+                tvAmount.text=count.toString()
+
+            }
+
+            tvAmount.text=count.toString()
+
+            btnSave?.setOnClickListener {
+
+                if (count>1){
+
+                    try {
+
+                        repository.saveCart(
+
+                            RoomData.Cart(
+                                id = cartID,
+                                image = url.toString(),
+                                title = title,
+                                price = price,
+                                count = count
+                            )
+                        )
+
+                    } catch (_: NumberFormatException) {}
+
+                }else{
+
+                    try {
+
+                        repository.saveCart(
+
+                            RoomData.Cart(
+                                id = cartID,
+                                image = url.toString(),
+                                title = title,
+                                price = price,
+                                count=count
+                            )
+                        )
+
+                    } catch (_: NumberFormatException) {}
+
+                }
+                cartDialog.dismiss()
+
+            }
+            btnCancel?.setOnClickListener {
+
+                cartDialog.dismiss()
+
+            }
+            cartDialog.show()
 
         }
 

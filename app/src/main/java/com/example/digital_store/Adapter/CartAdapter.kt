@@ -79,7 +79,11 @@ class CartAdapter(val ctx:Context):RecyclerView.Adapter<CartAdapter.CartViewHold
                 tvCategory.text="Women's clothing"
 
             }
-            tvPrice.text="$${cart.price}"
+
+            var price=cart.price
+            var count=cart.count
+            var result= price?.times(count)
+            tvPrice.text="$$result"
 
             ivDelete.setOnClickListener {
 
@@ -87,7 +91,7 @@ class CartAdapter(val ctx:Context):RecyclerView.Adapter<CartAdapter.CartViewHold
 
             }
 
-            tvCountCart.text=cart.count.toString()
+            tvCountCart.text="${cart.count} product"
 
             llDialog.setOnClickListener {
 
