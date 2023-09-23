@@ -32,4 +32,19 @@ class SharedPreferences(ctx: Context) {
 
     }
 
+    fun saveCount(count:Int){
+
+        val editor =sharedPrefences.edit()
+        editor.putInt("count",count)
+        editor.apply()
+
+    }
+
+    fun getCount():Int{
+
+        val count=sharedPrefences.getInt("count",1)
+        return count
+
+    }
+
 }

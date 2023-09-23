@@ -23,8 +23,7 @@ class CartAdapter(val ctx:Context):RecyclerView.Adapter<CartAdapter.CartViewHold
 
     var deleteItem:((Int)->Unit)?=null
     var onClick:((Int)->Unit)?=null
-    var plus:((Int)->Unit)?=null
-    var minus:((Int)->Unit)?=null
+    var llClick:((Int)->Unit)?=null
     var cartslist:ArrayList<RoomData.Cart> =ArrayList()
 
     fun submitList(newList:ArrayList<RoomData.Cart>){
@@ -80,26 +79,7 @@ class CartAdapter(val ctx:Context):RecyclerView.Adapter<CartAdapter.CartViewHold
                 tvCategory.text="Women's clothing"
 
             }
-            tvPrice.text="${cart.price} USD"
-
-            ivPlus.setOnClickListener {
-
-                cart.count++
-                plus?.invoke(position)
-
-            }
-            ivMinus.setOnClickListener {
-
-                if (cart.count>1){
-
-                    cart.count--
-                    minus?.invoke(position)
-
-                }
-
-            }
-
-
+            tvPrice.text="$${cart.price}"
 
             ivDelete.setOnClickListener {
 
@@ -108,6 +88,12 @@ class CartAdapter(val ctx:Context):RecyclerView.Adapter<CartAdapter.CartViewHold
             }
 
             tvCountCart.text=cart.count.toString()
+
+            llDialog.setOnClickListener {
+
+                llClick?.invoke(position)
+
+            }
 
         }
 
@@ -121,10 +107,9 @@ class CartAdapter(val ctx:Context):RecyclerView.Adapter<CartAdapter.CartViewHold
         val tvTitle:TextView=view.findViewById(R.id.tvTitle_cart)
         val tvCategory:TextView=view.findViewById(R.id.tvCategory_cart)
         val tvPrice:TextView=view.findViewById(R.id.tvPrice_cart)
-        val ivMinus:ImageView=view.findViewById(R.id.ivMinus_cart)
         val tvCountCart:TextView=view.findViewById(R.id.tvCartCount_cart)
-        val ivPlus:ImageView=view.findViewById(R.id.ivPlus_cart)
         val ivDelete:ImageView=view.findViewById(R.id.ivDelete_cart)
+        val llDialog:LinearLayout=view.findViewById(R.id.llDialog_cart)
 
     }
 
