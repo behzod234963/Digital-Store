@@ -120,33 +120,4 @@ class Store : Fragment(), com.example.digital_store.Navigation.Navigator {
     }
 
 
-    //    Double tap to exit
-//    fun doubleTapToExit() {
-//
-//        requireActivity().onBackPressedDispatcher.addCallback {
-//
-//            count++
-//
-//            if (count > 1) {
-//
-//                requireActivity().finish()
-//
-//            }
-//
-//            if (count == 1) {
-//
-//                Handler(Looper.getMainLooper()).postDelayed({
-//
-//                    count = 0
-//
-//                }, 3000)
-//                Toast.makeText(requireContext(), "twice tap to exit", Toast.LENGTH_SHORT).show()
-//
-//            }
-//
-//
-//        }
-//
-//    }
-
 }

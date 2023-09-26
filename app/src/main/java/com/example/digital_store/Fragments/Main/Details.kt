@@ -183,7 +183,7 @@ class Details : Fragment() {
         binding.apply {
 
             tvIdDetails.text = body.id.toString()
-            Glide.with(this@Details).load(body.image).into(ivDetailsImageDetails).toString()
+            Glide.with(ivDetailsImageDetails).load(body.image).into(ivDetailsImageDetails).toString()
             tvTitleDetails.text = body.title
             tvPriceDetails.text = "${body.price.toString()} USD"
             tvRatingDetails.text = body.rating.toString()
