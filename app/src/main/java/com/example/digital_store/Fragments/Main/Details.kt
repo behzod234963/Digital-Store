@@ -325,15 +325,4 @@ class Details : Fragment() {
 
     }
 
-    override fun onPause() {
-        super.onPause()
-
-        if (checked){
-
-            SharedPreferences(requireContext()).saveInt()
-
-        }
-
-    }
-
 }

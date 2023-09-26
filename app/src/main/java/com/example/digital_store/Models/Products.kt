@@ -32,6 +32,7 @@ data class ProductsItem(
 
 	@field:SerializedName("category")
 	val category: String? = null
+
 ) {
 }
 
