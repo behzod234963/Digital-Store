@@ -1,19 +1,14 @@
 package com.example.digital_store.Fragments.Main
 
 import android.app.Dialog
-import android.net.Network
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -26,7 +21,6 @@ import com.example.digital_store.Models.ProductsItem
 import com.example.digital_store.Models.RoomData
 import com.example.digital_store.R
 import com.example.digital_store.databinding.FragmentDetailsBinding
-import okhttp3.Connection
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -47,6 +41,7 @@ class Details : Fragment() {
     var title by Delegates.notNull<String>()
     var price =0.0
     var status=1
+    var checked=false
 
 
     override fun onCreateView(
@@ -125,14 +120,15 @@ class Details : Fragment() {
                    binding.apply {
 
                        val wishlistId = tvIdDetails.text.toString()
-                       if (wishList.isEmpty()){
+                       if (checked){
 
                            ivWishlistDetails.setImageResource(R.drawable.ic_heart_unchecked)
+                           repository.deleteById(wishlistId.toInt())
+
 
                        }else{
 
                            ivWishlistDetails.setImageResource(R.drawable.ic_heart_unchecked)
-                           repository.deleteById(wishlistId.toInt())
 
                        }
 
@@ -144,6 +140,7 @@ class Details : Fragment() {
 
                    binding.apply {
 
+                       checked=true
                        ivWishlistDetails.setImageResource(R.drawable.ic_heart_checked)
                        val id = tvIdDetails.text
                        val title = tvTitleDetails.text
@@ -167,6 +164,12 @@ class Details : Fragment() {
                }
 
            }
+
+            if (checked){
+
+
+
+            }
 
         } catch (_: NumberFormatException) { }
 
@@ -317,6 +320,17 @@ class Details : Fragment() {
 
             }
             cartDialog.show()
+
+        }
+
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        if (checked){
+
+            SharedPreferences(requireContext()).saveInt()
 
         }
 

@@ -3,7 +3,6 @@ package com.example.digital_store.DataBase.SharedPreferences
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
-import com.example.digital_store.Adapter.CartAdapter
 
 class SharedPreferences(ctx: Context) {
 
@@ -42,7 +41,7 @@ class SharedPreferences(ctx: Context) {
 
     fun getStr():String=sharedPrefences.getString("str","1")!!
 
-    fun saveCount(count:Int){
+    fun saveInt(count:Int){
 
         val editor =sharedPrefences.edit()
         editor.putInt("count",count)
@@ -50,7 +49,7 @@ class SharedPreferences(ctx: Context) {
 
     }
 
-    fun getCount():Int{
+    fun getInt():Int{
 
         val count=sharedPrefences.getInt("count",1)
         return count
