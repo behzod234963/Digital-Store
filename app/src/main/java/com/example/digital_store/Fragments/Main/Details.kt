@@ -46,6 +46,7 @@ class Details : Fragment() {
     var cartID by Delegates.notNull<Int>()
     var title by Delegates.notNull<String>()
     var price =0.0
+    var status=1
 
 
     override fun onCreateView(
@@ -105,33 +106,69 @@ class Details : Fragment() {
 
             }
 
-            llWishlistDetails.setOnClickListener {
-
-                try {
-
-                    ivWishlistDetails.setImageResource(R.drawable.ic_heart_checked)
-                    val id = tvIdDetails.text
-                    val title = tvTitleDetails.text
-                    val price = tvPriceDetails.text
-                    val rating = tvRatingDetails.text
-                    val description = tvDescriptionDetails.text
-                    repository.saveProduct(
-                        RoomData.WishList(
-                            id = id.toString().toInt(),
-                            title = title.toString(),
-                            price = price.toString(),
-                            rating = rating.toString(),
-                            description = description.toString(),
-                            image = url.toString()
-                        )
-                    )
-
-                } catch (_: NumberFormatException) {
-                }
-
-            }
+            llWishlistDetails.setOnClickListener { onBtnWishlistListener()}
 
         }
+
+    }
+
+    private fun onBtnWishlistListener() {
+
+        status++
+
+        try {
+
+           when(status){
+
+               1->{
+
+                   binding.apply {
+
+                       val wishlistId = tvIdDetails.text.toString()
+                       if (wishList.isEmpty()){
+
+                           ivWishlistDetails.setImageResource(R.drawable.ic_heart_unchecked)
+
+                       }else{
+
+                           ivWishlistDetails.setImageResource(R.drawable.ic_heart_unchecked)
+                           repository.deleteById(wishlistId.toInt())
+
+                       }
+
+                   }
+
+               }
+
+               2->{
+
+                   binding.apply {
+
+                       ivWishlistDetails.setImageResource(R.drawable.ic_heart_checked)
+                       val id = tvIdDetails.text
+                       val title = tvTitleDetails.text
+                       val price = tvPriceDetails.text
+                       val rating = tvRatingDetails.text
+                       val description = tvDescriptionDetails.text
+                       repository.saveProduct(
+                           RoomData.WishList(
+                               id = id.toString().toInt(),
+                               title = title.toString(),
+                               price = price.toString(),
+                               rating = rating.toString(),
+                               description = description.toString(),
+                               image = url.toString()
+                           )
+                       )
+
+                   }
+                   status=0
+
+               }
+
+           }
+
+        } catch (_: NumberFormatException) { }
 
     }
 
